@@ -1,0 +1,16 @@
+{
+  "name": "reference-nextjs-marketing",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "graphql-request": "1.8.2",
+    "next": "9.4.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
