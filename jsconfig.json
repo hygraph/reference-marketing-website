@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/blocks": ["components/blocks"],
+      "@/columns": ["components/blocks/columns"],
+      "@/components/*": ["components/*"],
+      "@/icons": ["components/icons"],
+      "@/layout": ["components/layout"],
+      "@/lib/*": ["lib/*"],
+      "@/marketing": ["components/marketing"],
+      "@/svgs": ["components/svgs"],
+      "@/utils/*": ["utils/*"]
+    }
+  }
+}
