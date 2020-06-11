@@ -30,6 +30,8 @@ function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
     },
   }
 
+  if (!href || !label) return null
+
   return (
     <Link href={href || '/'}>
       <a
