@@ -1,20 +1,8 @@
-import Banner from '../components/banner'
-import * as Blocks from '../components/blocks'
 import { graphcmsClient } from '../lib/_client'
+import Wrapper from '../components/wrapper'
 
-function IndexPage({ page: { banner, blocks, ...page } }) {
-  return (
-    <React.Fragment>
-      {banner && <Banner {...banner} />}
-      {blocks.map((block, index) => {
-        const Component = Blocks[block.__typename]
-
-        if (!Component) return null
-
-        return <Component key={index} {...block} {...page} />
-      })}
-    </React.Fragment>
-  )
+function IndexPage({ page }) {
+  return <Wrapper {...page} />
 }
 
 export async function getStaticProps() {
