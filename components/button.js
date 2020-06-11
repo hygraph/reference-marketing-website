@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import cx from 'classnames'
 
-function Button({ href, label, style = 'SOLID', theme }) {
+function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
   const styleVal = (style) => {
     switch (style) {
       case 'OUTLINE':
