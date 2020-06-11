@@ -19,7 +19,7 @@ function Banner({ content, href, theme = 'INFO' }) {
       <div className="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between flex-wrap">
           <div className="flex-1 flex items-center">
-            <p className="font-medium text-white truncate">{content}</p>
+            <p className="font-medium text-white">{content}</p>
           </div>
           <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
             <div className="rounded-md shadow-sm">
