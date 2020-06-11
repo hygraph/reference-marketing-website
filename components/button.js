@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import cx from 'classnames'
 
-function Button({ href, label, style = 'SOLID', theme }) {
+function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
   const styleVal = (style) => {
     switch (style) {
       case 'OUTLINE':
@@ -15,7 +15,7 @@ function Button({ href, label, style = 'SOLID', theme }) {
   const themeVal = (theme) => {
     switch (theme) {
       case 'BLUE':
-        return colour
+        return theme
       default:
         return 'BLUE'
     }
@@ -29,6 +29,8 @@ function Button({ href, label, style = 'SOLID', theme }) {
       BLUE: 'border-blue-600 text-blue-600',
     },
   }
+
+  if (!href || !label) return null
 
   return (
     <Link href={href || '/'}>
