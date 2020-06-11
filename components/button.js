@@ -15,7 +15,7 @@ function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
   const themeVal = (theme) => {
     switch (theme) {
       case 'BLUE':
-        return colour
+        return theme
       default:
         return 'BLUE'
     }
