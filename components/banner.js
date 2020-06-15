@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import cx from 'classnames'
+
+import Button from './button'
 
 function Banner({ content, href, theme = 'INFO' }) {
   const themeClass = (theme) => {
@@ -23,11 +24,12 @@ function Banner({ content, href, theme = 'INFO' }) {
           </div>
           <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
             <div className="rounded-md shadow-sm">
-              <Link href={href}>
-                <a className="flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md bg-white focus:outline-none focus:shadow-outline transition ease-in-out duration-150">
-                  Learn more
-                </a>
-              </Link>
+              <Button
+                href={href}
+                label="Learn more"
+                size="SMALL"
+                theme="WHITE"
+              />
             </div>
           </div>
         </div>
