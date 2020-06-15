@@ -15,6 +15,7 @@ function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
   const themeVal = (theme) => {
     switch (theme) {
       case 'BLUE':
+      case 'WHITE':
         return theme
       default:
         return 'BLUE'
@@ -24,6 +25,7 @@ function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
   const buttonClass = {
     SOLID: {
       BLUE: 'border-transparent bg-blue-600 text-white',
+      WHITE: 'border-transparent bg-white text-gray-900',
     },
     OUTLINE: {
       BLUE: 'border-blue-600 text-blue-600',
