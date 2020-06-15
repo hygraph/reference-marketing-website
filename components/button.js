@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import cx from 'classnames'
 
-function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
+function Button({
+  href,
+  label,
+  size = 'REGULAR',
+  style = 'SOLID',
+  theme = 'BLUE',
+}) {
   const styleVal = (style) => {
     switch (style) {
       case 'OUTLINE':
@@ -32,9 +38,20 @@ function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
     },
   }
 
+  const sizeClass = (size) => {
+    switch (size) {
+      case 'SMALL':
+        return 'px-4 py-2 rounded text-sm md:text-base'
+      default:
+      case 'REGULAR':
+        return 'leading-6 px-8 py-3 rounded-md text-base md:py-4 md:text-lg md:px-10'
+    }
+  }
+
   const linkClass = cx(
     'border w-full flex items-center justify-center font-medium focus:outline-none focus:shadow-outline',
-    buttonClass[styleVal(style)][themeVal(theme)]
+    buttonClass[styleVal(style)][themeVal(theme)],
+    sizeClass(size)
   )
 
   if (!href || !label) return null
