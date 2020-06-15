@@ -32,18 +32,29 @@ function Button({ href, label, style = 'SOLID', theme = 'BLUE' }) {
     },
   }
 
+  const linkClass = cx(
+    'border w-full flex items-center justify-center font-medium focus:outline-none focus:shadow-outline',
+    buttonClass[styleVal(style)][themeVal(theme)]
+  )
+
   if (!href || !label) return null
 
-  return (
-    <Link href={href || '/'}>
+  if (href.includes('http')) {
+    return (
       <a
-        className={cx(
-          'border w-full flex items-center justify-center px-8 py-3 text-base leading-6 font-medium rounded-md focus:outline-none focus:shadow-outline md:py-4 md:text-lg md:px-10',
-          buttonClass[styleVal(style)][themeVal(theme)]
-        )}
+        className={linkClass}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {label}
       </a>
+    )
+  }
+
+  return (
+    <Link href={href || '/'}>
+      <a className={linkClass}>{label}</a>
     </Link>
   )
 }
