@@ -2,7 +2,7 @@ import cx from 'classnames'
 
 import * as Columns from './columns'
 
-function Grid({ columns, gridSubtitle, gridTitle, width = 1 }) {
+function Grid({ columns, component, gridSubtitle, gridTitle, width = 1 }) {
   if (!columns || !columns.length) return null
 
   const colWidthClass = (width) => {
@@ -31,7 +31,7 @@ function Grid({ columns, gridSubtitle, gridTitle, width = 1 }) {
       </div>
       <div className={cx('grid gap-14', colWidthClass(width))}>
         {columns.map((column, index) => {
-          const Component = Columns[column.__typename]
+          const Component = Columns[component] || Columns[column.__typename]
 
           if (!Component) return null
 
