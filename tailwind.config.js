@@ -3,6 +3,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  variants: {},
+  variants: {
+    margin: ['responsive', 'first'],
+  },
   plugins: [require('@tailwindcss/ui')],
 }
