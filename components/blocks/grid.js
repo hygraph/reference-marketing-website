@@ -2,8 +2,25 @@ import cx from 'classnames'
 
 import * as Columns from './columns'
 
-function Grid({ columns, component, gridSubtitle, gridTitle, width = 1 }) {
+function Grid({
+  columns,
+  component,
+  gridSubtitle,
+  gridTitle,
+  theme = 'WHITE',
+  width = 1,
+}) {
   if (!columns || !columns.length) return null
+
+  const gridThemeClass = (theme) => {
+    switch (theme) {
+      case 'LIGHT':
+        return 'bg-gray-50'
+      case 'WHITE':
+      default:
+        return 'bg-white'
+    }
+  }
 
   const colWidthClass = (width) => {
     switch (width) {
@@ -18,8 +35,13 @@ function Grid({ columns, component, gridSubtitle, gridTitle, width = 1 }) {
   }
 
   return (
-    <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-xl">
-      <div className="relative my-16">
+    <div
+      className={cx(
+        'relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl',
+        gridThemeClass(theme)
+      )}
+    >
+      <div className="relative mb-8 lg:mb-16">
         <h3 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
           {gridTitle}
         </h3>
