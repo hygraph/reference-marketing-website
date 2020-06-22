@@ -21,7 +21,7 @@ function Hero({ buttons, image, subtitle, title }) {
               </h2>
               {subtitle && (
                 <p className="mt-3 text-base text-gray-500  md:mt-5 md:text-xl lg:mx-0">
-                  {subtitle}
+                  {subtitle.markdown}
                 </p>
               )}
               {buttons && (
