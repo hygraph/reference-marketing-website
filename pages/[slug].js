@@ -20,7 +20,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const { pages } = await graphcmsClient.request(`{
-     pages(where: {slug_not: "home"}) {
+     pages(where: {slug_not_in: ["home", "blog"]}) {
        slug
      }
    }`)
