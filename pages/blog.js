@@ -1,6 +1,6 @@
 import { BlogPostCard } from '../components/blocks/columns'
 import { graphcmsClient } from '../lib/_client'
-import { blogQuery } from '../lib/_queries'
+import { blogPageQuery } from '../lib/_queries'
 
 function BlogPage({ featuredPosts, page: { subtitle, title }, posts }) {
   return (
@@ -32,7 +32,9 @@ function BlogPage({ featuredPosts, page: { subtitle, title }, posts }) {
 }
 
 export async function getStaticProps() {
-  const { featuredPosts, page, posts } = await graphcmsClient.request(blogQuery)
+  const { featuredPosts, page, posts } = await graphcmsClient.request(
+    blogPageQuery
+  )
 
   return {
     props: {
