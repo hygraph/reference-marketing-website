@@ -1,9 +1,24 @@
-function BlogPostCard({ authors, coverImage, excerpt, published, title }) {
+import cx from 'classnames'
+
+function BlogPostCard({
+  authors,
+  coverImage,
+  excerpt,
+  isFeatured = false,
+  published,
+  title,
+}) {
   return (
-    <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
-      <div className="flex-shrink-0">
+    <div
+      className={cx('flex flex-col rounded-lg shadow-lg overflow-hidden', {
+        'lg:flex-row': isFeatured,
+      })}
+    >
+      <div
+        className={cx({ 'flex-shrink-0': !isFeatured, 'lg:w-4/6': isFeatured })}
+      >
         <img
-          className="h-48 w-full object-cover"
+          className={cx('w-full object-cover', { 'h-48': !isFeatured })}
           src={coverImage.url}
           alt={coverImage.title}
           title={coverImage.title}
@@ -12,7 +27,14 @@ function BlogPostCard({ authors, coverImage, excerpt, published, title }) {
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
           <a href="#" className="block">
-            <h3 className="mt-2 text-xl leading-7 font-semibold text-gray-900">
+            <h3
+              className={cx(
+                'mt-2 text-xl leading-7 font-semibold text-gray-900',
+                {
+                  'lg:text-3xl lg:leading-9': isFeatured,
+                }
+              )}
+            >
               {title}
             </h3>
             <p className="mt-3 text-base leading-6 text-gray-500">{excerpt}</p>
