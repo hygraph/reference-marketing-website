@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import cx from 'classnames'
 
 function BlogPostCard({
@@ -6,6 +7,7 @@ function BlogPostCard({
   excerpt,
   isFeatured = false,
   published,
+  slug,
   title,
 }) {
   return (
@@ -26,19 +28,23 @@ function BlogPostCard({
       </div>
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
-          <a href="#" className="block">
-            <h3
-              className={cx(
-                'mt-2 text-xl leading-7 font-semibold text-gray-900',
-                {
-                  'lg:text-3xl lg:leading-9': isFeatured,
-                }
-              )}
-            >
-              {title}
-            </h3>
-            <p className="mt-3 text-base leading-6 text-gray-500">{excerpt}</p>
-          </a>
+          <Link href={`/blog/${slug}`}>
+            <a className="block">
+              <h3
+                className={cx(
+                  'mt-2 text-xl leading-7 font-semibold text-gray-900',
+                  {
+                    'lg:text-3xl lg:leading-9': isFeatured,
+                  }
+                )}
+              >
+                {title}
+              </h3>
+              <p className="mt-3 text-base leading-6 text-gray-500">
+                {excerpt}
+              </p>
+            </a>
+          </Link>
         </div>
         <div className="mt-6 flex items-center">
           <ul className="flex">
