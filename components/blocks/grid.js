@@ -1,6 +1,7 @@
 import cx from 'classnames'
 
 import * as Columns from './columns'
+import Heading from '../heading'
 
 function Grid({
   columns,
@@ -42,9 +43,9 @@ function Grid({
       )}
     >
       <div className="relative mb-8 lg:mb-16">
-        <h3 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+        <Heading level={3} className="text-center">
           {gridTitle}
-        </h3>
+        </Heading>
         {gridSubtitle && (
           <p className="mt-4 max-w-3xl mx-auto text-center text-xl leading-7 text-gray-500">
             {gridSubtitle.markdown}
