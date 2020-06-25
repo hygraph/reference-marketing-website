@@ -1,12 +1,13 @@
+import MarkdownRenderer from '../../markdown-renderer'
+import Heading from '../../heading'
+
 function Feature({ content, image, title }) {
   return (
     <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
       <div className="lg:col-start-2">
-        <h4 className="text-2xl leading-8 font-extrabold text-gray-900 tracking-tight sm:text-3xl sm:leading-9">
-          {title}
-        </h4>
+        <Heading level={4}>{title}</Heading>
         <p className="mt-3 text-lg leading-7 text-gray-500">
-          {content.markdown}
+          <MarkdownRenderer content={content.markdown} />
         </p>
       </div>
       <div className="mt-10 -mx-4 lg:mx-0 relative lg:mt-0 lg:col-start-1">

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import cx from 'classnames'
+import Heading from '../../heading'
 
 function BlogPostCard({
   authors,
@@ -30,16 +31,7 @@ function BlogPostCard({
         <div className="flex-1">
           <Link href={`/blog/${slug}`}>
             <a className="block">
-              <h3
-                className={cx(
-                  'mt-2 text-xl leading-7 font-semibold text-gray-900',
-                  {
-                    'lg:text-3xl lg:leading-9': isFeatured,
-                  }
-                )}
-              >
-                {title}
-              </h3>
+              <Heading level={isFeatured ? 3 : 4}>{title}</Heading>
               <p className="mt-3 text-base leading-6 text-gray-500">
                 {excerpt}
               </p>

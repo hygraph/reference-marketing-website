@@ -1,4 +1,5 @@
 import Button from '../button'
+import Heading from '../heading'
 
 function Hero({ buttons, image, subtitle, title }) {
   return (
@@ -16,9 +17,7 @@ function Hero({ buttons, image, subtitle, title }) {
 
           <div className="pt-10 mx-auto max-w-screen-xl px-4 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
             <div className="sm:text-center lg:text-left">
-              <h2 className="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 md:leading-none md:text-6xl">
-                {title}
-              </h2>
+              <Heading level={2}>{title}</Heading>
               {subtitle && (
                 <p className="mt-3 text-base text-gray-500  md:mt-5 md:text-xl lg:mx-0">
                   {subtitle.markdown}
