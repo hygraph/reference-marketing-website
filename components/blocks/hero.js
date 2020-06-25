@@ -1,5 +1,8 @@
+import cx from 'classnames'
+
 import Button from '../button'
 import Heading from '../heading'
+import MarkdownRenderer from '../markdown-renderer'
 
 function Hero({ buttons, image, subtitle, title }) {
   return (
@@ -17,12 +20,10 @@ function Hero({ buttons, image, subtitle, title }) {
 
           <div className="pt-10 mx-auto max-w-screen-xl px-4 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
             <div className="sm:text-center lg:text-left">
-              <Heading level={2}>{title}</Heading>
-              {subtitle && (
-                <p className="mt-3 text-base text-gray-500  md:mt-5 md:text-xl lg:mx-0">
-                  {subtitle.markdown}
-                </p>
-              )}
+              <Heading level={2} className={cx({ 'mb-3 md:mb-5': subtitle })}>
+                {title}
+              </Heading>
+              {subtitle && <MarkdownRenderer content={subtitle.markdown} />}
               {buttons && (
                 <div className="md:flex flex-wrap md:space-x-4 space-y-2 md:space-y-0 mt-5 md:mt-8">
                   {buttons.map((button, index) => (
