@@ -2,6 +2,7 @@ import cx from 'classnames'
 
 import * as Columns from './columns'
 import Heading from '../heading'
+import MarkdownRenderer from '../markdown-renderer'
 
 function Grid({
   columns,
@@ -42,15 +43,16 @@ function Grid({
         gridThemeClass(theme)
       )}
     >
-      <div className="relative mb-8 lg:mb-16">
-        <Heading level={3} className="text-center">
+      <div className="relative mb-8 lg:mb-16 text-center">
+        <Heading
+          level={3}
+          className={cx({
+            'mb-4': gridSubtitle,
+          })}
+        >
           {gridTitle}
         </Heading>
-        {gridSubtitle && (
-          <p className="mt-4 max-w-3xl mx-auto text-center text-xl leading-7 text-gray-500">
-            {gridSubtitle.markdown}
-          </p>
-        )}
+        {gridSubtitle && <MarkdownRenderer content={gridSubtitle.markdown} />}
       </div>
       <div className={cx('grid gap-14', colWidthClass(width))}>
         {columns.map((column, index) => {
