@@ -16,7 +16,7 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@tailwindcss/ui": "0.4.0",
+    "@tailwindcss/ui": "0.5.0",
     "postcss-preset-env": "6.7.0",
     "tailwindcss": "1.5.2"
   }
