@@ -11,7 +11,7 @@
     "classnames": "2.2.6",
     "graphql-request": "2.0.0",
     "markdown-to-jsx": "6.11.4",
-    "next": "9.4.4",
+    "next": "9.5.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
