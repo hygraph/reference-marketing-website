@@ -1,9 +1,9 @@
-import { BlogPostCard } from '../components/blocks/columns'
-import { graphcmsClient } from '../lib/_client'
-import { blogPageQuery } from '../lib/_queries'
+import { BlogPostCard } from '../../components/blocks/columns'
+import { graphcmsClient } from '../../lib/_client'
+import { blogPageQuery } from '../../lib/_queries'
 
-import Heading from '../components/heading'
-import MarkdownRenderer from '../components/markdown-renderer'
+import Heading from '../../components/heading'
+import MarkdownRenderer from '../../components/markdown-renderer'
 
 function BlogPage({ featuredPosts, page: { subtitle, title }, posts }) {
   return (
