@@ -1,10 +1,15 @@
+import hydrate from 'next-mdx-remote/hydrate'
+import renderToString from 'next-mdx-remote/render-to-string'
+import he from 'he'
+
 import { blogPostQuery } from '../../lib/_queries'
 import { graphcmsClient } from '../../lib/_client'
-
 import Heading from '../../components/heading'
-import MarkdownRenderer from '../../components/markdown-renderer'
+import mdxComponents from '../../components/mdx'
 
 function BlogPost({ post }) {
+  const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
+
   return (
     <React.Fragment>
       <header className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
@@ -39,20 +44,30 @@ function BlogPost({ post }) {
           alt={post.coverImage.title}
           title={post.coverImage.title}
         />
-        <MarkdownRenderer content={post.content.markdown} />
+        {mdxContent}
       </div>
     </React.Fragment>
   )
 }
 
 export async function getStaticProps({ params }) {
-  const { post } = await graphcmsClient.request(blogPostQuery, {
+  const {
+    post: { content, ...post },
+  } = await graphcmsClient.request(blogPostQuery, {
     slug: params.slug,
   })
 
   return {
     props: {
-      post,
+      post: {
+        content: {
+          ...content,
+          mdx: await renderToString(he.decode(content.markdown), {
+            components: mdxComponents,
+          }),
+        },
+        ...post,
+      },
     },
   }
 }

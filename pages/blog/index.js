@@ -1,19 +1,25 @@
+import hydrate from 'next-mdx-remote/hydrate'
+import renderToString from 'next-mdx-remote/render-to-string'
+import he from 'he'
+
 import { BlogPostCard } from '../../components/blocks/columns'
 import { graphcmsClient } from '../../lib/_client'
 import { blogPageQuery } from '../../lib/_queries'
 
 import Heading from '../../components/heading'
-import MarkdownRenderer from '../../components/markdown-renderer'
+import mdxComponents from '../../components/mdx'
 
-function BlogPage({ featuredPosts, page: { subtitle, title }, posts }) {
+function BlogPage({ featuredPosts, page, posts }) {
+  const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
+
   return (
     <main>
       <header className="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
         <div className="text-center">
           <Heading level={2} className="mb-3 md:mb-5">
-            {title}
+            {page.title}
           </Heading>
-          <MarkdownRenderer content={subtitle.markdown} />
+          {mdxSubtitle && mdxSubtitle}
         </div>
       </header>
       <div className="max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
@@ -33,15 +39,38 @@ function BlogPage({ featuredPosts, page: { subtitle, title }, posts }) {
 }
 
 export async function getStaticProps() {
-  const { featuredPosts, page, posts } = await graphcmsClient.request(
-    blogPageQuery
-  )
+  const {
+    featuredPosts,
+    page: { subtitle, ...page },
+    posts,
+  } = await graphcmsClient.request(blogPageQuery)
+
+  const parsePostsMdx = (posts) =>
+    Promise.all(
+      posts.map(async ({ content, ...post }) => ({
+        content: {
+          ...content,
+          mdx: await renderToString(he.decode(content.markdown)),
+        },
+        ...post,
+      }))
+    )
 
   return {
     props: {
-      featuredPosts,
-      page,
-      posts,
+      featuredPosts: await parsePostsMdx(featuredPosts),
+      page: {
+        ...(subtitle && {
+          subtitle: {
+            ...subtitle,
+            mdx: await renderToString(he.decode(subtitle.markdown), {
+              components: mdxComponents,
+            }),
+          },
+        }),
+        ...page,
+      },
+      posts: await parsePostsMdx(posts),
     },
   }
 }
