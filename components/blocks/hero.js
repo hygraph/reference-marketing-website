@@ -1,10 +1,15 @@
+import hydrate from 'next-mdx-remote/hydrate'
 import cx from 'classnames'
 
 import Button from '../button'
 import Heading from '../heading'
-import MarkdownRenderer from '../markdown-renderer'
+import mdxComponents from '../mdx'
 
 function Hero({ buttons, image, subtitle, title }) {
+  const mdxSubtitle = subtitle
+    ? hydrate(subtitle.mdx, { components: mdxComponents })
+    : null
+
   return (
     <div className="relative bg-white overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
@@ -23,7 +28,7 @@ function Hero({ buttons, image, subtitle, title }) {
               <Heading level={2} className={cx({ 'mb-3 md:mb-5': subtitle })}>
                 {title}
               </Heading>
-              {subtitle && <MarkdownRenderer content={subtitle.markdown} />}
+              {mdxSubtitle && mdxSubtitle}
               {buttons && (
                 <div className="md:flex flex-wrap md:space-x-4 space-y-2 md:space-y-0 mt-5 md:mt-8">
                   {buttons.map((button, index) => (

@@ -1,8 +1,9 @@
+import hydrate from 'next-mdx-remote/hydrate'
 import cx from 'classnames'
 
 import * as Columns from './columns'
 import Heading from '../heading'
-import MarkdownRenderer from '../markdown-renderer'
+import mdxComponents from '../mdx'
 
 function Grid({
   columns,
@@ -36,6 +37,10 @@ function Grid({
     }
   }
 
+  const mdxSubtitle = gridSubtitle
+    ? hydrate(gridSubtitle.mdx, { components: mdxComponents })
+    : null
+
   return (
     <div className={gridThemeClass(theme)}>
       <div className="relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
@@ -48,7 +53,7 @@ function Grid({
           >
             {gridTitle}
           </Heading>
-          {gridSubtitle && <MarkdownRenderer content={gridSubtitle.markdown} />}
+          {mdxSubtitle && mdxSubtitle}
         </div>
         <div className={cx('grid gap-14', colWidthClass(width))}>
           {columns.map((column, index) => {
