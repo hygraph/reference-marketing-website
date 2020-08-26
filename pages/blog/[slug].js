@@ -8,7 +8,7 @@ import { graphcmsClient } from '../../lib/_client'
 import Heading from '../../components/heading'
 import mdxComponents from '../../components/mdx'
 
-function BlogPost({ post }) {
+function BlogPost({ nextPost, post, previousPost }) {
   const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
 
   return (
@@ -63,6 +63,34 @@ function BlogPost({ post }) {
           <div className="prose max-w-none pt-10 pb-8">{mdxContent}</div>
         </div>
         <footer className="text-sm font-medium leading-5 divide-y divide-gray-200 lg:col-start-1 lg:row-start-2">
+          {(nextPost || previousPost) && (
+            <div className="space-y-8 py-8">
+              {nextPost && (
+                <div>
+                  <h2 className="text-xs tracking-wide uppercase text-gray-500">
+                    Next Post
+                  </h2>
+                  <div className="text-purple-500 hover:text-purple-600">
+                    <Link href={`/blog/${nextPost.slug}`}>
+                      <a>{nextPost.title}</a>
+                    </Link>
+                  </div>
+                </div>
+              )}
+              {previousPost && (
+                <div>
+                  <h2 className="text-xs tracking-wide uppercase text-gray-500">
+                    Previous Post
+                  </h2>
+                  <div className="text-purple-500 hover:text-purple-600">
+                    <Link href={`/blog/${previousPost.slug}`}>
+                      <a>{previousPost.title}</a>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
           <div className="pt-8">
             <Link href="/blog">
               <a className="text-purple-500 hover:text-purple-600">
@@ -78,13 +106,20 @@ function BlogPost({ post }) {
 
 export async function getStaticProps({ params }) {
   const {
+    allPosts,
     post: { content, ...post },
   } = await graphcmsClient.request(blogPostQuery, {
     slug: params.slug,
   })
 
+  const postIndex = allPosts.findIndex(({ id }) => id === post.id)
+
+  const nextPost = allPosts[postIndex + 1] || null
+  const previousPost = allPosts[postIndex - 1] || null
+
   return {
     props: {
+      nextPost,
       post: {
         content: {
           ...content,
@@ -100,6 +135,7 @@ export async function getStaticProps({ params }) {
         }).format(new Date(post.published)),
         ...post,
       },
+      previousPost,
     },
   }
 }
