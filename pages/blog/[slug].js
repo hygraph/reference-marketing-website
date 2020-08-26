@@ -44,7 +44,7 @@ function BlogPost({ post }) {
           alt={post.coverImage.title}
           title={post.coverImage.title}
         />
-        {mdxContent}
+        <div className="prose">{mdxContent}</div>
       </div>
     </React.Fragment>
   )
