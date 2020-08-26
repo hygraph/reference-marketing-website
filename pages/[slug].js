@@ -2,6 +2,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
 import { graphcmsClient } from '../lib/_client'
+import mdxComponents from '../components/mdx'
 import { pageQuery } from '../lib/_queries'
 import { parseBlocksMdx } from '../utils/_parseBlocksMdx'
 import Wrapper from '../components/wrapper'
