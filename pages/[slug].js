@@ -1,5 +1,9 @@
+import renderToString from 'next-mdx-remote/render-to-string'
+import he from 'he'
+
 import { graphcmsClient } from '../lib/_client'
 import { pageQuery } from '../lib/_queries'
+import { parseBlocksMdx } from '../utils/_parseBlocksMdx'
 import Wrapper from '../components/wrapper'
 
 function Page({ page }) {
@@ -7,13 +11,28 @@ function Page({ page }) {
 }
 
 export async function getStaticProps({ params }) {
-  const { page } = await graphcmsClient.request(pageQuery, {
+  const {
+    page: { blocks, subtitle, ...page },
+  } = await graphcmsClient.request(pageQuery, {
     slug: params.slug,
   })
 
   return {
     props: {
-      page,
+      page: {
+        ...(blocks && {
+          blocks: await parseBlocksMdx(blocks),
+        }),
+        ...(subtitle && {
+          subtitle: {
+            ...subtitle,
+            mdx: await renderToString(he.decode(subtitle.markdown), {
+              components: mdxComponents,
+            }),
+          },
+        }),
+        ...page,
+      },
     },
   }
 }
