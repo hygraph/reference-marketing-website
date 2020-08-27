@@ -1,4 +1,7 @@
 module.exports = {
+  future: {
+    removeDeprecatedGapUtilities: true,
+  },
   purge: ['./components/**/*.js', './pages/**/*.js'],
   theme: {
     extend: {},
@@ -6,5 +9,5 @@ module.exports = {
   variants: {
     margin: ['responsive', 'first'],
   },
-  plugins: [require('@tailwindcss/ui')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/ui')],
 }
