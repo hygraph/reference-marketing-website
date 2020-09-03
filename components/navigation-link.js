@@ -8,18 +8,11 @@ function NavigationLink({ slug }) {
   const isActive = router.asPath.startsWith(`/${slug}`)
   const isStaticPage = ['blog', 'home'].includes(slug)
 
-  return isStaticPage ? (
-    <Link href={`/${slug}`}>
-      <a
-        className={cx('font-medium', {
-          'text-red-300': isActive,
-        })}
-      >
-        {slug}
-      </a>
-    </Link>
-  ) : (
-    <Link href="/[slug]" as={`/${slug}`}>
+  return (
+    <Link
+      href={isStaticPage ? `/${slug}` : `/[slug]`}
+      as={isStaticPage ? null : `/${slug}`}
+    >
       <a
         className={cx('font-medium', {
           'text-red-300': isActive,
