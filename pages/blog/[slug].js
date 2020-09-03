@@ -29,7 +29,7 @@ function BlogPost({ nextPost, post, previousPost }) {
         </div>
       </header>
       <div
-        className="divide-y lg:divide-y-0 divide-gray-200 lg:grid lg:grid-cols-4 lg:col-gap-6 pb-16 lg:pb-20"
+        className="divide-y lg:divide-y-0 divide-gray-200 lg:grid lg:grid-cols-4 lg:gap-x-6 pb-16 lg:pb-20"
         style={{ gridTemplateRows: 'auto 1fr' }}
       >
         <dl className="pt-6 pb-10 lg:pt-11 lg:border-b lg:border-gray-200">
