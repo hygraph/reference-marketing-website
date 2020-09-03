@@ -1,5 +1,6 @@
-import NavigationLink from './navigation-link'
 import Link from 'next/link'
+
+import NavigationLink from './navigation-link'
 
 function Navigation({ pages }) {
   return (
