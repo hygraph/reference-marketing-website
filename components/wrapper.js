@@ -1,14 +1,12 @@
 import Banner from '../components/banner'
 import * as Blocks from '../components/blocks'
-import Navigation from './navigation'
+import Hero from './hero'
 
-function Wrapper({ banner, blocks, navigation, ...page }) {
+function Wrapper({ banner, blocks, hero, navigation, ...page }) {
   return (
     <React.Fragment>
       {banner && <Banner {...banner} />}
-      {navigation?.pages && navigation.pages.length && (
-        <Navigation {...navigation} />
-      )}
+      {hero && <Hero {...hero} navigation={navigation} page={page} />}
       {blocks.map((block, index) => {
         const Component = Blocks[block.__typename]
 
