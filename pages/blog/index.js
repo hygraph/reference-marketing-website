@@ -3,6 +3,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
 import { BlogPostCard } from '../../components/blocks/columns'
+import { getLayout as getPageLayout } from '../../components/layout-page'
 import { graphcmsClient } from '../../lib/_client'
 import { blogPageQuery } from '../../lib/_queries'
 
@@ -74,5 +75,7 @@ export async function getStaticProps() {
     },
   }
 }
+
+BlogPage.getLayout = getPageLayout
 
 export default BlogPage
