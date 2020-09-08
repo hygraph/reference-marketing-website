@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import Link from 'next/link'
+import { Transition } from '@tailwindui/react'
 
 import NavigationLink from './navigation-link'
 import NavigationMobile from './navigation-mobile'
 
 function Navigation({ pages }) {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+
   return (
     <React.Fragment>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -20,6 +24,7 @@ function Navigation({ pages }) {
                   id="main-menu"
                   aria-label="Main menu"
                   aria-haspopup="true"
+                  onClick={() => setMobileNavOpen(true)}
                 >
                   <svg
                     className="h-6 w-6"
@@ -45,7 +50,21 @@ function Navigation({ pages }) {
           </div>
         </nav>
       </div>
-      <NavigationMobile pages={pages} />
+      <Transition
+        show={mobileNavOpen}
+        enter="transition ease-out duration-75"
+        enterFrom="transform opacity-0 scale-95"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-150"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+        className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+      >
+        <NavigationMobile
+          closeNav={() => setMobileNavOpen(false)}
+          pages={pages}
+        />
+      </Transition>
     </React.Fragment>
   )
 }

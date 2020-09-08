@@ -29,51 +29,50 @@ const NavigationLink = ({ slug }) => {
   )
 }
 
-function NavigationMobile({ pages }) {
+function NavigationMobile({ closeNav, pages }) {
   return (
-    <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-      <div className="rounded-lg shadow-md">
-        <div
-          className="rounded-lg bg-white shadow-xs overflow-hidden"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="main-menu"
-        >
-          <div className="px-5 pt-4 flex items-center justify-between">
-            <div>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
-                alt=""
-              />
-            </div>
-            <div className="-mr-2">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                aria-label="Close menu"
+    <div className="rounded-lg shadow-md">
+      <div
+        className="rounded-lg bg-white shadow-xs overflow-hidden"
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="main-menu"
+      >
+        <div className="px-5 pt-4 flex items-center justify-between">
+          <div>
+            <img
+              className="h-8 w-auto"
+              src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+              alt=""
+            />
+          </div>
+          <div className="-mr-2">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+              aria-label="Close menu"
+              onClick={closeNav}
+            >
+              <svg
+                className="h-6 w-6"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
               >
-                <svg
-                  className="h-6 w-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {pages.map((page, index) => {
-              return <NavigationLink key={index} {...page} />
-            })}
-          </div>
+        </div>
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          {pages.map((page, index) => {
+            return <NavigationLink key={index} {...page} />
+          })}
         </div>
       </div>
     </div>
