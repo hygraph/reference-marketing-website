@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "0.2.0",
-    "@tailwindcss/ui": "0.5.0",
+    "@tailwindcss/ui": "0.6.0",
     "babel-plugin-inline-react-svg": "1.1.1",
     "postcss-preset-env": "6.7.0",
     "tailwindcss": "1.8.5"
