@@ -99,7 +99,7 @@ function Navigation({ pages }) {
         leave="transition ease-in duration-150"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
-        className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+        className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right z-10 md:hidden"
       >
         <NavigationMobile
           closeNav={() => setMobileNavOpen(false)}

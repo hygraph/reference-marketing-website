@@ -1,6 +1,7 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
+import { getLayout as getPageLayout } from '../components/layout-page'
 import { graphcmsClient } from '../lib/_client'
 import mdxComponents from '../components/mdx'
 import { pageQuery } from '../lib/_queries'
@@ -52,5 +53,7 @@ export async function getStaticPaths() {
     fallback: false,
   }
 }
+
+Page.getLayout = getPageLayout
 
 export default Page

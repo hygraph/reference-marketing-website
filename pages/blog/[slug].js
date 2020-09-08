@@ -4,6 +4,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
 import { blogPostQuery } from '../../lib/_queries'
+import { getLayout as getContentLayout } from '../../components/layout-content'
 import { graphcmsClient } from '../../lib/_client'
 import Heading from '../../components/heading'
 import mdxComponents from '../../components/mdx'
@@ -107,6 +108,7 @@ function BlogPost({ nextPost, post, previousPost }) {
 export async function getStaticProps({ params }) {
   const {
     allPosts,
+    navigation: { navigation },
     post: { content, ...post },
   } = await graphcmsClient.request(blogPostQuery, {
     slug: params.slug,
@@ -119,6 +121,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
+      navigation,
       nextPost,
       post: {
         content: {
@@ -154,5 +157,7 @@ export async function getStaticPaths() {
     fallback: false,
   }
 }
+
+BlogPost.getLayout = getContentLayout
 
 export default BlogPost
