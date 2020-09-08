@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Transition } from '@tailwindui/react'
 
 import NavigationLink from './navigation-link'
@@ -7,6 +8,7 @@ import NavigationMobile from './navigation-mobile'
 
 function Navigation({ pages }) {
   const container = useRef(null)
+  const router = useRouter()
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
   useEffect(() => {
@@ -36,6 +38,13 @@ function Navigation({ pages }) {
 
     return () => document.removeEventListener('keyup', handleEscape)
   }, [mobileNavOpen])
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => setMobileNavOpen(false))
+
+    return () =>
+      router.events.off('routeChangeStart', () => setMobileNavOpen(false))
+  }, [])
 
   return (
     <div ref={container}>
