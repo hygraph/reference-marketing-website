@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import cx from 'classnames'
 
+import MarkSVG from '../svg/mark.svg'
+
 const NavigationLink = ({ slug }) => {
   const router = useRouter()
 
@@ -40,11 +42,7 @@ function NavigationMobile({ closeNav, pages }) {
       >
         <div className="px-5 pt-4 flex items-center justify-between">
           <div>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
-              alt=""
-            />
+            <MarkSVG className="h-10 w-auto" />
           </div>
           <div className="-mr-2">
             <button

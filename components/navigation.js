@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from '@tailwindui/react'
 
+import LogoSVG from '../svg/logo.svg'
 import NavigationLink from './navigation-link'
 import NavigationMobile from './navigation-mobile'
 
@@ -53,7 +54,9 @@ function Navigation({ pages }) {
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
             <div className="flex items-center justify-between w-full md:w-auto">
               <Link href="/">
-                <a aria-label="Home">Home</a>
+                <a aria-label="Home">
+                  <LogoSVG className="h-10 w-auto" />
+                </a>
               </Link>
               <div className="-mr-2 flex items-center md:hidden">
                 <button
