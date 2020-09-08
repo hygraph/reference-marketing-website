@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Transition } from '@tailwindui/react'
 
@@ -6,10 +6,39 @@ import NavigationLink from './navigation-link'
 import NavigationMobile from './navigation-mobile'
 
 function Navigation({ pages }) {
+  const container = useRef(null)
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!container.current.contains(event.target)) {
+        if (!mobileNavOpen) return
+
+        setMobileNavOpen(false)
+      }
+    }
+
+    window.addEventListener('click', handleOutsideClick)
+
+    return () => window.removeEventListener('click', handleOutsideClick)
+  }, [mobileNavOpen, container])
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (!mobileNavOpen) return
+
+      if (event.key === 'Escape') {
+        setMobileNavOpen(false)
+      }
+    }
+
+    document.addEventListener('keyup', handleEscape)
+
+    return () => document.removeEventListener('keyup', handleEscape)
+  }, [mobileNavOpen])
+
   return (
-    <React.Fragment>
+    <div ref={container}>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start">
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
@@ -65,7 +94,7 @@ function Navigation({ pages }) {
           pages={pages}
         />
       </Transition>
-    </React.Fragment>
+    </div>
   )
 }
 
