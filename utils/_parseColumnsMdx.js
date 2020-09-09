@@ -20,7 +20,7 @@ const parseContentMdx = async ({ content, ...column }) => ({
   ...(content && {
     content: {
       ...content,
-      mdx: await renderToString(he.decode(content.markdown), {
+      mdx: await renderToString(he.decode(content), {
         components: mdxComponents,
       }),
     },
