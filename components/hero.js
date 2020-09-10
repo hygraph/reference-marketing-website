@@ -23,11 +23,7 @@ function Hero({ buttons, image, navigation, page }) {
           >
             <polygon points="50,0 100,0 50,100 0,100" />
           </svg>
-
-          {navigation?.pages && navigation.pages.length && (
-            <Navigation {...navigation} />
-          )}
-
+          <Navigation {...navigation} />
           <div className="pt-10 mx-auto max-w-screen-xl px-4 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
             <div className="sm:text-center lg:text-left">
               <Heading
