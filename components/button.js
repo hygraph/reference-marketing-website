@@ -70,7 +70,7 @@ function Button({
   }
 
   return (
-    <Link href={href || '/'}>
+    <Link href={href}>
       <a className={linkClass}>{label}</a>
     </Link>
   )
