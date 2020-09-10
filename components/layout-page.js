@@ -9,9 +9,9 @@ const PageLayout = ({ children, page }) => {
       {page?.banner && <Banner {...page.banner} />}
       {page?.hero ? (
         <Hero {...page.hero} navigation={page.navigation} page={page} />
-      ) : page?.navigation ? (
-        <Navigation {...page.navigation} />
-      ) : null}
+      ) : (
+        <Navigation {...page?.navigation} />
+      )}
       <div>{children}</div>
     </React.Fragment>
   )
