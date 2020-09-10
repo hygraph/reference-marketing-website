@@ -11,11 +11,11 @@ import Heading from '../../components/heading'
 import mdxComponents from '../../components/mdx'
 
 function BlogPost({ nextPost, post, previousPost }) {
-  const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
-
   const router = useRouter()
 
   if (router.isFallback) return <div>Loading</div>
+
+  const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
 
   return (
     <article className="relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">

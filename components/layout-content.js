@@ -4,7 +4,7 @@ import Navigation from './navigation'
 const ContentLayout = ({ children, navigation }) => {
   return (
     <React.Fragment>
-      <Navigation {...navigation} />
+      {navigation && <Navigation {...navigation} />}
       <div>{children}</div>
     </React.Fragment>
   )

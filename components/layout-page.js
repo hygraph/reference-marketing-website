@@ -6,8 +6,8 @@ import Navigation from './navigation'
 const PageLayout = ({ children, page }) => {
   return (
     <React.Fragment>
-      {page.banner && <Banner {...page.banner} />}
-      {page.hero ? (
+      {page?.banner && <Banner {...page.banner} />}
+      {page?.hero ? (
         <Hero {...page.hero} navigation={page.navigation} page={page} />
       ) : (
         <Navigation {...page.navigation} />
