@@ -73,6 +73,7 @@ export async function getStaticProps() {
       },
       posts: await parsePostsMdx(posts),
     },
+    revalidate: 3,
   }
 }
 
