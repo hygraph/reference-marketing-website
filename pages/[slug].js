@@ -1,12 +1,9 @@
 import { useRouter } from 'next/router'
-import renderToString from 'next-mdx-remote/render-to-string'
-import he from 'he'
 
 import { getLayout as getPageLayout } from '../components/layout-page'
 import { graphcmsClient } from '../lib/_client'
-import mdxComponents from '../components/mdx'
 import { pageQuery } from '../lib/_queries'
-import { parseBlocksMdx } from '../utils/_parseBlocksMdx'
+import { parsePageData } from '../utils/_parsePageData'
 import Wrapper from '../components/wrapper'
 
 function Page({ page }) {
@@ -24,30 +21,9 @@ export async function getStaticProps({ params }) {
     slug: params.slug,
   })
 
-  if (!page)
-    return {
-      props: {},
-      revalidate: 3,
-    }
-
-  const { blocks, subtitle, ...rest } = page
-
   return {
     props: {
-      page: {
-        ...(blocks && {
-          blocks: await parseBlocksMdx(blocks),
-        }),
-        ...(subtitle && {
-          subtitle: {
-            ...subtitle,
-            mdx: await renderToString(he.decode(subtitle), {
-              components: mdxComponents,
-            }),
-          },
-        }),
-        ...rest,
-      },
+      page: page ? await parsePageData(page) : null,
     },
     revalidate: 3,
   }
