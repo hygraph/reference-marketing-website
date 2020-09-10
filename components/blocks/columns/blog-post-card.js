@@ -29,7 +29,7 @@ function BlogPostCard({
       </div>
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
-          <Link href="/blog/[slug]" as={`/blog/${slug}`}>
+          <Link href={`/blog/${slug}`}>
             <a className="block">
               <Heading level={isFeatured ? 3 : 4}>{title}</Heading>
               <p className="mt-3 text-base leading-6 text-gray-500">
