@@ -8,14 +8,10 @@ const NavigationLink = ({ slug }) => {
   const router = useRouter()
 
   const isActive = router.asPath.startsWith(`/${slug}`)
-  const isStaticPage = ['blog', 'home'].includes(slug)
   const linkLabel = slug.charAt(0).toUpperCase() + slug.slice(1)
 
   return (
-    <Link
-      href={isStaticPage ? `/${slug}` : `/[slug]`}
-      as={isStaticPage ? null : `/${slug}`}
-    >
+    <Link href={`/${slug}`}>
       <a
         className={cx(
           'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out',
