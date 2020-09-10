@@ -126,7 +126,7 @@ export async function getStaticProps({ params }) {
       post: {
         content: {
           ...content,
-          mdx: await renderToString(he.decode(content.markdown), {
+          mdx: await renderToString(he.decode(content), {
             components: mdxComponents,
           }),
         },

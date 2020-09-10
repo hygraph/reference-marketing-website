@@ -51,7 +51,7 @@ export async function getStaticProps() {
       posts.map(async ({ content, ...post }) => ({
         content: {
           ...content,
-          mdx: await renderToString(he.decode(content.markdown)),
+          mdx: await renderToString(he.decode(content)),
         },
         ...post,
       }))
@@ -64,7 +64,7 @@ export async function getStaticProps() {
         ...(subtitle && {
           subtitle: {
             ...subtitle,
-            mdx: await renderToString(he.decode(subtitle.markdown), {
+            mdx: await renderToString(he.decode(subtitle), {
               components: mdxComponents,
             }),
           },

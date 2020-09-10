@@ -28,7 +28,7 @@ export async function getStaticProps({ params }) {
         ...(subtitle && {
           subtitle: {
             ...subtitle,
-            mdx: await renderToString(he.decode(subtitle.markdown), {
+            mdx: await renderToString(he.decode(subtitle), {
               components: mdxComponents,
             }),
           },
