@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
@@ -11,6 +12,10 @@ import mdxComponents from '../../components/mdx'
 
 function BlogPost({ nextPost, post, previousPost }) {
   const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
+
+  const router = useRouter()
+
+  if (router.isFallback) return <div>Loading</div>
 
   return (
     <article className="relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
@@ -154,7 +159,7 @@ export async function getStaticPaths() {
     paths: posts.map((post) => ({
       params: { slug: post.slug },
     })),
-    fallback: false,
+    fallback: true,
   }
 }
 

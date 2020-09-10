@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
@@ -9,6 +10,10 @@ import { parseBlocksMdx } from '../utils/_parseBlocksMdx'
 import Wrapper from '../components/wrapper'
 
 function Page({ page }) {
+  const router = useRouter()
+
+  if (router.isFallback) return <div>Loading</div>
+
   return <Wrapper {...page} />
 }
 
@@ -50,7 +55,7 @@ export async function getStaticPaths() {
     paths: pages.map((page) => ({
       params: { slug: page.slug },
     })),
-    fallback: false,
+    fallback: true,
   }
 }
 
