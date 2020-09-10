@@ -67,11 +67,13 @@ function NavigationMobile({ closeNav, pages }) {
             </button>
           </div>
         </div>
-        <div className="px-2 pt-2 pb-3 space-y-1">
-          {pages.map((page, index) => {
-            return <NavigationLink key={index} {...page} />
-          })}
-        </div>
+        {pages && pages.length ? (
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            {pages.map((page, index) => {
+              return <NavigationLink key={index} {...page} />
+            })}
+          </div>
+        ) : null}
       </div>
     </div>
   )
