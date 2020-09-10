@@ -48,7 +48,7 @@ function Navigation({ pages }) {
   }, [])
 
   return (
-    <div ref={container}>
+    <div ref={container} className="relative">
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative flex items-center justify-between sm:h-10 lg:justify-start">
           <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
