@@ -14,15 +14,23 @@ function Page({ page }) {
 
   if (router.isFallback) return <div>Loading</div>
 
+  if (!page) return <div> Not found</div>
+
   return <Wrapper {...page} />
 }
 
 export async function getStaticProps({ params }) {
-  const {
-    page: { blocks, subtitle, ...page },
-  } = await graphcmsClient.request(pageQuery, {
+  const { page } = await graphcmsClient.request(pageQuery, {
     slug: params.slug,
   })
+
+  if (!page)
+    return {
+      props: {},
+      revalidate: 3,
+    }
+
+  const { blocks, subtitle, ...rest } = page
 
   return {
     props: {
@@ -38,7 +46,7 @@ export async function getStaticProps({ params }) {
             }),
           },
         }),
-        ...page,
+        ...rest,
       },
     },
     revalidate: 3,
