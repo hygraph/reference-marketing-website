@@ -84,11 +84,13 @@ function Navigation({ pages }) {
               </div>
             </div>
           </div>
-          <div className="hidden md:block md:ml-10 md:pr-4 space-x-8">
-            {pages.map((page, index) => {
-              return <NavigationLink key={index} {...page} />
-            })}
-          </div>
+          {pages && pages.length ? (
+            <div className="hidden md:block md:ml-10 md:pr-4 space-x-8">
+              {pages.map((page, index) => {
+                return <NavigationLink key={index} {...page} />
+              })}
+            </div>
+          ) : null}
         </nav>
       </div>
       <Transition
