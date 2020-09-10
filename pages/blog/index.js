@@ -2,13 +2,12 @@ import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
+import { blogPageQuery } from '../../lib/_queries'
 import { BlogPostCard } from '../../components/blocks/columns'
 import { getLayout as getPageLayout } from '../../components/layout-page'
 import { graphcmsClient } from '../../lib/_client'
-import { blogPageQuery } from '../../lib/_queries'
-
 import Heading from '../../components/heading'
-import mdxComponents from '../../components/mdx'
+import { parsePageData } from '../../utils/_parsePageData'
 
 function BlogPage({ featuredPosts, page, posts }) {
   const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
@@ -40,11 +39,9 @@ function BlogPage({ featuredPosts, page, posts }) {
 }
 
 export async function getStaticProps() {
-  const {
-    featuredPosts,
-    page: { subtitle, ...page },
-    posts,
-  } = await graphcmsClient.request(blogPageQuery)
+  const { featuredPosts, page, posts } = await graphcmsClient.request(
+    blogPageQuery
+  )
 
   const parsePostsMdx = (posts) =>
     Promise.all(
@@ -60,19 +57,10 @@ export async function getStaticProps() {
   return {
     props: {
       featuredPosts: await parsePostsMdx(featuredPosts),
-      page: {
-        ...(subtitle && {
-          subtitle: {
-            ...subtitle,
-            mdx: await renderToString(he.decode(subtitle), {
-              components: mdxComponents,
-            }),
-          },
-        }),
-        ...page,
-      },
+      page: await parsePageData(page),
       posts: await parsePostsMdx(posts),
     },
+    revalidate: 3,
   }
 }
 

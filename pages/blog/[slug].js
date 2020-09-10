@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
@@ -10,6 +11,12 @@ import Heading from '../../components/heading'
 import mdxComponents from '../../components/mdx'
 
 function BlogPost({ nextPost, post, previousPost }) {
+  const router = useRouter()
+
+  if (router.isFallback) return <div>Loading</div>
+
+  if (!post) return <div>Not found</div>
+
   const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
 
   return (
@@ -109,10 +116,18 @@ export async function getStaticProps({ params }) {
   const {
     allPosts,
     navigation: { navigation },
-    post: { content, ...post },
+    post,
   } = await graphcmsClient.request(blogPostQuery, {
     slug: params.slug,
   })
+
+  if (!post)
+    return {
+      props: {},
+      revalidate: 3,
+    }
+
+  const { content, ...rest } = post
 
   const postIndex = allPosts.findIndex(({ id }) => id === post.id)
 
@@ -136,10 +151,11 @@ export async function getStaticProps({ params }) {
           month: 'long',
           day: 'numeric',
         }).format(new Date(post.published)),
-        ...post,
+        ...rest,
       },
       previousPost,
     },
+    revalidate: 3,
   }
 }
 
@@ -154,7 +170,7 @@ export async function getStaticPaths() {
     paths: posts.map((post) => ({
       params: { slug: post.slug },
     })),
-    fallback: false,
+    fallback: true,
   }
 }
 
