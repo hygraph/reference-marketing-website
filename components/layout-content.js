@@ -1,10 +1,10 @@
 import { getLayout as getSiteLayout } from './layout'
 import Navigation from './navigation'
 
-const ContentLayout = ({ children, navigation }) => {
+const ContentLayout = ({ children, page }) => {
   return (
     <React.Fragment>
-      <Navigation {...(navigation && { ...navigation })} />
+      <Navigation {...(page.navigation && { ...page.navigation })} />
       <div>{children}</div>
     </React.Fragment>
   )
