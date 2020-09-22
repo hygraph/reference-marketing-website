@@ -9,7 +9,7 @@ function NavigationLink({ slug }) {
   const linkLabel = slug.charAt(0).toUpperCase() + slug.slice(1)
 
   return (
-    <Link href={`${slug}`}>
+    <Link href={`/${slug}`}>
       <a
         className={cx(
           'font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out',

@@ -113,11 +113,7 @@ function BlogPost({ nextPost, post, previousPost }) {
 }
 
 export async function getStaticProps({ params }) {
-  const {
-    allPosts,
-    navigation: { navigation },
-    post,
-  } = await graphcmsClient.request(blogPostQuery, {
+  const { allPosts, page, post } = await graphcmsClient.request(blogPostQuery, {
     slug: params.slug,
   })
 
@@ -136,8 +132,8 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      navigation,
       nextPost,
+      page,
       post: {
         content: {
           ...content,
