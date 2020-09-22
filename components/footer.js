@@ -4,22 +4,24 @@ function Footer({ pages }) {
   return (
     <div className="bg-white">
       <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-        <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
-          {pages.map((page) => {
-            const linkLabel =
-              page.slug.charAt(0).toUpperCase() + page.slug.slice(1)
+        {pages.length ? (
+          <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
+            {pages.map((page) => {
+              const linkLabel =
+                page.slug.charAt(0).toUpperCase() + page.slug.slice(1)
 
-            return (
-              <div key={page.id} className="px-5 py-2">
-                <Link href={`/${page.slug}`}>
-                  <a className="text-base leading-6 text-gray-500 hover:text-gray-900">
-                    {linkLabel}
-                  </a>
-                </Link>
-              </div>
-            )
-          })}
-        </nav>
+              return (
+                <div key={page.id} className="px-5 py-2">
+                  <Link href={`/${page.slug}`}>
+                    <a className="text-base leading-6 text-gray-500 hover:text-gray-900">
+                      {linkLabel}
+                    </a>
+                  </Link>
+                </div>
+              )
+            })}
+          </nav>
+        ) : null}
         <div className="mt-8 flex justify-center">
           <a
             href="https://linkedin.com/company/graphcms"
