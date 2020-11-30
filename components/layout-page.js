@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import Banner from './banner'
 import { getLayout as getSiteLayout } from './layout'
 import Hero from './hero'

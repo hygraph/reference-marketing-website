@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 import * as Blocks from '../components/blocks'
 
 function Wrapper({ banner, blocks, hero, navigation, ...page }) {
