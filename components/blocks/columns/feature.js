@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
 import Heading from '../../heading'
@@ -13,11 +14,13 @@ function Feature({ content, image, title }) {
         {mdxContent}
       </div>
       <div className="mt-10 -mx-4 lg:mx-0 relative lg:mt-0 lg:col-start-1">
-        <img
+        <Image
           className="relative mx-auto lg:rounded-lg lg:shadow-md lg:w-5/6"
           src={image.url}
           alt={image.title}
           title={image.title}
+          height={image.height}
+          width={image.width}
         />
       </div>
     </div>
