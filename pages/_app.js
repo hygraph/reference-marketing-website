@@ -1,6 +1,6 @@
 import SiteLayout from '../components/layout'
 
-import '../styles/index.css'
+import 'tailwindcss/tailwind.css'
 
 function App({ Component, pageProps }) {
   const getLayout =
