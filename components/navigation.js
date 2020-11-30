@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from '@tailwindui/react'
@@ -8,11 +8,11 @@ import NavigationLink from './navigation-link'
 import NavigationMobile from './navigation-mobile'
 
 function Navigation({ pages }) {
-  const container = useRef(null)
+  const container = React.useRef(null)
   const router = useRouter()
-  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!container.current.contains(event.target)) {
         if (!mobileNavOpen) return
@@ -26,7 +26,7 @@ function Navigation({ pages }) {
     return () => window.removeEventListener('click', handleOutsideClick)
   }, [mobileNavOpen, container])
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleEscape = (event) => {
       if (!mobileNavOpen) return
 
@@ -40,7 +40,7 @@ function Navigation({ pages }) {
     return () => document.removeEventListener('keyup', handleEscape)
   }, [mobileNavOpen])
 
-  useEffect(() => {
+  React.useEffect(() => {
     router.events.on('routeChangeStart', () => setMobileNavOpen(false))
 
     return () =>

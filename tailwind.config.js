@@ -1,13 +1,13 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
   purge: ['./components/**/*.js', './pages/**/*.js'],
+  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {}
   },
   variants: {
-    margin: ['responsive', 'first'],
+    extend: {
+      margin: ['first']
+    }
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/ui')],
+  plugins: [require('@tailwindcss/typography')]
 }
