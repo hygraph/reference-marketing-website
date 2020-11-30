@@ -10,18 +10,17 @@
   "dependencies": {
     "@tailwindui/react": "0.1.1",
     "classnames": "2.2.6",
-    "graphql-request": "2.0.0",
+    "graphql-request": "3.3.0",
     "he": "1.2.0",
-    "next": "9.5.5",
+    "next": "10.0.3",
     "next-mdx-remote": "1.0.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "0.2.0",
-    "@tailwindcss/ui": "0.6.2",
-    "babel-plugin-inline-react-svg": "1.1.1",
+    "@tailwindcss/typography": "0.3.1",
+    "babel-plugin-inline-react-svg": "1.1.2",
     "postcss-preset-env": "6.7.0",
-    "tailwindcss": "1.8.13"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
