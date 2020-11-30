@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import { gql } from 'graphql-request'
 
 import { getLayout as getPageLayout } from '../components/layout-page'
 import { graphcmsClient } from '../lib/_client'
@@ -16,8 +17,9 @@ function Page({ page }) {
   return <Wrapper {...page} />
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ locale, params }) {
   const { page } = await graphcmsClient.request(pageQuery, {
+    locale,
     slug: params.slug
   })
 
@@ -29,17 +31,26 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
-  const { pages } = await graphcmsClient.request(`{
-     pages(where: {slug_not_in: ["home", "blog"]}) {
-       slug
-     }
-   }`)
+export async function getStaticPaths({ locales }) {
+  let paths = []
+
+  const { pages } = await graphcmsClient.request(gql`
+    {
+      pages(where: { slug_not_in: ["home", "blog"] }) {
+        slug
+      }
+    }
+  `)
+
+  for (const locale of locales) {
+    paths = [
+      ...paths,
+      ...pages.map((page) => ({ params: { slug: page.slug }, locale }))
+    ]
+  }
 
   return {
-    paths: pages.map((page) => ({
-      params: { slug: page.slug }
-    })),
+    paths,
     fallback: true
   }
 }
