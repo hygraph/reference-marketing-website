@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { gql } from 'graphql-request'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
@@ -120,8 +121,9 @@ function BlogPost({ nextPost, post, previousPost }) {
   )
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ locale, params }) {
   const { allPosts, page, post } = await graphcmsClient.request(blogPostQuery, {
+    locale,
     slug: params.slug
   })
 
@@ -163,17 +165,26 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
-  const { posts } = await graphcmsClient.request(`{
-     posts: blogPosts {
-       slug
-     }
-   }`)
+export async function getStaticPaths({ locales }) {
+  let paths = []
+
+  const { posts } = await graphcmsClient.request(gql`
+    {
+      posts: blogPosts {
+        slug
+      }
+    }
+  `)
+
+  for (const locale of locales) {
+    paths = [
+      ...paths,
+      ...posts.map((post) => ({ params: { slug: post.slug }, locale }))
+    ]
+  }
 
   return {
-    paths: posts.map((post) => ({
-      params: { slug: post.slug }
-    })),
+    paths,
     fallback: true
   }
 }

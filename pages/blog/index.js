@@ -38,10 +38,12 @@ function BlogPage({ featuredPosts, page, posts }) {
   )
 }
 
-export async function getStaticProps() {
-  const { featuredPosts, page, posts } = await graphcmsClient.request(
-    blogPageQuery
-  )
+export async function getStaticProps({ locale }) {
+  const {
+    featuredPosts,
+    page,
+    posts
+  } = await graphcmsClient.request(blogPageQuery, { locale })
 
   const parsePostsMdx = (posts) =>
     Promise.all(
