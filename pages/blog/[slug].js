@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
@@ -46,10 +47,15 @@ function BlogPost({ nextPost, post, previousPost }) {
             <ul className="flex justify-center lg:block space-x-8 sm:space-x-12 lg:space-x-0 lg:space-y-8">
               {post.authors.map((author) => (
                 <li key={author.id} className="flex items-center space-x-2">
-                  <img
-                    src={author.photo.url}
-                    className="w-10 h-10 rounded-full"
-                  />
+                  <div className="h-10 relative w-10">
+                    <Image
+                      className="rounded-full"
+                      src={author.photo.url}
+                      alt={author.name}
+                      title={author.name}
+                      layout="fill"
+                    />
+                  </div>
                   <dl className="flex-1 text-sm font-medium leading-5">
                     <dt className="sr-only">Name</dt>
                     <dd className="text-gray-900">{author.name}</dd>
@@ -61,11 +67,13 @@ function BlogPost({ nextPost, post, previousPost }) {
         </dl>
         <div className="divide-y divide-gray-200 lg:pb-0 lg:col-span-3 lg:row-span-2">
           {post.coverImage && (
-            <img
+            <Image
               className="object-cover mx-auto rounded-lg shadow-md"
               src={post.coverImage.url}
               alt={post.coverImage.title}
               title={post.coverImage.title}
+              height={post.coverImage.height}
+              width={post.coverImage.width}
             />
           )}
           <div className="prose max-w-none pt-10 pb-8">{mdxContent}</div>

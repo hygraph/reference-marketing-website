@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import cx from 'classnames'
+
 import Heading from '../../heading'
 
 function BlogPostCard({
@@ -20,11 +22,13 @@ function BlogPostCard({
       <div
         className={cx({ 'flex-shrink-0': !isFeatured, 'lg:w-4/6': isFeatured })}
       >
-        <img
+        <Image
           className={cx('w-full object-cover', { 'h-48': !isFeatured })}
           src={coverImage.url}
           alt={coverImage.title}
           title={coverImage.title}
+          width={coverImage.width}
+          height={coverImage.height}
         />
       </div>
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
@@ -42,12 +46,15 @@ function BlogPostCard({
           <ul className="flex">
             {authors.map((author) => (
               <li key={author.id} className="-ml-2 first:ml-0">
-                <img
-                  className="h-10 w-10 rounded-full shadow-solid text-white"
-                  src={author.photo.url}
-                  alt={author.name}
-                  title={author.name}
-                />
+                <div className="h-10 relative w-10">
+                  <Image
+                    className="rounded-full shadow-solid text-white"
+                    src={author.photo.url}
+                    alt={author.name}
+                    title={author.name}
+                    layout="fill"
+                  />
+                </div>
               </li>
             ))}
           </ul>
