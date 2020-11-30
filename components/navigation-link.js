@@ -14,7 +14,7 @@ function NavigationLink({ slug }) {
         className={cx(
           'font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out',
           {
-            'text-blue-600': isActive,
+            'text-blue-600': isActive
           }
         )}
       >

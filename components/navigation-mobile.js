@@ -16,7 +16,7 @@ const NavigationLink = ({ slug }) => {
         className={cx(
           'block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out',
           {
-            'text-blue-600': isActive,
+            'text-blue-600': isActive
           }
         )}
         role="menuitem"

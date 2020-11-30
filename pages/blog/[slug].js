@@ -122,13 +122,13 @@ function BlogPost({ nextPost, post, previousPost }) {
 
 export async function getStaticProps({ params }) {
   const { allPosts, page, post } = await graphcmsClient.request(blogPostQuery, {
-    slug: params.slug,
+    slug: params.slug
   })
 
   if (!post)
     return {
       props: {},
-      revalidate: 3,
+      revalidate: 3
     }
 
   const { content, ...rest } = post
@@ -146,20 +146,20 @@ export async function getStaticProps({ params }) {
         content: {
           ...content,
           mdx: await renderToString(he.decode(content), {
-            components: mdxComponents,
-          }),
+            components: mdxComponents
+          })
         },
         formattedPublished: new Intl.DateTimeFormat('en-US', {
           weekday: 'long',
           year: 'numeric',
           month: 'long',
-          day: 'numeric',
+          day: 'numeric'
         }).format(new Date(post.published)),
-        ...rest,
+        ...rest
       },
-      previousPost,
+      previousPost
     },
-    revalidate: 3,
+    revalidate: 3
   }
 }
 
@@ -172,9 +172,9 @@ export async function getStaticPaths() {
 
   return {
     paths: posts.map((post) => ({
-      params: { slug: post.slug },
+      params: { slug: post.slug }
     })),
-    fallback: true,
+    fallback: true
   }
 }
 

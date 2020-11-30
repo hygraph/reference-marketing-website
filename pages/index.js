@@ -13,9 +13,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      page: await parsePageData(page),
+      page: await parsePageData(page)
     },
-    revalidate: 3,
+    revalidate: 3
   }
 }
 

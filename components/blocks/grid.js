@@ -11,7 +11,7 @@ function Grid({
   gridSubtitle,
   gridTitle,
   theme = 'WHITE',
-  width = 1,
+  width = 1
 }) {
   if (!columns || !columns.length) return null
 
@@ -48,7 +48,7 @@ function Grid({
           <Heading
             level={3}
             className={cx({
-              'mb-4': gridSubtitle,
+              'mb-4': gridSubtitle
             })}
           >
             {gridTitle}

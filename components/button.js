@@ -6,7 +6,7 @@ function Button({
   label,
   size = 'REGULAR',
   style = 'SOLID',
-  theme = 'BLUE',
+  theme = 'BLUE'
 }) {
   const styleVal = (style) => {
     switch (style) {
@@ -31,11 +31,11 @@ function Button({
   const buttonClass = {
     SOLID: {
       BLUE: 'border-transparent bg-blue-600 text-white',
-      WHITE: 'border-transparent bg-white text-gray-900',
+      WHITE: 'border-transparent bg-white text-gray-900'
     },
     OUTLINE: {
-      BLUE: 'border-blue-600 text-blue-600',
-    },
+      BLUE: 'border-blue-600 text-blue-600'
+    }
   }
 
   const sizeClass = (size) => {
