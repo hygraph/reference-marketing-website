@@ -18,14 +18,14 @@ function Page({ page }) {
 
 export async function getStaticProps({ params }) {
   const { page } = await graphcmsClient.request(pageQuery, {
-    slug: params.slug,
+    slug: params.slug
   })
 
   return {
     props: {
-      page: page ? await parsePageData(page) : null,
+      page: page ? await parsePageData(page) : null
     },
-    revalidate: 3,
+    revalidate: 3
   }
 }
 
@@ -38,9 +38,9 @@ export async function getStaticPaths() {
 
   return {
     paths: pages.map((page) => ({
-      params: { slug: page.slug },
+      params: { slug: page.slug }
     })),
-    fallback: true,
+    fallback: true
   }
 }
 

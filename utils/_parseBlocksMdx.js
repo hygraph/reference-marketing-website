@@ -22,15 +22,15 @@ const parseGridMdx = async ({ columns, gridSubtitle, ...block }) => ({
     gridSubtitle: {
       ...gridSubtitle,
       mdx: await renderToString(he.decode(gridSubtitle), {
-        components: mdxComponents,
-      }),
-    },
+        components: mdxComponents
+      })
+    }
   }),
   ...block,
   ...(columns &&
     columns.length && {
-      columns: await parseColumnsMdx(columns),
-    }),
+      columns: await parseColumnsMdx(columns)
+    })
 })
 
 export { parseBlocksMdx }

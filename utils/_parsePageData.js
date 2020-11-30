@@ -6,17 +6,17 @@ import { parseBlocksMdx } from './_parseBlocksMdx'
 
 const parsePageData = async ({ blocks, subtitle, ...page }) => ({
   ...(blocks && {
-    blocks: await parseBlocksMdx(blocks),
+    blocks: await parseBlocksMdx(blocks)
   }),
   ...(subtitle && {
     subtitle: {
       ...subtitle,
       mdx: await renderToString(he.decode(subtitle), {
-        components: mdxComponents,
-      }),
-    },
+        components: mdxComponents
+      })
+    }
   }),
-  ...page,
+  ...page
 })
 
 export { parsePageData }

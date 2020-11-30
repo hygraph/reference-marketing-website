@@ -48,9 +48,9 @@ export async function getStaticProps() {
       posts.map(async ({ content, ...post }) => ({
         content: {
           ...content,
-          mdx: await renderToString(he.decode(content)),
+          mdx: await renderToString(he.decode(content))
         },
-        ...post,
+        ...post
       }))
     )
 
@@ -58,9 +58,9 @@ export async function getStaticProps() {
     props: {
       featuredPosts: await parsePostsMdx(featuredPosts),
       page: await parsePageData(page),
-      posts: await parsePostsMdx(posts),
+      posts: await parsePostsMdx(posts)
     },
-    revalidate: 3,
+    revalidate: 3
   }
 }
 

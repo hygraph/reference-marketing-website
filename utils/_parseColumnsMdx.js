@@ -21,11 +21,11 @@ const parseContentMdx = async ({ content, ...column }) => ({
     content: {
       ...content,
       mdx: await renderToString(he.decode(content), {
-        components: mdxComponents,
-      }),
-    },
+        components: mdxComponents
+      })
+    }
   }),
-  ...column,
+  ...column
 })
 
 export { parseColumnsMdx }

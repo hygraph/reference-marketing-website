@@ -11,12 +11,12 @@ function BlogPostCard({
   isFeatured = false,
   published,
   slug,
-  title,
+  title
 }) {
   return (
     <div
       className={cx('flex flex-col rounded-lg shadow-lg overflow-hidden', {
-        'lg:flex-row': isFeatured,
+        'lg:flex-row': isFeatured
       })}
     >
       <div
