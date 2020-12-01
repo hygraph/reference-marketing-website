@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@headlessui/react": "0.2.0",
-    "@tailwindui/react": "0.1.1",
     "classnames": "2.2.6",
     "graphql": "15.4.0",
     "graphql-request": "3.3.0",
