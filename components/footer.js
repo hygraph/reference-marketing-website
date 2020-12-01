@@ -7,6 +7,8 @@ import Select from './select'
 function Footer({ pages }) {
   const router = useRouter()
 
+  const activeLocale = locales.find((locale) => locale.value === router.locale)
+
   const setLocale = (locale) =>
     router.push(router.asPath, router.asPath, { locale: locale.value })
 
@@ -19,7 +21,7 @@ function Footer({ pages }) {
               label="Select language"
               onChange={setLocale}
               options={locales}
-              value={locales.find((locale) => locale.value === router.locale)}
+              value={activeLocale}
             />
           </div>
         </div>
