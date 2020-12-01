@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Transition } from '@tailwindui/react'
+import { Transition } from '@headlessui/react'
 
 import LogoSVG from '../svg/logo.svg'
 import NavigationLink from './navigation-link'
