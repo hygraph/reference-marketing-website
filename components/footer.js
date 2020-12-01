@@ -1,9 +1,30 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+import { locales } from '../lib/_locales'
+import Select from './select'
 
 function Footer({ pages }) {
+  const router = useRouter()
+
+  const activeLocale = locales.find((locale) => locale.value === router.locale)
+
+  const setLocale = (locale) =>
+    router.push(router.asPath, router.asPath, { locale: locale.value })
+
   return (
     <div className="bg-white">
       <div className="max-w-screen-xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+        <div className="flex items-center justify-center p-12">
+          <div className="w-full max-w-xs mx-auto">
+            <Select
+              label="Select language"
+              onChange={setLocale}
+              options={locales}
+              value={activeLocale}
+            />
+          </div>
+        </div>
         {pages.length ? (
           <nav className="-mx-5 -my-2 flex flex-wrap justify-center">
             {pages.map((page) => {

@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@tailwindui/react": "0.1.1",
+    "@headlessui/react": "0.2.0",
     "classnames": "2.2.6",
     "graphql": "15.4.0",
     "graphql-request": "3.3.0",
