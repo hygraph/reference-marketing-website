@@ -8,6 +8,7 @@ const parseColumnsMdx = async (columns) =>
     columns.map(async (column) => {
       switch (column.__typename) {
         case 'BlogPost':
+        case 'Faq':
         case 'Feature':
           return parseContentMdx(column)
         default:
