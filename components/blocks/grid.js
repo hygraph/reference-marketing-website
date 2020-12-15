@@ -27,6 +27,8 @@ function Grid({
 
   const colWidthClass = (width) => {
     switch (width) {
+      case 4:
+        return 'grid-cols-1 lg:grid-cols-4'
       case 3:
         return 'grid-cols-1 lg:grid-cols-3'
       case 2:
