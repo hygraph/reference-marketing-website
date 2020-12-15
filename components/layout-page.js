@@ -1,14 +1,18 @@
 import * as React from 'react'
 
-import Banner from './banner'
 import { getLayout as getSiteLayout } from './layout'
 import Hero from './hero'
+import * as Marketing from './marketing'
 import Navigation from './navigation'
 
 const PageLayout = ({ children, page }) => {
+  const pageBanner = page.marketing.find(
+    (block) => block.__typename === 'Banner'
+  )
+
   return (
     <React.Fragment>
-      {page?.banner && <Banner {...page.banner} />}
+      {pageBanner ? <Marketing.Banner {...pageBanner} /> : null}
       {page?.hero ? (
         <Hero {...page.hero} navigation={page.navigation} page={page} />
       ) : (

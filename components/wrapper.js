@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import * as Blocks from '../components/blocks'
+import * as Blocks from './blocks'
 
 function Wrapper({ banner, blocks, hero, navigation, ...page }) {
   return (

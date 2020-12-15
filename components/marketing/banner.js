@@ -1,6 +1,6 @@
 import cx from 'classnames'
 
-import Button from './button'
+import Button from '../button'
 
 function Banner({ content, href, theme = 'INFO' }) {
   const themeClass = (theme) => {
