@@ -1,4 +1,11 @@
-function PricingPlanCard({ description, included, monthlyPrice, name }) {
+function PricingPlanCard({
+  annualPrice,
+  billingPeriod,
+  description,
+  included,
+  monthlyPrice,
+  name
+}) {
   return (
     <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
       <div className="p-6">
@@ -10,9 +17,11 @@ function PricingPlanCard({ description, included, monthlyPrice, name }) {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 0
-            }).format(monthlyPrice)}
+            }).format(billingPeriod === 'monthly' ? monthlyPrice : annualPrice)}
           </span>
-          <span className="text-base font-medium text-gray-500">/mo</span>
+          <span className="text-base font-medium text-gray-500">
+            {billingPeriod === 'monthly' ? '/mo' : '/yr'}
+          </span>
         </p>
         <a
           href="#"
