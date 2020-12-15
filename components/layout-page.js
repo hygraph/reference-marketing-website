@@ -11,7 +11,7 @@ const PageLayout = ({ children, page }) => {
     (block) => block.__typename === 'Banner'
   )
 
-  const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
+  const mdxSubtitle = page?.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
     <React.Fragment>
@@ -24,7 +24,7 @@ const PageLayout = ({ children, page }) => {
           <div className="mx-auto pt-24 px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:flex-col sm:align-center">
               <h1 className="text-5xl font-extrabold text-gray-900 sm:text-center">
-                {page.title}
+                {page?.title}
               </h1>
               {mdxSubtitle && (
                 <div className="mt-5 mx-auto prose-xl sm:text-center">
