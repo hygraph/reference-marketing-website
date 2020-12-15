@@ -20,7 +20,7 @@ const parseBlocksMdx = async (blocks) =>
 const parseGridMdx = async ({ columns, gridSubtitle, ...block }) => ({
   ...(gridSubtitle && {
     gridSubtitle: {
-      ...gridSubtitle,
+      markdown: gridSubtitle,
       mdx: await renderToString(he.decode(gridSubtitle), {
         components: mdxComponents
       })

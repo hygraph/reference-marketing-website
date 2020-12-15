@@ -10,7 +10,7 @@ const parsePageData = async ({ blocks, subtitle, ...page }) => ({
   }),
   ...(subtitle && {
     subtitle: {
-      ...subtitle,
+      markdown: subtitle,
       mdx: await renderToString(he.decode(subtitle), {
         components: mdxComponents
       })
