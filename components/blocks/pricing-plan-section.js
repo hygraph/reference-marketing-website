@@ -9,7 +9,7 @@ function PricingPlanSection({ page, ...grid }) {
 
   return (
     <React.Fragment>
-      <div className="sm:flex sm:flex-col sm:align-center">
+      <div className="px-4 sm:px-6 sm:flex sm:flex-col sm:align-center lg:px-8">
         <div className="relative mt-6 bg-gray-100 rounded-lg p-0.5 flex self-center space-x-2 sm:mt-8">
           <button
             type="button"
