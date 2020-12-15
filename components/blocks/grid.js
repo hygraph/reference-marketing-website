@@ -6,8 +6,8 @@ import Heading from '../heading'
 import mdxComponents from '../mdx'
 
 function Grid({
+  columnComponent,
   columns,
-  component,
   gridSubtitle,
   gridTitle,
   theme = 'WHITE',
@@ -57,7 +57,8 @@ function Grid({
         </div>
         <div className={cx('grid gap-14', colWidthClass(width))}>
           {columns.map((column, index) => {
-            const Component = Columns[component] || Columns[column.__typename]
+            const Component =
+              Columns[columnComponent] || Columns[column.__typename]
 
             if (!Component) return null
 
