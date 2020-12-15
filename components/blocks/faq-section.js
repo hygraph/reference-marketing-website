@@ -1,6 +1,6 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
-function PricingFAQSection({ columns, gridSubtitle, gridTitle }) {
+function FAQSection({ columns, gridSubtitle, gridTitle }) {
   if (!(gridTitle || columns || columns.length)) return null
 
   const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
@@ -39,4 +39,4 @@ function PricingFAQSection({ columns, gridSubtitle, gridTitle }) {
   )
 }
 
-export default PricingFAQSection
+export default FAQSection
