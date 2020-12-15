@@ -6,6 +6,7 @@ import Heading from '../heading'
 import mdxComponents from '../mdx'
 
 function Grid({
+  children,
   columnComponent,
   columns,
   gridSubtitle,
@@ -58,14 +59,16 @@ function Grid({
           {mdxSubtitle && mdxSubtitle}
         </div>
         <div className={cx('grid gap-14', colWidthClass(width))}>
-          {columns.map((column, index) => {
-            const Component =
-              Columns[columnComponent] || Columns[column.__typename]
+          {children
+            ? children()
+            : columns.map((column, index) => {
+                const Component =
+                  Columns[columnComponent] || Columns[column.__typename]
 
-            if (!Component) return null
+                if (!Component) return null
 
-            return <Component key={index} {...column} />
-          })}
+                return <Component key={index} {...column} />
+              })}
         </div>
       </div>
     </div>
