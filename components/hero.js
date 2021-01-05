@@ -13,50 +13,38 @@ function Hero({ buttons, image, navigation, page }) {
     : null
 
   return (
-    <div className="relative bg-white overflow-hidden">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="relative z-10 pb-8 bg-white md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-          <svg
-            className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
-            fill="currentColor"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-          >
-            <polygon points="50,0 100,0 50,100 0,100" />
-          </svg>
-          <Navigation {...navigation} />
-          <div className="pt-10 mx-auto max-w-screen-xl px-4 md:pt-16 lg:pt-20 lg:px-8 xl:pt-28">
-            <div className="sm:text-center lg:text-left">
-              <Heading
-                level={2}
-                className={cx({ 'mb-3 md:mb-5': mdxSubtitle })}
-              >
-                {page.title}
-              </Heading>
-              {mdxSubtitle && mdxSubtitle}
-              {buttons && (
-                <div className="md:flex flex-wrap md:space-x-4 space-y-2 md:space-y-0 mt-5 md:mt-8">
-                  {buttons.map((button, index) => (
-                    <div key={index}>
-                      <Button {...button} />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+    <div className="relative bg-gray-50">
+      <main className="lg:relative">
+        <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-48 lg:text-left">
+          <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
+            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              {page.title}
+            </h1>
+            {mdxSubtitle && (
+              <div className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
+                {mdxSubtitle}
+              </div>
+            )}
+            {buttons && (
+              <div className="mt-10 space-y-3 sm:space-y-0 sm:space-x-3 sm:flex sm:justify-center lg:justify-start">
+                {buttons.map((button, index) => (
+                  <Button key={index} {...button} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
-      </div>
-      <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <Image
-          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src={image.url}
-          alt={image.title}
-          title={image.title}
-          layout="fill"
-          priority={true}
-        />
-      </div>
+        <div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
+          <Image
+            className="absolute inset-0 w-full h-full object-cover"
+            src={image.url}
+            alt={image.title}
+            title={image.title}
+            layout="fill"
+            priority={true}
+          />
+        </div>
+      </main>
     </div>
   )
 }
