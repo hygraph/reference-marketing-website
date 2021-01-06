@@ -14,7 +14,7 @@ function Navigation({ pages }) {
 
   React.useEffect(() => {
     const handleOutsideClick = (event) => {
-      if (!container.current.contains(event.target)) {
+      if (!container?.current?.contains(event.target)) {
         if (!mobileNavOpen) return
 
         setMobileNavOpen(false)
@@ -128,30 +128,32 @@ function Navigation({ pages }) {
               </div>
             </div>
             <div className="mt-6">
-              <nav className="grid gap-y-8">
-                {pages.map((page) => {
-                  const isActive = router.asPath.startsWith(`/${page.slug}`)
+              {pages && pages.length ? (
+                <nav className="grid gap-y-8">
+                  {pages.map((page) => {
+                    const isActive = router.asPath.startsWith(`/${page.slug}`)
 
-                  return (
-                    <Link key={page.id} href={`/${page.slug}`}>
-                      <a
-                        className={cx(
-                          '-m-3 p-3 flex items-center rounded-md hover:bg-gray-50',
-                          {
-                            'text-indigo-600': isActive
-                          }
-                        )}
-                      >
-                        <span className="ml-3 text-base font-medium text-gray-900">
-                          {page.navigationLabel ||
-                            page.slug.charAt(0).toUpperCase() +
-                              page.slug.slice(1)}
-                        </span>
-                      </a>
-                    </Link>
-                  )
-                })}
-              </nav>
+                    return (
+                      <Link key={page.id} href={`/${page.slug}`}>
+                        <a
+                          className={cx(
+                            '-m-3 p-3 flex items-center rounded-md hover:bg-gray-50',
+                            {
+                              'text-indigo-600': isActive
+                            }
+                          )}
+                        >
+                          <span className="ml-3 text-base font-medium text-gray-900">
+                            {page.navigationLabel ||
+                              page.slug.charAt(0).toUpperCase() +
+                                page.slug.slice(1)}
+                          </span>
+                        </a>
+                      </Link>
+                    )
+                  })}
+                </nav>
+              ) : null}
             </div>
           </div>
         </div>
