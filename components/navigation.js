@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import { Transition } from '@headlessui/react'
 import cx from 'classnames'
 
-import LogoSVG from '../svg/logo.svg'
-import MarkSVG from '../svg/mark.svg'
+import { LogoSVG, MarkSVG } from '../svgs'
 import { MenuIcon, XIcon } from './icons'
 
 function Navigation({ pages }) {
@@ -113,7 +112,7 @@ function Navigation({ pages }) {
                 <Link href="/">
                   <a>
                     <span className="sr-only">GraphCMS</span>
-                    <MarkSVG className="h-8 w-auto" />
+                    <MarkSVG className="h-8 text-indigo-600 w-auto" />
                   </a>
                 </Link>
               </div>
