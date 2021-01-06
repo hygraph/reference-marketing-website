@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
-import cx from 'classnames'
 
 import Button from './button'
-import Heading from './heading'
 import mdxComponents from './mdx'
 import Navigation from './navigation'
 
