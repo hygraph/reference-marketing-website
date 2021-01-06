@@ -39,7 +39,10 @@ function PricingPlanCard({
         <ul className="mt-6 space-y-4">
           {included.map((feature, index) => (
             <li key={index} className="flex space-x-3">
-              <CheckIcon className="flex-shrink-0 h-5 w-5 text-green-500" />
+              <CheckIcon
+                className="flex-shrink-0 h-5 w-5 text-green-500"
+                aria-hidden="true"
+              />
               <span className="text-sm text-gray-500">{feature}</span>
             </li>
           ))}
