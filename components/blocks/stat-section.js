@@ -36,6 +36,7 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
 
                   return (
                     <div
+                      key={column.id}
                       className={cx(
                         'flex flex-col border-b border-gray-100 p-6 text-center sm:border-0',
                         {
