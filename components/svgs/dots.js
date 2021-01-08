@@ -1,10 +1,11 @@
 function Dots({ ...props }) {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 404 404"
       width="404"
       height="404"
       fill="none"
-      viewBox="0 0 404 404"
       role="img"
       aria-labelledby="svg-dots"
       {...props}
