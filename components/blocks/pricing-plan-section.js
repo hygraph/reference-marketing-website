@@ -14,7 +14,7 @@ function PricingPlanSection({ page, ...grid }) {
           <button
             type="button"
             className={cx(
-              'relative border rounded-md py-2 w-1/2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-purple-500 focus:z-10 sm:w-auto sm:px-8',
+              'relative border rounded-md py-2 w-1/2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8',
               billingPeriod === 'monthly'
                 ? 'bg-white border-gray-200 shadow-sm'
                 : 'border-transparent'
@@ -26,7 +26,7 @@ function PricingPlanSection({ page, ...grid }) {
           <button
             type="button"
             className={cx(
-              'relative border rounded-md py-2 w-1/2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-purple-500 focus:z-10 sm:w-auto sm:px-8',
+              'relative border rounded-md py-2 w-1/2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8',
               billingPeriod === 'annual'
                 ? 'bg-white border-gray-200 shadow-sm'
                 : 'border-transparent'

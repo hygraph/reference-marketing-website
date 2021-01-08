@@ -2,7 +2,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { DotsSVG } from '../../svgs'
+import { DotsSVG } from '../svgs'
 import { SlashIcon } from '../icons'
 
 function Testimonial({ content, person }) {

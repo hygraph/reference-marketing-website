@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Transition } from '@headlessui/react'
 import cx from 'classnames'
 
-import { LogoSVG, MarkSVG } from '../svgs'
+import { LogoSVG, MarkSVG } from './svgs'
 import { MenuIcon, XIcon } from './icons'
 
 function Navigation({ pages }) {
