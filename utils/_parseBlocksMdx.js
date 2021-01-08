@@ -9,19 +9,27 @@ const parseBlocksMdx = async (blocks) =>
     blocks.map(async (block) => {
       switch (block.__typename) {
         case 'Grid':
+        case 'Testimonial':
           return parseGridMdx(block)
-        case 'Hero':
         default:
           return block
       }
     })
   )
 
-const parseGridMdx = async ({ columns, gridSubtitle, ...block }) => ({
+const parseGridMdx = async ({ columns, content, gridSubtitle, ...block }) => ({
   ...(gridSubtitle && {
     gridSubtitle: {
       markdown: gridSubtitle,
       mdx: await renderToString(he.decode(gridSubtitle), {
+        components: mdxComponents
+      })
+    }
+  }),
+  ...(content && {
+    content: {
+      markdown: content,
+      mdx: await renderToString(he.decode(content), {
         components: mdxComponents
       })
     }
