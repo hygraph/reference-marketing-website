@@ -11,6 +11,10 @@ const PageLayout = ({ children, page }) => {
     (block) => block.__typename === 'Banner'
   )
 
+  const pageNewsletter = page?.marketing?.find(
+    (block) => block.__typename === 'Newsletter'
+  )
+
   const mdxSubtitle = page?.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
@@ -35,7 +39,12 @@ const PageLayout = ({ children, page }) => {
           </div>
         </React.Fragment>
       )}
-      <div>{children}</div>
+      <div>
+        {children}
+        {pageNewsletter ? (
+          <Marketing.NewsletterSignup {...pageNewsletter} />
+        ) : null}
+      </div>
     </React.Fragment>
   )
 }
