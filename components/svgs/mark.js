@@ -1,9 +1,9 @@
 function Mark({ ...props }) {
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1000 1000"
       fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
