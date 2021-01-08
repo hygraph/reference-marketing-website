@@ -87,7 +87,7 @@ function BlogPost({ nextPost, post, previousPost }) {
                   <h2 className="text-xs tracking-wide uppercase text-gray-500">
                     Next Post
                   </h2>
-                  <div className="text-purple-500 hover:text-purple-600">
+                  <div className="text-indigo-500 hover:text-indigo-600">
                     <Link href={`/blog/${nextPost.slug}`}>
                       <a>{nextPost.title}</a>
                     </Link>
@@ -99,7 +99,7 @@ function BlogPost({ nextPost, post, previousPost }) {
                   <h2 className="text-xs tracking-wide uppercase text-gray-500">
                     Previous Post
                   </h2>
-                  <div className="text-purple-500 hover:text-purple-600">
+                  <div className="text-indigo-500 hover:text-indigo-600">
                     <Link href={`/blog/${previousPost.slug}`}>
                       <a>{previousPost.title}</a>
                     </Link>
@@ -110,7 +110,7 @@ function BlogPost({ nextPost, post, previousPost }) {
           )}
           <div className="pt-8">
             <Link href="/blog">
-              <a className="text-purple-500 hover:text-purple-600">
+              <a className="text-indigo-500 hover:text-indigo-600">
                 &larr; Back to the blog
               </a>
             </Link>

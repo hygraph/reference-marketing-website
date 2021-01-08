@@ -27,7 +27,7 @@ function PricingPlanCard({
         </p>
         <a
           href="#"
-          className="mt-8 block w-full bg-purple-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-purple-700"
+          className="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700"
         >
           Buy {name}
         </a>
