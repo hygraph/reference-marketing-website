@@ -1,29 +1,25 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import cx from 'classnames'
-
-import Heading from '../../heading'
+import startCase from 'lodash.startcase'
 
 function BlogPostCard({
   authors,
+  category,
   coverImage,
   excerpt,
-  isFeatured = false,
+  formattedPublished,
   published,
   slug,
   title
 }) {
+  const [primaryAuthor, ...secondaryAuthors] = authors
+
   return (
-    <div
-      className={cx('flex flex-col rounded-lg shadow-lg overflow-hidden', {
-        'lg:flex-row': isFeatured
-      })}
-    >
-      <div
-        className={cx({ 'flex-shrink-0': !isFeatured, 'lg:w-4/6': isFeatured })}
-      >
+    <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
+      <div className="flex-shrink-0">
         <Image
-          className={cx('w-full object-cover', { 'h-48': !isFeatured })}
+          className="h-48 w-full object-cover"
           src={coverImage.url}
           alt={coverImage.title}
           title={coverImage.title}
@@ -33,33 +29,52 @@ function BlogPostCard({
       </div>
       <div className="flex-1 bg-white p-6 flex flex-col justify-between">
         <div className="flex-1">
+          <p className="text-sm font-medium text-indigo-600">
+            {startCase(category.toLowerCase())}
+          </p>
           <Link href={`/blog/${slug}`}>
-            <a className="block">
-              <Heading level={isFeatured ? 3 : 4}>{title}</Heading>
-              <p className="mt-3 text-base leading-6 text-gray-500">
-                {excerpt}
-              </p>
+            <a className="block mt-2">
+              <p className="text-xl font-semibold text-gray-900">{title}</p>
+              <p className="mt-3 text-base text-gray-500">{excerpt}</p>
             </a>
           </Link>
         </div>
         <div className="mt-6 flex items-center">
-          <ul className="flex">
-            {authors.map((author) => (
-              <li key={author.id} className="-ml-2 first:ml-0">
-                <div className="h-10 relative w-10">
+          <div className="flex -space-x-1 relative z-0 overflow-hidden">
+            {authors.map((author, index) => {
+              const zIndexClass = (index) => `z-${Number(index * 10)}`
+
+              return (
+                <div
+                  key={author.id}
+                  className={cx(
+                    'inline-block h-8 relative w-8 rounded-full ring-2 ring-white',
+                    zIndexClass(index)
+                  )}
+                >
                   <Image
-                    className="rounded-full shadow-solid text-white"
+                    className="relative rounded-full"
                     src={author.photo.url}
                     alt={author.name}
                     title={author.name}
                     layout="fill"
                   />
                 </div>
-              </li>
-            ))}
-          </ul>
-          <div className="flex text-sm leading-5 ml-3 text-gray-500">
-            <time dateTime={published}>{published}</time>
+              )
+            })}
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-900">
+              {primaryAuthor.name}
+              {secondaryAuthors.length ? (
+                <span className="ml-1">
+                  + {Number(secondaryAuthors.length)} other
+                </span>
+              ) : null}
+            </p>
+            <div class="flex space-x-1 text-sm text-gray-500">
+              <time datetime={published}>{formattedPublished}</time>
+            </div>
           </div>
         </div>
       </div>
