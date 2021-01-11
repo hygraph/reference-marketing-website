@@ -133,7 +133,7 @@ function Footer({ primaryLinks, secondaryLinks }) {
             </a>
           </div>
           <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            &copy; {new Date().getFullYear()} GraphCMS, Inc. All rights
+            &copy; {new Date().getFullYear()} GraphCMS GmbH All rights
             reserved.
           </p>
         </div>
