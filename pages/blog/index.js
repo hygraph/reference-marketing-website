@@ -9,7 +9,7 @@ import { graphcmsClient } from '../../lib/_client'
 import Heading from '../../components/heading'
 import { parsePageData } from '../../utils/_parsePageData'
 
-function BlogPage({ featuredPosts, page, posts }) {
+function BlogPage({ page, posts }) {
   const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
@@ -23,11 +23,6 @@ function BlogPage({ featuredPosts, page, posts }) {
         </div>
       </header>
       <div className="max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
-        <div className="grid gap-14 grid-cols-1 mb-14">
-          {featuredPosts.map((post) => (
-            <BlogPostCard key={post.id} {...post} isFeatured />
-          ))}
-        </div>
         <div className="grid gap-14 grid-cols-1 lg:grid-cols-3">
           {posts.map((post) => (
             <BlogPostCard key={post.id} {...post} />
@@ -39,11 +34,9 @@ function BlogPage({ featuredPosts, page, posts }) {
 }
 
 export async function getStaticProps({ locale }) {
-  const {
-    featuredPosts,
-    page,
-    posts
-  } = await graphcmsClient.request(blogPageQuery, { locale })
+  const { page, posts } = await graphcmsClient.request(blogPageQuery, {
+    locale
+  })
 
   const parsePostsMdx = (posts) =>
     Promise.all(
@@ -52,13 +45,17 @@ export async function getStaticProps({ locale }) {
           ...content,
           mdx: await renderToString(he.decode(content))
         },
+        formattedPublished: new Intl.DateTimeFormat('en-US', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric'
+        }).format(new Date(post.published)),
         ...post
       }))
     )
 
   return {
     props: {
-      featuredPosts: await parsePostsMdx(featuredPosts),
       page: await parsePageData(page),
       posts: await parsePostsMdx(posts)
     },
