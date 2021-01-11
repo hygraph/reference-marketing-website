@@ -73,7 +73,7 @@ function Footer({ primaryLinks, secondaryLinks }) {
             </h3>
             <form className="mt-4 sm:max-w-xs">
               <fieldset className="w-full">
-                <label for="language" className="sr-only">
+                <label htmlFor="language" className="sr-only">
                   Language
                 </label>
                 <div className="relative">
