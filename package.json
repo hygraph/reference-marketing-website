@@ -13,6 +13,8 @@
     "graphql": "15.4.0",
     "graphql-request": "3.3.0",
     "he": "1.2.0",
+    "lodash.camelcase": "4.3.0",
+    "lodash.startcase": "4.4.0",
     "next": "10.0.3",
     "next-mdx-remote": "1.0.0",
     "react": "17.0.1",
