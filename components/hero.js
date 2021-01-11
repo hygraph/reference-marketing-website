@@ -20,7 +20,7 @@ function Hero({ buttons, image, navigation, page }) {
               {page.title}
             </h1>
             {mdxSubtitle && (
-              <div className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
+              <div className="mt-3 max-w-md mx-auto prose prose-lg sm:prose-xl md:mt-5 md:max-w-3xl">
                 {mdxSubtitle}
               </div>
             )}

@@ -31,7 +31,7 @@ const PageLayout = ({ children, page }) => {
                 {page?.title}
               </h1>
               {mdxSubtitle && (
-                <div className="mt-5 mx-auto prose-xl sm:text-center">
+                <div className="mt-5 mx-auto prose prose-xl sm:text-center">
                   {mdxSubtitle}
                 </div>
               )}
