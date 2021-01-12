@@ -1,11 +1,9 @@
-import renderToString from 'next-mdx-remote/render-to-string'
-import he from 'he'
-
 import { blogPageQuery } from '@/lib/_queries'
 import { BlogPostCard } from '@/columns'
 import { getPageLayout } from '@/layout'
 import { graphcmsClient } from '@/lib/_client'
 import { parsePageData } from '@/utils/_parsePageData'
+import { parsePostData } from '@/utils/_parsePostData'
 
 function BlogPage({ posts }) {
   return (
@@ -26,26 +24,10 @@ export async function getStaticProps({ locale }) {
     locale
   })
 
-  const parsePostsMdx = (posts) =>
-    Promise.all(
-      posts.map(async ({ content, ...post }) => ({
-        content: {
-          ...content,
-          mdx: await renderToString(he.decode(content))
-        },
-        formattedPublished: new Intl.DateTimeFormat('en-US', {
-          day: 'numeric',
-          month: 'short',
-          year: 'numeric'
-        }).format(new Date(post.published)),
-        ...post
-      }))
-    )
-
   return {
     props: {
       page: await parsePageData(page),
-      posts: await parsePostsMdx(posts)
+      posts: await Promise.all(posts.map((post) => parsePostData(post)))
     },
     revalidate: 3
   }

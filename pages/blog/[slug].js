@@ -3,13 +3,12 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { gql } from 'graphql-request'
 import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
-import he from 'he'
 
 import { blogPostQuery } from '@/lib/_queries'
 import { getContentLayout } from '@/layout'
 import { graphcmsClient } from '@/lib/_client'
 import Heading from '../../components/heading'
+import { parsePostData } from '@/utils/_parsePostData'
 
 function BlogPost({ nextPost, post, previousPost }) {
   const router = useRouter()
@@ -132,8 +131,6 @@ export async function getStaticProps({ locale, params }) {
       revalidate: 3
     }
 
-  const { content, ...rest } = post
-
   const postIndex = allPosts.findIndex(({ id }) => id === post.id)
 
   const nextPost = allPosts[postIndex + 1] || null
@@ -143,19 +140,7 @@ export async function getStaticProps({ locale, params }) {
     props: {
       nextPost,
       page,
-      post: {
-        content: {
-          ...content,
-          mdx: await renderToString(he.decode(content))
-        },
-        formattedPublished: new Intl.DateTimeFormat('en-US', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        }).format(new Date(post.published)),
-        ...rest
-      },
+      post: await parsePostData(post),
       previousPost
     },
     revalidate: 3
