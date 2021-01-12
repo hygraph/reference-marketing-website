@@ -9,7 +9,7 @@ function Banner({ content, href, theme = 'INFO' }) {
         return 'bg-orange-600 text-orange-600'
       case 'INFO':
       default:
-        return 'bg-blue-600 text-blue-600'
+        return 'bg-indigo-600 text-indigo-600'
     }
   }
 
