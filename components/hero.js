@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
-import Button from './button'
-import Navigation from './navigation'
+import Button from '@/components/button'
+import Navigation from '@/components/navigation'
 
 function Hero({ buttons, image, navigation, page }) {
   const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null

@@ -1,7 +1,7 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import { parseBlocksMdx } from './_parseBlocksMdx'
+import { parseBlocksMdx } from '@/utils/_parseBlocksMdx'
 
 const parsePageData = async ({ blocks, subtitle, ...page }) => ({
   ...(blocks && {

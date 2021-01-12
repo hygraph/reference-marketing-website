@@ -1,7 +1,7 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import { parseColumnsMdx } from './_parseColumnsMdx'
+import { parseColumnsMdx } from '@/utils/_parseColumnsMdx'
 
 const parseBlocksMdx = async (blocks) =>
   await Promise.all(
