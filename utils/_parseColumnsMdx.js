@@ -1,8 +1,6 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import mdxComponents from '../components/mdx'
-
 const parseColumnsMdx = async (columns) =>
   await Promise.all(
     columns.map(async (column) => {
@@ -21,9 +19,7 @@ const parseContentMdx = async ({ content, ...column }) => ({
   ...(content && {
     content: {
       markdown: content,
-      mdx: await renderToString(he.decode(content), {
-        components: mdxComponents
-      })
+      mdx: await renderToString(he.decode(content))
     }
   }),
   ...column

@@ -3,7 +3,6 @@ import cx from 'classnames'
 
 import * as Columns from '@/columns'
 import Heading from '../heading'
-import mdxComponents from '../mdx'
 
 function Grid({
   children,
@@ -40,9 +39,7 @@ function Grid({
     }
   }
 
-  const mdxSubtitle = gridSubtitle
-    ? hydrate(gridSubtitle.mdx, { components: mdxComponents })
-    : null
+  const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
 
   return (
     <div className={gridThemeClass(theme)}>

@@ -1,7 +1,6 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import mdxComponents from '../components/mdx'
 import { parseBlocksMdx } from './_parseBlocksMdx'
 
 const parsePageData = async ({ blocks, subtitle, ...page }) => ({
@@ -11,9 +10,7 @@ const parsePageData = async ({ blocks, subtitle, ...page }) => ({
   ...(subtitle && {
     subtitle: {
       markdown: subtitle,
-      mdx: await renderToString(he.decode(subtitle), {
-        components: mdxComponents
-      })
+      mdx: await renderToString(he.decode(subtitle))
     }
   }),
   ...page

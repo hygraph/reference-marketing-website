@@ -2,13 +2,10 @@ import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
 import Button from './button'
-import mdxComponents from './mdx'
 import Navigation from './navigation'
 
 function Hero({ buttons, image, navigation, page }) {
-  const mdxSubtitle = page.subtitle
-    ? hydrate(page.subtitle.mdx, { components: mdxComponents })
-    : null
+  const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
     <div className="relative bg-gray-50">

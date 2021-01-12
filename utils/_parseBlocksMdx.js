@@ -1,7 +1,6 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import mdxComponents from '../components/mdx'
 import { parseColumnsMdx } from './_parseColumnsMdx'
 
 const parseBlocksMdx = async (blocks) =>
@@ -21,17 +20,13 @@ const parseGridMdx = async ({ columns, content, gridSubtitle, ...block }) => ({
   ...(gridSubtitle && {
     gridSubtitle: {
       markdown: gridSubtitle,
-      mdx: await renderToString(he.decode(gridSubtitle), {
-        components: mdxComponents
-      })
+      mdx: await renderToString(he.decode(gridSubtitle))
     }
   }),
   ...(content && {
     content: {
       markdown: content,
-      mdx: await renderToString(he.decode(content), {
-        components: mdxComponents
-      })
+      mdx: await renderToString(he.decode(content))
     }
   }),
   ...block,

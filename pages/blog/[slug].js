@@ -10,7 +10,6 @@ import { blogPostQuery } from '@/lib/_queries'
 import { getContentLayout } from '@/layout'
 import { graphcmsClient } from '@/lib/_client'
 import Heading from '../../components/heading'
-import mdxComponents from '../../components/mdx'
 
 function BlogPost({ nextPost, post, previousPost }) {
   const router = useRouter()
@@ -19,7 +18,7 @@ function BlogPost({ nextPost, post, previousPost }) {
 
   if (!post) return <div>Not found</div>
 
-  const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
+  const mdxContent = hydrate(post.content.mdx)
 
   return (
     <article className="relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
@@ -147,9 +146,7 @@ export async function getStaticProps({ locale, params }) {
       post: {
         content: {
           ...content,
-          mdx: await renderToString(he.decode(content), {
-            components: mdxComponents
-          })
+          mdx: await renderToString(he.decode(content))
         },
         formattedPublished: new Intl.DateTimeFormat('en-US', {
           weekday: 'long',
