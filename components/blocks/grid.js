@@ -56,13 +56,13 @@ function Grid({
         <div className={cx('grid gap-14', colWidthClass(width))}>
           {children
             ? children()
-            : columns.map((column, index) => {
+            : columns.map((column) => {
                 const Component =
                   Columns[columnComponent] || Columns[column.__typename]
 
                 if (!Component) return null
 
-                return <Component key={index} {...column} />
+                return <Component key={column.id} {...column} />
               })}
         </div>
       </div>
