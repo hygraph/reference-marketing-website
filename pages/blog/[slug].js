@@ -7,7 +7,6 @@ import hydrate from 'next-mdx-remote/hydrate'
 import { blogPostQuery } from '@/lib/_queries'
 import { getContentLayout } from '@/layout'
 import { graphcmsClient } from '@/lib/_client'
-import Heading from '../../components/heading'
 import { parsePostData } from '@/utils/_parsePostData'
 
 function BlogPost({ nextPost, post, previousPost }) {
@@ -32,7 +31,9 @@ function BlogPost({ nextPost, post, previousPost }) {
             </div>
           </dl>
           <div>
-            <Heading>{post.title}</Heading>
+            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              {post.title}
+            </h1>
           </div>
         </div>
       </header>
