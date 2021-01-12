@@ -1,4 +1,4 @@
-import Footer from './footer'
+import Footer from '@/components/footer'
 
 function SiteLayout({ children, page }) {
   return (

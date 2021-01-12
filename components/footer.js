@@ -7,8 +7,8 @@ import {
   LinkedInIcon,
   SlackIcon,
   TwitterIcon
-} from './icons'
-import { locales } from '../lib/_locales'
+} from '@/icons'
+import { locales } from '@/lib/_locales'
 
 function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()

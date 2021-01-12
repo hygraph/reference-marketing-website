@@ -1,11 +1,11 @@
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import { blogPageQuery } from '../../lib/_queries'
-import { BlogPostCard } from '../../components/blocks/columns'
-import { getLayout as getPageLayout } from '../../components/layout-page'
-import { graphcmsClient } from '../../lib/_client'
-import { parsePageData } from '../../utils/_parsePageData'
+import { blogPageQuery } from '@/lib/_queries'
+import { BlogPostCard } from '@/columns'
+import { getPageLayout } from '@/layout'
+import { graphcmsClient } from '@/lib/_client'
+import { parsePageData } from '@/utils/_parsePageData'
 
 function BlogPage({ page, posts }) {
   return (

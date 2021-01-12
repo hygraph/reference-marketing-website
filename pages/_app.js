@@ -1,4 +1,4 @@
-import SiteLayout from '../components/layout'
+import { SiteLayout } from '@/layout'
 
 import 'tailwindcss/tailwind.css'
 

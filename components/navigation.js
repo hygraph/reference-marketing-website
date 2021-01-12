@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import { Transition } from '@headlessui/react'
 import cx from 'classnames'
 
-import { LogoSVG, MarkSVG } from './svgs'
-import { MenuIcon, XIcon } from './icons'
+import { LogoSVG, MarkSVG } from '@/svgs'
+import { MenuIcon, XIcon } from '@/icons'
 
 function Navigation({ pages }) {
   const container = React.useRef(null)

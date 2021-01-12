@@ -1,6 +1,6 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { CheckIcon } from '../../icons'
+import { CheckIcon } from '@/icons'
 
 function FeatureCheck({ content, title }) {
   const mdxContent = hydrate(content.mdx)

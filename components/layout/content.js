@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { getLayout as getSiteLayout } from './layout'
-import Navigation from './navigation'
+import { getSiteLayout } from '@/layout'
+import Navigation from '@/components/navigation'
 
 const ContentLayout = ({ children, page }) => {
   return (

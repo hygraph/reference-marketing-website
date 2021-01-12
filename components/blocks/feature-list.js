@@ -1,6 +1,6 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { CheckIcon } from '../icons'
+import { CheckIcon } from '@/icons'
 
 function FeatureList({ columns, gridHeadline, gridSubtitle, gridTitle }) {
   if (!(gridTitle || columns || columns.length)) return null

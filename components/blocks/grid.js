@@ -1,7 +1,7 @@
 import hydrate from 'next-mdx-remote/hydrate'
 import cx from 'classnames'
 
-import * as Columns from './columns'
+import * as Columns from '@/columns'
 import Heading from '../heading'
 import mdxComponents from '../mdx'
 

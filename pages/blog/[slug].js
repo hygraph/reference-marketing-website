@@ -6,9 +6,9 @@ import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import he from 'he'
 
-import { blogPostQuery } from '../../lib/_queries'
-import { getLayout as getContentLayout } from '../../components/layout-content'
-import { graphcmsClient } from '../../lib/_client'
+import { blogPostQuery } from '@/lib/_queries'
+import { getContentLayout } from '@/layout'
+import { graphcmsClient } from '@/lib/_client'
 import Heading from '../../components/heading'
 import mdxComponents from '../../components/mdx'
 

@@ -2,7 +2,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import camelCase from 'lodash.camelcase'
 import startCase from 'lodash.startcase'
 
-import * as Icons from '../../icons'
+import * as Icons from '@/icons'
 
 function FeatureIcon({ content, icon, title }) {
   const mdxContent = hydrate(content.mdx)
