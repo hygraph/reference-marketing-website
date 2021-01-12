@@ -7,7 +7,7 @@ import { getPageLayout } from '@/layout'
 import { graphcmsClient } from '@/lib/_client'
 import { parsePageData } from '@/utils/_parsePageData'
 
-function BlogPage({ page, posts }) {
+function BlogPage({ posts }) {
   return (
     <main>
       <div className="max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
