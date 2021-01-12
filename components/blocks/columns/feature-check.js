@@ -1,6 +1,6 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { CheckIcon } from '../../icons'
+import { CheckIcon } from '@/icons'
 
 function FeatureCheck({ content, title }) {
   const mdxContent = hydrate(content.mdx)
@@ -14,7 +14,7 @@ function FeatureCheck({ content, title }) {
       <div className="space-y-2">
         <h4 className="text-lg leading-6 font-medium text-gray-900">{title}</h4>
         <div className="flex space-x-3 lg:py-0 lg:pb-4">
-          <span className="text-base text-gray-500">{mdxContent}</span>
+          <span className="prose">{mdxContent}</span>
         </div>
       </div>
     </div>

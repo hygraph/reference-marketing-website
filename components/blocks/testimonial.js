@@ -2,8 +2,8 @@ import * as React from 'react'
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { DotsSVG } from '../svgs'
-import { SlashIcon } from '../icons'
+import { DotsSVG } from '@/svgs'
+import { SlashIcon } from '@/icons'
 
 function Testimonial({ content, person }) {
   if (!person) return null

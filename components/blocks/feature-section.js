@@ -1,7 +1,7 @@
 import cx from 'classnames'
 
-import * as Columns from './columns'
-import { DotsSVG } from '../svgs'
+import * as Columns from '@/columns'
+import { DotsSVG } from '@/svgs'
 
 function FeatureSection({
   columnComponent,

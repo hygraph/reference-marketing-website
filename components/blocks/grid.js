@@ -1,9 +1,7 @@
 import hydrate from 'next-mdx-remote/hydrate'
 import cx from 'classnames'
 
-import * as Columns from './columns'
-import Heading from '../heading'
-import mdxComponents from '../mdx'
+import * as Columns from '@/columns'
 
 function Grid({
   children,
@@ -40,23 +38,20 @@ function Grid({
     }
   }
 
-  const mdxSubtitle = gridSubtitle
-    ? hydrate(gridSubtitle.mdx, { components: mdxComponents })
-    : null
+  const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
 
   return (
     <div className={gridThemeClass(theme)}>
       <div className="relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
         <div className="relative mb-8 lg:mb-16 text-center">
-          <Heading
-            level={3}
-            className={cx({
-              'mb-4': gridSubtitle
-            })}
-          >
+          <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
             {gridTitle}
-          </Heading>
-          {mdxSubtitle && mdxSubtitle}
+          </h2>
+          {mdxSubtitle ? (
+            <div className="mt-3 max-w-2xl mx-auto prose prose-xl sm:mt-4">
+              {mdxSubtitle}
+            </div>
+          ) : null}
         </div>
         <div className={cx('grid gap-14', colWidthClass(width))}>
           {children

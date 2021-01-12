@@ -1,8 +1,8 @@
 import * as React from 'react'
 import cx from 'classnames'
 
-import Grid from './grid'
-import { PricingPlanCard } from './columns'
+import { Grid } from '@/blocks'
+import { PricingPlanCard } from '@/columns'
 
 function PricingPlanSection({ page, ...grid }) {
   const [billingPeriod, setBillingPeriod] = React.useState('annual')

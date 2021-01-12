@@ -1,6 +1,6 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { CheckIcon } from '../icons'
+import { CheckIcon } from '@/icons'
 
 function FeatureList({ columns, gridHeadline, gridSubtitle, gridTitle }) {
   if (!(gridTitle || columns || columns.length)) return null
@@ -19,7 +19,9 @@ function FeatureList({ columns, gridHeadline, gridSubtitle, gridTitle }) {
           <p className="mt-2 text-3xl font-extrabold text-gray-900">
             {gridTitle}
           </p>
-          {mdxSubtitle && <div className="mt-4 prose-lg">{mdxSubtitle}</div>}
+          {mdxSubtitle && (
+            <div className="mt-4 prose prose-lg">{mdxSubtitle}</div>
+          )}
         </div>
         <div className="mt-12 lg:mt-0 lg:col-span-2">
           <dl className="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
@@ -36,9 +38,7 @@ function FeatureList({ columns, gridHeadline, gridSubtitle, gridTitle }) {
                     <dt className="text-lg leading-6 font-medium text-gray-900">
                       {column.title}
                     </dt>
-                    <dd className="mt-2 text-base text-gray-500">
-                      {mdxContent}
-                    </dd>
+                    <dd className="mt-2 prose">{mdxContent}</dd>
                   </div>
                 </div>
               )

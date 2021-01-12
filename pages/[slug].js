@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { gql } from 'graphql-request'
 
-import { getLayout as getPageLayout } from '../components/layout-page'
-import { graphcmsClient } from '../lib/_client'
-import { pageQuery } from '../lib/_queries'
-import { parsePageData } from '../utils/_parsePageData'
-import Wrapper from '../components/wrapper'
+import { getPageLayout } from '@/layout'
+import { graphcmsClient } from '@/lib/_client'
+import { pageQuery } from '@/lib/_queries'
+import { parsePageData } from '@/utils/_parsePageData'
+import Wrapper from '@/components/wrapper'
 
 function Page({ page }) {
   const router = useRouter()

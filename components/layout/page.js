@@ -1,10 +1,10 @@
 import * as React from 'react'
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { getLayout as getSiteLayout } from './layout'
-import Hero from './hero'
-import * as Marketing from './marketing'
-import Navigation from './navigation'
+import { getSiteLayout } from '@/layout'
+import Hero from '@/components/hero'
+import * as Marketing from '@/marketing'
+import Navigation from '@/components/navigation'
 
 const PageLayout = ({ children, page }) => {
   const pageBanner = page?.marketing?.find(
@@ -31,7 +31,7 @@ const PageLayout = ({ children, page }) => {
                 {page?.title}
               </h1>
               {mdxSubtitle && (
-                <div className="mt-5 mx-auto prose-xl sm:text-center">
+                <div className="mt-5 mx-auto prose prose-xl sm:text-center">
                   {mdxSubtitle}
                 </div>
               )}

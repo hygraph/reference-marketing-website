@@ -2,7 +2,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import camelCase from 'lodash.camelcase'
 import startCase from 'lodash.startcase'
 
-import * as Icons from '../../icons'
+import * as Icons from '@/icons'
 
 function FeatureIcon({ content, icon, title }) {
   const mdxContent = hydrate(content.mdx)
@@ -17,7 +17,7 @@ function FeatureIcon({ content, icon, title }) {
       </div>
       <div className="mt-5">
         <dt className="text-lg leading-6 font-medium text-gray-900">{title}</dt>
-        <dd className="mt-2 text-base text-gray-500">{mdxContent}</dd>
+        <dd className="mt-2 prose">{mdxContent}</dd>
       </div>
     </div>
   )

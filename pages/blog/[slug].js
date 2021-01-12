@@ -3,14 +3,11 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { gql } from 'graphql-request'
 import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
-import he from 'he'
 
-import { blogPostQuery } from '../../lib/_queries'
-import { getLayout as getContentLayout } from '../../components/layout-content'
-import { graphcmsClient } from '../../lib/_client'
-import Heading from '../../components/heading'
-import mdxComponents from '../../components/mdx'
+import { blogPostQuery } from '@/lib/_queries'
+import { getContentLayout } from '@/layout'
+import { graphcmsClient } from '@/lib/_client'
+import { parsePostData } from '@/utils/_parsePostData'
 
 function BlogPost({ nextPost, post, previousPost }) {
   const router = useRouter()
@@ -19,7 +16,7 @@ function BlogPost({ nextPost, post, previousPost }) {
 
   if (!post) return <div>Not found</div>
 
-  const mdxContent = hydrate(post.content.mdx, { components: mdxComponents })
+  const mdxContent = hydrate(post.content.mdx)
 
   return (
     <article className="relative max-w-xl mx-auto px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 lg:max-w-screen-xl">
@@ -34,7 +31,9 @@ function BlogPost({ nextPost, post, previousPost }) {
             </div>
           </dl>
           <div>
-            <Heading>{post.title}</Heading>
+            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+              {post.title}
+            </h1>
           </div>
         </div>
       </header>
@@ -133,8 +132,6 @@ export async function getStaticProps({ locale, params }) {
       revalidate: 3
     }
 
-  const { content, ...rest } = post
-
   const postIndex = allPosts.findIndex(({ id }) => id === post.id)
 
   const nextPost = allPosts[postIndex + 1] || null
@@ -144,21 +141,7 @@ export async function getStaticProps({ locale, params }) {
     props: {
       nextPost,
       page,
-      post: {
-        content: {
-          ...content,
-          mdx: await renderToString(he.decode(content), {
-            components: mdxComponents
-          })
-        },
-        formattedPublished: new Intl.DateTimeFormat('en-US', {
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        }).format(new Date(post.published)),
-        ...rest
-      },
+      post: await parsePostData(post),
       previousPost
     },
     revalidate: 3

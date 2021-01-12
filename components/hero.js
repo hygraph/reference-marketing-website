@@ -1,14 +1,11 @@
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
-import Button from './button'
-import mdxComponents from './mdx'
-import Navigation from './navigation'
+import Button from '@/components/button'
+import Navigation from '@/components/navigation'
 
 function Hero({ buttons, image, navigation, page }) {
-  const mdxSubtitle = page.subtitle
-    ? hydrate(page.subtitle.mdx, { components: mdxComponents })
-    : null
+  const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
     <div className="relative bg-gray-50">
@@ -20,7 +17,7 @@ function Hero({ buttons, image, navigation, page }) {
               {page.title}
             </h1>
             {mdxSubtitle && (
-              <div className="mt-3 max-w-md mx-auto text-lg text-gray-500 sm:text-xl md:mt-5 md:max-w-3xl">
+              <div className="mt-3 max-w-md mx-auto prose prose-lg sm:prose-xl md:mt-5 md:max-w-3xl">
                 {mdxSubtitle}
               </div>
             )}

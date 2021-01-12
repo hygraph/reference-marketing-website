@@ -17,9 +17,7 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
               </h2>
             ) : null}
             {mdxSubtitle ? (
-              <div className="mt-3 text-xl text-gray-500 sm:mt-4">
-                {mdxSubtitle}
-              </div>
+              <div className="mt-3 prose prose-xl sm:mt-4">{mdxSubtitle}</div>
             ) : null}
           </div>
         </div>

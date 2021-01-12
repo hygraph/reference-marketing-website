@@ -7,8 +7,8 @@ import {
   LinkedInIcon,
   SlackIcon,
   TwitterIcon
-} from './icons'
-import { locales } from '../lib/_locales'
+} from '@/icons'
+import { locales } from '@/lib/_locales'
 
 function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
@@ -73,7 +73,7 @@ function Footer({ primaryLinks, secondaryLinks }) {
             </h3>
             <form className="mt-4 sm:max-w-xs">
               <fieldset className="w-full">
-                <label for="language" className="sr-only">
+                <label htmlFor="language" className="sr-only">
                   Language
                 </label>
                 <div className="relative">
@@ -133,8 +133,7 @@ function Footer({ primaryLinks, secondaryLinks }) {
             </a>
           </div>
           <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            &copy; {new Date().getFullYear()} GraphCMS GmbH All rights
-            reserved.
+            &copy; {new Date().getFullYear()} GraphCMS GmbH All rights reserved.
           </p>
         </div>
       </div>

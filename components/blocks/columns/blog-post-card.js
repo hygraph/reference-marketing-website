@@ -73,7 +73,7 @@ function BlogPostCard({
               ) : null}
             </p>
             <div class="flex space-x-1 text-sm text-gray-500">
-              <time datetime={published}>{formattedPublished}</time>
+              <time dateTime={published}>{formattedPublished}</time>
             </div>
           </div>
         </div>
