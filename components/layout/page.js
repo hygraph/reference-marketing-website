@@ -5,6 +5,7 @@ import { getSiteLayout } from '@/layout'
 import Hero from '@/components/hero'
 import * as Marketing from '@/marketing'
 import Navigation from '@/components/navigation'
+import SEO from '@/components/seo'
 
 const PageLayout = ({ children, page }) => {
   const pageBanner = page?.marketing?.find(
@@ -16,9 +17,9 @@ const PageLayout = ({ children, page }) => {
   )
 
   const mdxSubtitle = page?.subtitle ? hydrate(page.subtitle.mdx) : null
-
   return (
     <React.Fragment>
+      {page?.seo ? <SEO {...page.seo} /> : null}
       {pageBanner ? <Marketing.Banner {...pageBanner} /> : null}
       {page?.hero ? (
         <Hero {...page.hero} navigation={page.navigation} page={page} />

@@ -23,8 +23,8 @@ function Hero({ buttons, image, navigation, page }) {
             )}
             {buttons && (
               <div className="mt-10 space-y-3 sm:space-y-0 sm:space-x-3 sm:flex sm:justify-center lg:justify-start">
-                {buttons.map((button, index) => (
-                  <Button key={index} {...button} />
+                {buttons.map((button) => (
+                  <Button key={button.id} {...button} />
                 ))}
               </div>
             )}
