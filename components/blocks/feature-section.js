@@ -8,6 +8,7 @@ function FeatureSection({
   columnComponent,
   columns,
   gridSubtitle,
+  gridTag,
   gridTitle,
   theme = 'WHITE'
 }) {
@@ -22,6 +23,7 @@ function FeatureSection({
   }
 
   const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
+  const TagAttribute = gridTag || 'dl'
 
   return (
     <div className={cx('overflow-hidden', themeClass(theme))}>
@@ -36,7 +38,7 @@ function FeatureSection({
               <div className="mt-4 prose prose-xl">{mdxSubtitle}</div>
             )}
           </div>
-          <dl className="mt-10 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:mt-0 lg:col-span-2">
+          <TagAttribute className="mt-10 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:mt-0 lg:col-span-2">
             {columns.map((column) => {
               const Component =
                 Columns[columnComponent] || Columns[column.__typename]
@@ -45,7 +47,7 @@ function FeatureSection({
 
               return <Component key={column.id} {...column} />
             })}
-          </dl>
+          </TagAttribute>
         </div>
       </div>
     </div>

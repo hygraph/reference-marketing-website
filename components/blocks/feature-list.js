@@ -7,11 +7,13 @@ function FeatureList({
   columns,
   gridHeadline,
   gridSubtitle,
+  gridTag,
   gridTitle
 }) {
   if (!(gridTitle || columns || columns.length)) return null
 
   const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
+  const TagAttribute = gridTag || 'dl'
 
   return (
     <div className="bg-white">
@@ -30,7 +32,7 @@ function FeatureList({
           )}
         </div>
         <div className="mt-12 lg:mt-0 lg:col-span-2">
-          <dl className="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
+          <TagAttribute className="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
             {columns.map((column) => {
               const Component =
                 Columns[columnComponent] || Columns[column.__typename]
@@ -39,7 +41,7 @@ function FeatureList({
 
               return <Component key={column.id} {...column} />
             })}
-          </dl>
+          </TagAttribute>
         </div>
       </div>
     </div>
