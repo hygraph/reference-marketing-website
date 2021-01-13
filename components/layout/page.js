@@ -19,7 +19,7 @@ const PageLayout = ({ children, page }) => {
   const mdxSubtitle = page?.subtitle ? hydrate(page.subtitle.mdx) : null
   return (
     <React.Fragment>
-      <SEO {...page.seo} />
+      {page?.seo ? <SEO {...page.seo} /> : null}
       {pageBanner ? <Marketing.Banner {...pageBanner} /> : null}
       {page?.hero ? (
         <Hero {...page.hero} navigation={page.navigation} page={page} />
