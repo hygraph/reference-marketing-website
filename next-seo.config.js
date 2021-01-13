@@ -1,16 +1,17 @@
-const title = 'Build Modern Marketing Websites with a Headless CMS'
 const description =
   'Learn how to build modern marketing websites, with localization and SEO, using GraphCMS, NextJS, Tailwind, and Vercel.'
+const title = 'Build Modern Marketing Websites with a Headless CMS'
+const url = 'https://marketing-websites.withheadlesscms.com'
 
-const SEO = {
+const seo = {
   title,
   titleTemplate: '%s | GraphCMS',
   description,
   openGraph: {
-    type: 'website',
-    url: 'https://marketing-websites.withheadlesscms.com',
+    description,
     title,
-    description
+    type: 'website',
+    url
   },
   twitter: {
     handle: '@GraphCMS',
@@ -18,4 +19,4 @@ const SEO = {
   }
 }
 
-export default SEO
+export { seo as defaultSEO, url as defaultUrl }

@@ -3,7 +3,7 @@ import { DefaultSeo } from 'next-seo'
 
 import { SiteLayout } from '@/layout'
 
-import SEO from '../next-seo.config'
+import { defaultSEO } from '../next-seo.config'
 import 'tailwindcss/tailwind.css'
 
 function App({ Component, pageProps }) {
@@ -12,7 +12,7 @@ function App({ Component, pageProps }) {
 
   return (
     <React.Fragment>
-      <DefaultSeo {...SEO} />
+      <DefaultSeo {...defaultSEO} />
       {getLayout(<Component {...pageProps} />)}
     </React.Fragment>
   )
