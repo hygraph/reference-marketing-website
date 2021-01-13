@@ -24,7 +24,6 @@
   "devDependencies": {
     "@tailwindcss/forms": "0.2.1",
     "@tailwindcss/typography": "0.3.1",
-    "babel-plugin-inline-react-svg": "1.1.2",
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
