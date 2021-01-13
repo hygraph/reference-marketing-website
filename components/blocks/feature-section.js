@@ -1,3 +1,4 @@
+import hydrate from 'next-mdx-remote/hydrate'
 import cx from 'classnames'
 
 import * as Columns from '@/columns'
@@ -6,6 +7,7 @@ import { DotsSVG } from '@/svgs'
 function FeatureSection({
   columnComponent,
   columns,
+  gridSubtitle,
   gridTitle,
   theme = 'WHITE'
 }) {
@@ -18,7 +20,9 @@ function FeatureSection({
         return 'bg-white'
     }
   }
-  themeClass
+
+  const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
+
   return (
     <div className={cx('overflow-hidden', themeClass(theme))}>
       <div className="relative max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -28,6 +32,9 @@ function FeatureSection({
             <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
               {gridTitle}
             </h2>
+            {gridSubtitle && (
+              <div className="mt-4 prose prose-xl">{mdxSubtitle}</div>
+            )}
           </div>
           <dl className="mt-10 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:mt-0 lg:col-span-2">
             {columns.map((column) => {
