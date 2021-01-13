@@ -63,8 +63,8 @@ function BlogPostCard({
               )
             })}
           </div>
-          <div class="ml-3">
-            <p class="text-sm font-medium text-gray-900">
+          <div className="ml-3">
+            <p className="text-sm font-medium text-gray-900">
               {primaryAuthor.name}
               {secondaryAuthors.length ? (
                 <span className="ml-1">
@@ -72,7 +72,7 @@ function BlogPostCard({
                 </span>
               ) : null}
             </p>
-            <div class="flex space-x-1 text-sm text-gray-500">
+            <div className="flex space-x-1 text-sm text-gray-500">
               <time dateTime={published}>{formattedPublished}</time>
             </div>
           </div>
