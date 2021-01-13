@@ -1,8 +1,14 @@
 import hydrate from 'next-mdx-remote/hydrate'
 
-import { CheckIcon } from '@/icons'
+import * as Columns from '@/columns'
 
-function FeatureList({ columns, gridHeadline, gridSubtitle, gridTitle }) {
+function FeatureList({
+  columnComponent,
+  columns,
+  gridHeadline,
+  gridSubtitle,
+  gridTitle
+}) {
   if (!(gridTitle || columns || columns.length)) return null
 
   const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
@@ -26,22 +32,12 @@ function FeatureList({ columns, gridHeadline, gridSubtitle, gridTitle }) {
         <div className="mt-12 lg:mt-0 lg:col-span-2">
           <dl className="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
             {columns.map((column) => {
-              const mdxContent = hydrate(column.content.mdx)
+              const Component =
+                Columns[columnComponent] || Columns[column.__typename]
 
-              return (
-                <div key={column.id} className="flex">
-                  <CheckIcon
-                    className="flex-shrink-0 h-6 w-6 text-green-500"
-                    aria-hidden="true"
-                  />
-                  <div className="ml-3">
-                    <dt className="text-lg leading-6 font-medium text-gray-900">
-                      {column.title}
-                    </dt>
-                    <dd className="mt-2 prose">{mdxContent}</dd>
-                  </div>
-                </div>
-              )
+              if (!Component) return null
+
+              return <Component key={column.id} {...column} />
             })}
           </dl>
         </div>
