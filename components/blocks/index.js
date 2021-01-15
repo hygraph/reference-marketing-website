@@ -1,5 +1,4 @@
 export { default as Breakpoint } from './breakpoint'
-export { default as FAQSection } from './faq-section'
 export { default as Grid } from './grid'
 export { default as LogoCloud } from './logo-cloud'
 export { default as PricingPlanSection } from './pricing-plan-section'
