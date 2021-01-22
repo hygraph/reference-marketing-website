@@ -1,3 +1,4 @@
+export { default as AvatarIcon } from './avatar'
 export { default as CheckIcon } from './check'
 export { default as ChevronDownIcon } from './chevron-down'
 export { default as DefaultIcon } from './lightning-bolt'
