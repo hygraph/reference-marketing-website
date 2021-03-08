@@ -2572,10 +2572,10 @@ native-url@0.3.4:
   dependencies:
     querystring "^0.2.0"
 
-next-mdx-remote@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/next-mdx-remote/-/next-mdx-remote-1.0.0.tgz#b4b1480faa56bd7d907d6cf8c3ad1bf7e8ce06f9"
-  integrity sha512-18QulBpZKCMRiDx1YTlCwKWu3HWHqw4dXDeTHrJK0s5cJPbMhITwFIxZRhtzGPPPI1OxbmcLB76OpnRafBxymg==
+next-mdx-remote@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/next-mdx-remote/-/next-mdx-remote-1.0.1.tgz#bb4d490aa6561bb08d2f778ba46cdb37a304019e"
+  integrity sha512-95kUjs28F7yrjSt3Kex27yLZ5aP92L39YuJ973+nGyUjFMzyRFzliM/0oODcAHNbNGKe2pBuH+YB7Pq4o6mVEg==
   dependencies:
     "@babel/core" "^7.11.1"
     "@babel/preset-env" "^7.11.0"
