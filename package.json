@@ -17,7 +17,7 @@
     "lodash.startcase": "4.4.0",
     "next": "10.0.9",
     "next-mdx-remote": "1.0.1",
-    "next-seo": "4.22.0",
+    "next-seo": "4.23.0",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
