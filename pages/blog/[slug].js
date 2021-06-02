@@ -10,7 +10,6 @@ import {
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
 import { gql } from 'graphql-request'
 import hydrate from 'next-mdx-remote/hydrate'
 
@@ -21,12 +20,6 @@ import { parsePostData } from '@/utils/_parsePostData'
 import SEO from '@/components/seo'
 
 function BlogPost({ nextPost, post, previousPost }) {
-  const router = useRouter()
-
-  if (router.isFallback) return <div>Loading</div>
-
-  if (!post) return <div>Not found</div>
-
   const mdxContent = hydrate(post.content.mdx)
 
   return (
@@ -241,25 +234,27 @@ export async function getStaticProps({ locale, params }) {
     slug: params.slug
   })
 
-  if (!post)
+  if (!post) {
     return {
-      props: {},
-      revalidate: 3
+      notFound: true
     }
+  }
 
   const postIndex = allPosts.findIndex(({ id }) => id === post.id)
 
   const nextPost = allPosts[postIndex + 1] || null
   const previousPost = allPosts[postIndex - 1] || null
 
+  const parsedPostData = await parsePostData(post)
+
   return {
     props: {
       nextPost,
       page,
-      post: await parsePostData(post),
+      post: parsedPostData,
       previousPost
     },
-    revalidate: 3
+    revalidate: 60
   }
 }
 
@@ -283,7 +278,7 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: true
+    fallback: 'blocking'
   }
 }
 

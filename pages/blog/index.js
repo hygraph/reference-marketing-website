@@ -34,12 +34,17 @@ export async function getStaticProps({ locale }) {
     locale
   })
 
+  const parsedPageData = await parsePageData(page)
+  const parsedPostData = await Promise.all(
+    posts.map((post) => parsePostData(post))
+  )
+
   return {
     props: {
-      page: await parsePageData(page),
-      posts: await Promise.all(posts.map((post) => parsePostData(post)))
+      page: parsedPageData,
+      posts: parsedPostData
     },
-    revalidate: 3
+    revalidate: 60
   }
 }
 
