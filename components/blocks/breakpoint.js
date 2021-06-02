@@ -1,24 +1,41 @@
+import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+
 import Button from '@/components/button'
 
 function Breakpoint({ buttons, subtitle, title }) {
   if (!(buttons || buttons.length)) return null
 
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:py-16 lg:px-8 lg:py-20">
-        <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          <span className="block">{title}</span>
-          <span className="block text-indigo-600">{subtitle}</span>
-        </h2>
-        <div className="mt-8 flex space-x-3">
+    <Box bg="white">
+      <Box maxW="7xl" mx="auto" py={[12, null, 16, 20]} px={[4, 6, null, 8]}>
+        <Heading
+          as="h2"
+          fontSize={['3xl', '4xl']}
+          fontWeight="extrabold"
+          letterSpacing="tight"
+          color="gray.900"
+        >
+          <Text as="span" display="block">
+            {title}
+          </Text>
+          <Text as="span" display="block" color="indigo.600">
+            {subtitle}
+          </Text>
+        </Heading>
+        <Stack display="flex" direction="row" mt={8} spacing={3}>
           {buttons.map((button) => (
-            <div key={button.id} className="inline-flex rounded-md shadow">
+            <Box
+              key={button.id}
+              display="inline-flex"
+              borderRadius="md"
+              boxShadow="md"
+            >
               <Button {...button} />
-            </div>
+            </Box>
           ))}
-        </div>
-      </div>
-    </div>
+        </Stack>
+      </Box>
+    </Box>
   )
 }
 export default Breakpoint

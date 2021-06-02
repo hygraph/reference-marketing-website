@@ -1,11 +1,32 @@
+import {
+  Box,
+  Flex,
+  VisuallyHidden,
+  Grid,
+  Button,
+  Text,
+  Link as ChakraLink,
+  Stack
+} from '@chakra-ui/react'
 import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Transition } from '@headlessui/react'
-import cx from 'classnames'
+import { Transition } from 'react-transition-group'
 
 import { LogoSVG, MarkSVG } from '@/svgs'
 import { MenuIcon, XIcon } from '@/icons'
+;<div className="transform opacity-0 scale-100"></div>
+
+const defaultStyle = {
+  transition: `all 150ms cubic-bezier(0.4, 0, 1, 1)`
+}
+
+const transitionStyles = {
+  entering: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' },
+  entered: { transform: 'scale(1)', opacity: 1, visibility: 'visible' },
+  exiting: { transform: 'scale(1)', opacity: 1, visibility: 'visible' },
+  exited: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' }
+}
 
 function Navigation({ pages }) {
   const container = React.useRef(null)
@@ -49,116 +70,164 @@ function Navigation({ pages }) {
   }, [])
 
   return (
-    <div ref={container} className="relative bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
+    <Box ref={container} pos="relative" bg="white" boxShadow="base">
+      <Transition in={mobileNavOpen} timeout={150}>
+        {(state) => (
+          <Box
+            borderRadius="lg"
+            boxShadow="lg"
+            bg="white"
+            m={2}
+            border="1px solid rgba(0, 0, 0, 0.05)"
+            pos="absolute"
+            top="0"
+            right="0"
+            left="0"
+            zIndex="docked"
+            transition="all 150ms cubic-bezier(0.4, 0, 0.2, 1)"
+            transformOrigin="top right"
+            style={{
+              ...defaultStyle,
+              ...transitionStyles[state]
+            }}
+          >
+            <Box pt={5} pb={6} px={5}>
+              <Flex alignItems="center" justifyContent="space-between">
+                <div>
+                  <Link href="/">
+                    <a>
+                      <VisuallyHidden>GraphCMS</VisuallyHidden>
+                      <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
+                    </a>
+                  </Link>
+                </div>
+                <Box mr={-2}>
+                  <Button
+                    type="button"
+                    bg="white"
+                    borderRadius="md"
+                    p={2}
+                    display="inline-flex"
+                    color="gray.400"
+                    _hover={{
+                      color: 'gray.500',
+                      bg: 'gray.100'
+                    }}
+                    onClick={() => setMobileNavOpen(false)}
+                  >
+                    <VisuallyHidden>Close menu</VisuallyHidden>
+                    <Box as={XIcon} w={6} h={6} aria-hidden="true" />
+                  </Button>
+                </Box>
+              </Flex>
+              <Box mt={6}>
+                {pages && pages.length && (
+                  <Grid as="nav" gridRowGap={8}>
+                    {pages.map((page) => {
+                      const isActive = router.asPath.startsWith(`/${page.slug}`)
+
+                      return (
+                        <Link key={page.id} href={`/${page.slug}`}>
+                          <ChakraLink
+                            m={-3}
+                            p={3}
+                            display="flex"
+                            alignItems="center"
+                            borderRadius="md"
+                            color={isActive ? 'indigo.600' : 'inherit'}
+                            _hover={{
+                              bg: 'gray.50'
+                            }}
+                          >
+                            <Text
+                              as="span"
+                              ml={3}
+                              fontSize="md"
+                              fontWeight="medium"
+                              color="gray.900"
+                            >
+                              {page.navigationLabel ||
+                                page.slug.charAt(0).toUpperCase() +
+                                  page.slug.slice(1)}
+                            </Text>
+                          </ChakraLink>
+                        </Link>
+                      )
+                    })}
+                  </Grid>
+                )}
+              </Box>
+            </Box>
+          </Box>
+        )}
+      </Transition>
+
+      <Box maxW="7xl" mx="auto" px={[4, 6]}>
+        <Stack
+          display="flex"
+          justifyContent={['space-between', null, 'flex-start']}
+          alignItems="center"
+          py={6}
+          direction="row"
+          spacing={{ md: 10 }}
+        >
+          <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
               <a>
-                <span className="sr-only">GraphCMS</span>
-                <LogoSVG className="h-10 text-indigo-600 w-auto" />
+                <VisuallyHidden>GraphCMS</VisuallyHidden>
+                <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
               </a>
             </Link>
-          </div>
-          <div className="-mr-2 -my-2 md:hidden">
-            <button
+          </Flex>
+          <Box mr={-2} my={-2} display={{ md: 'none' }}>
+            <Button
               type="button"
-              className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              bg="white"
+              borderRadius="md"
+              p={2}
+              display="inline-flex"
+              color="gray.400"
+              _hover={{
+                color: 'gray.500',
+                bg: 'gray.100'
+              }}
               onClick={() => setMobileNavOpen(true)}
             >
-              <span className="sr-only">Open menu</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
+              <VisuallyHidden>Open menu</VisuallyHidden>
+              <Box as={MenuIcon} w={6} h={6} aria-hidden="true" />
+            </Button>
+          </Box>
           {pages && pages.length ? (
-            <nav className="hidden md:flex space-x-10">
+            <Stack
+              as="nav"
+              display={['none', null, 'flex']}
+              direction="row"
+              spacing={10}
+            >
               {pages.map((page) => {
                 const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                 return (
                   <Link key={page.id} href={`/${page.slug}`}>
-                    <a
-                      className={cx(
-                        'text-base font-medium text-gray-500 hover:text-gray-900',
-                        {
-                          'text-indigo-600': isActive
-                        }
-                      )}
+                    <ChakraLink
+                      fontSize="md"
+                      fontWeight="medium"
+                      color={isActive ? 'indigo.600' : 'gray.500'}
+                      _hover={{
+                        color: 'gray.900'
+                      }}
                     >
                       {page.navigationLabel ||
                         page.slug.charAt(0).toUpperCase() + page.slug.slice(1)}
-                    </a>
+                    </ChakraLink>
                   </Link>
                 )
               })}
-            </nav>
+            </Stack>
           ) : null}
-        </div>
-      </div>
-      <Transition
-        show={mobileNavOpen}
-        enter="transition ease-out duration-75"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-150"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-        className="absolute top-0 inset-x-0 z-10 p-2 transition transform origin-top-right md:hidden"
-      >
-        <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
-          <div className="pt-5 pb-6 px-5">
-            <div className="flex items-center justify-between">
-              <div>
-                <Link href="/">
-                  <a>
-                    <span className="sr-only">GraphCMS</span>
-                    <MarkSVG className="h-8 text-indigo-600 w-auto" />
-                  </a>
-                </Link>
-              </div>
-              <div className="-mr-2">
-                <button
-                  type="button"
-                  className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-                  onClick={() => setMobileNavOpen(false)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-            <div className="mt-6">
-              {pages && pages.length ? (
-                <nav className="grid gap-y-8">
-                  {pages.map((page) => {
-                    const isActive = router.asPath.startsWith(`/${page.slug}`)
-
-                    return (
-                      <Link key={page.id} href={`/${page.slug}`}>
-                        <a
-                          className={cx(
-                            '-m-3 p-3 flex items-center rounded-md hover:bg-gray-50',
-                            {
-                              'text-indigo-600': isActive
-                            }
-                          )}
-                        >
-                          <span className="ml-3 text-base font-medium text-gray-900">
-                            {page.navigationLabel ||
-                              page.slug.charAt(0).toUpperCase() +
-                                page.slug.slice(1)}
-                          </span>
-                        </a>
-                      </Link>
-                    )
-                  })}
-                </nav>
-              ) : null}
-            </div>
-          </div>
-        </div>
-      </Transition>
-    </div>
+        </Stack>
+      </Box>
+    </Box>
   )
 }
 

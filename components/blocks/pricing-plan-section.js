@@ -1,42 +1,69 @@
+import { Button, Box, Stack } from '@chakra-ui/react'
 import * as React from 'react'
-import cx from 'classnames'
 
 import { Grid } from '@/blocks'
 import { PricingPlanCard } from '@/columns'
+
+function PricingButton({ isActive, children, ...rest }) {
+  return (
+    <Button
+      type="button"
+      pos="relative"
+      border="1px solid"
+      borderRadius="md"
+      py={2}
+      w={['50%', 'auto']}
+      fontSize="sm"
+      fontWeight="medium"
+      color="gray.700"
+      whiteSpace="nowrap"
+      px={{ sm: 8 }}
+      bg={isActive && 'white'}
+      shadow={isActive && 'sm'}
+      borderColor={isActive ? 'gray.200' : 'transparent'}
+      {...rest}
+    >
+      {children}
+    </Button>
+  )
+}
 
 function PricingPlanSection({ page, ...grid }) {
   const [billingPeriod, setBillingPeriod] = React.useState('annual')
 
   return (
     <React.Fragment>
-      <div className="px-4 sm:px-6 sm:flex sm:flex-col sm:align-center lg:px-8">
-        <div className="relative mt-6 bg-gray-100 rounded-lg p-0.5 flex self-center space-x-2 sm:mt-8">
-          <button
-            type="button"
-            className={cx(
-              'relative border rounded-md py-2 w-1/2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8',
-              billingPeriod === 'monthly'
-                ? 'bg-white border-gray-200 shadow-sm'
-                : 'border-transparent'
-            )}
+      <Box
+        px={[4, 6, null, 8]}
+        display={{ sm: 'flex' }}
+        flexDirection={{ sm: 'column' }}
+        alignItems={{ sm: 'center' }}
+      >
+        <Stack
+          direction="row"
+          spacing={2}
+          display="flex"
+          position="relative"
+          mt={[6, 8]}
+          bg="gray.100"
+          borderRadius="lg"
+          p="2px"
+          alignSelf="center"
+        >
+          <PricingButton
+            isActive={billingPeriod === 'monthly'}
             onClick={() => setBillingPeriod('monthly')}
           >
             Monthly billing
-          </button>
-          <button
-            type="button"
-            className={cx(
-              'relative border rounded-md py-2 w-1/2 text-sm font-medium text-gray-700 whitespace-nowrap focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:z-10 sm:w-auto sm:px-8',
-              billingPeriod === 'annual'
-                ? 'bg-white border-gray-200 shadow-sm'
-                : 'border-transparent'
-            )}
+          </PricingButton>
+          <PricingButton
+            isActive={billingPeriod === 'annual'}
             onClick={() => setBillingPeriod('annual')}
           >
             Annual billing
-          </button>
-        </div>
-      </div>
+          </PricingButton>
+        </Stack>
+      </Box>
       <Grid {...grid}>
         {() =>
           grid.columns.map((column) => (

@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import { Box, Flex, Link, Stack, Text } from '@chakra-ui/react'
+import NextLink from 'next/link'
 import Image from 'next/image'
-import cx from 'classnames'
 import startCase from 'lodash.startcase'
 
 function BlogPostCard({
@@ -16,69 +16,100 @@ function BlogPostCard({
   const [primaryAuthor, ...secondaryAuthors] = authors
 
   return (
-    <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
-      <div className="flex-shrink-0">
+    <Flex flexDir="column" borderRadius="lg" boxShadow="lg" overflow="hidden">
+      <Box flexShrink="0">
         <Image
-          className="h-48 w-full object-cover"
+          className="blog-post-card-image"
           src={coverImage.url}
           alt={coverImage.title}
           title={coverImage.title}
           width={coverImage.width}
           height={coverImage.height}
+          objectFit="cover"
         />
-      </div>
-      <div className="flex-1 bg-white p-6 flex flex-col justify-between">
-        <div className="flex-1">
-          <p className="text-sm font-medium text-indigo-600">
+      </Box>
+      <Flex
+        display="flex"
+        flex="1 1 0"
+        bg="white"
+        p={6}
+        flexDirection="column"
+        justifyContent="space-between"
+      >
+        <Box flex="1 1 0">
+          <Text fontSize="sm" fontWeight="medium" color="indigo.600">
             {startCase(category.toLowerCase())}
-          </p>
-          <Link href={`/blog/${slug}`}>
-            <a className="block mt-2">
-              <p className="text-xl font-semibold text-gray-900">{title}</p>
-              <p className="mt-3 text-base text-gray-500">{excerpt}</p>
-            </a>
-          </Link>
-        </div>
-        <div className="mt-6 flex items-center">
-          <div className="flex -space-x-1 relative z-0 overflow-hidden">
+          </Text>
+          <NextLink href={`/blog/${slug}`}>
+            <Link
+              display="block"
+              mt={2}
+              _hover={{
+                textDecor: 'none'
+              }}
+            >
+              <Text fontSize="xl" fontWeight="semibold" color="gray.900">
+                {title}
+              </Text>
+              <Text mt={3} fontSize="md" color="gray.500">
+                {excerpt}
+              </Text>
+            </Link>
+          </NextLink>
+        </Box>
+        <Flex alignItems="center" mt={6}>
+          <Stack
+            direction="row"
+            display="flex"
+            spacing={-2}
+            pos="relative"
+            zIndex="0"
+            overflow="hidden"
+          >
             {authors.map((author, index) => {
-              const zIndexClass = (index) => `z-${Number(index * 10)}`
-
               return (
-                <div
+                <Box
                   key={author.id}
-                  className={cx(
-                    'inline-block h-8 relative w-8 rounded-full ring-2 ring-white',
-                    zIndexClass(index)
-                  )}
+                  display="inline-block"
+                  w={9}
+                  h={9}
+                  pos="relative"
+                  borderRadius="full"
+                  border="2px solid white"
                 >
                   <Image
-                    className="relative rounded-full"
+                    className="avatar"
                     src={author.photo.url}
                     alt={author.name}
                     title={author.name}
                     layout="fill"
                   />
-                </div>
+                </Box>
               )
             })}
-          </div>
-          <div className="ml-3">
-            <p className="text-sm font-medium text-gray-900">
+          </Stack>
+          <Box ml={3}>
+            <Text fontSize="sm" fontWeight="medium" color="gray.900">
               {primaryAuthor.name}
               {secondaryAuthors.length ? (
-                <span className="ml-1">
+                <Text as="span" ml={1}>
                   + {Number(secondaryAuthors.length)} other
-                </span>
+                </Text>
               ) : null}
-            </p>
-            <div className="flex space-x-1 text-sm text-gray-500">
+            </Text>
+            <Stack
+              display="flex"
+              direction="row"
+              spacing={1}
+              fontSize="sm"
+              color="gray.500"
+            >
               <time dateTime={published}>{formattedPublished}</time>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Stack>
+          </Box>
+        </Flex>
+      </Flex>
+    </Flex>
   )
 }
 

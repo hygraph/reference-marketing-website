@@ -1,20 +1,32 @@
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import Image from 'next/image'
 
 function LogoCloud({ companies, logoCloudTitle }) {
   if (!(logoCloudTitle || companies || companies.length)) return null
 
   return (
-    <div className="bg-indigo-700">
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-white">{logoCloudTitle}</h2>
-        <div className="flow-root mt-8 lg:mt-10">
-          <div className="-mt-4 -ml-8 flex flex-wrap justify-between lg:-ml-4">
+    <Box bg="indigo.700">
+      <Box maxW="7xl" mx="auto" py={[16, 20]} px={[4, 6, null, 8]}>
+        <Heading as="h2" fontSize="3xl" fontWeight="extrabold" color="white">
+          {logoCloudTitle}
+        </Heading>
+
+        <Box display="flow-root" mt={{ base: 8, lg: 10 }}>
+          <Flex
+            mt={-4}
+            ml={{ base: -8, lg: -4 }}
+            flexWrap="wrap"
+            justifyContent="space-between"
+          >
             {companies.map((company) => (
-              <div
+              <Flex
                 key={company.id}
-                className="mt-4 ml-8 flex flex-grow flex-shrink-0 lg:flex-grow-0 lg:ml-4"
+                mt={4}
+                ml={{ base: 8, lg: 4 }}
+                flexGrow={{ base: 1, lg: 0 }}
+                flexShrink="0"
               >
-                <div className="relative w-44">
+                <Box pos="relative" w={44}>
                   <Image
                     src={company.logo.url}
                     height={company.logo.height}
@@ -22,13 +34,13 @@ function LogoCloud({ companies, logoCloudTitle }) {
                     layout="responsive"
                     alt={company.logo.title}
                   />
-                </div>
-              </div>
+                </Box>
+              </Flex>
             ))}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Flex>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

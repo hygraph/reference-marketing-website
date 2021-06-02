@@ -1,3 +1,4 @@
+import { Box, Heading, Stack } from '@chakra-ui/react'
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
 
@@ -8,40 +9,84 @@ function Hero({ buttons, image, navigation, page }) {
   const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
 
   return (
-    <div className="relative bg-gray-50">
+    <Box position="relative" bg="gray.50">
       <Navigation {...navigation} />
-      <main className="lg:relative">
-        <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-48 lg:text-left">
-          <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
-            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
+      <Box as="main" position={{ lg: 'relative' }}>
+        <Box
+          mx="auto"
+          maxW="7xl"
+          w="full"
+          py={{ lg: 48 }}
+          pt={16}
+          pb={20}
+          textAlign={{ base: 'center', lg: 'left' }}
+        >
+          <Box px={[4, 8]} pr={{ xl: 16 }} width={{ lg: '50%' }}>
+            <Heading
+              as="h1"
+              fontSize={['4xl', '5xl', '6xl', '5xl', '6xl']}
+              letterSpacing="tight"
+              lineHeight="1"
+              fontWeight="extrabold"
+              color="gray.900"
+            >
               {page.title}
-            </h1>
+            </Heading>
             {mdxSubtitle && (
-              <div className="mt-3 max-w-md mx-auto prose prose-lg sm:prose-xl md:mt-5 md:max-w-3xl">
+              <Box
+                mt={[3, null, 5]}
+                w="full"
+                maxW={['md', null, '3xl']}
+                mx="auto"
+                fontSize={{ base: 'md' }}
+              >
                 {mdxSubtitle}
-              </div>
+              </Box>
             )}
             {buttons && (
-              <div className="mt-10 space-y-3 sm:space-y-0 sm:space-x-3 sm:flex sm:justify-center lg:justify-start">
+              <Stack
+                mt={10}
+                direction={['column', 'row']}
+                display={{ sm: 'flex' }}
+                justifyContent={{ sm: 'center', lg: 'flex-start' }}
+                spacing={[3, 0]}
+              >
                 {buttons.map((button) => (
-                  <Button key={button.id} {...button} />
+                  <Box
+                    key={button.id}
+                    sx={{
+                      ':nth-of-type(even)': {
+                        mx: [0, 3]
+                      }
+                    }}
+                  >
+                    <Button {...button} />
+                  </Box>
                 ))}
-              </div>
+              </Stack>
             )}
-          </div>
-        </div>
-        <div className="relative w-full h-64 sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
+          </Box>
+        </Box>
+        <Box
+          pos={{ base: 'relative', lg: 'absolute' }}
+          w={{ base: 'full', lg: '50%' }}
+          h={[64, 72, 96, 'full']}
+          top={{ lg: 0 }}
+          bottom={{ lg: 0 }}
+          right={{ lg: 0 }}
+        >
           <Image
-            className="absolute inset-0 w-full h-full object-cover"
+            className="hero-image"
             src={image.url}
             alt={image.title}
             title={image.title}
             layout="fill"
             priority={true}
+            objectFit="cover"
           />
-        </div>
-      </main>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

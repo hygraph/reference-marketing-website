@@ -1,5 +1,5 @@
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import hydrate from 'next-mdx-remote/hydrate'
-import cx from 'classnames'
 
 function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
   if (!(columns || columns.length)) return null
@@ -7,60 +7,88 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
   const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
 
   return (
-    <div className="bg-gray-50 pt-12 sm:pt-16">
+    <Box bg="gray.50" pt={[12, 16]}>
       {gridTitle || gridSubtitle ? (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
+        <Box maxW="7xl" mx="auto" px={[4, 6, null, 8]}>
+          <Box maxW="4xl" mx="auto" textAlign="center">
             {gridTitle ? (
-              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              <Heading
+                as="h2"
+                fontSize={['3xl', '4xl']}
+                fontWeight="extrabold"
+                color="gray.900"
+              >
                 {gridTitle}
-              </h2>
+              </Heading>
             ) : null}
-            {mdxSubtitle ? (
-              <div className="mt-3 prose prose-xl sm:mt-4">{mdxSubtitle}</div>
-            ) : null}
-          </div>
-        </div>
+            {mdxSubtitle ? <Box mt={[3, 4]}>{mdxSubtitle}</Box> : null}
+          </Box>
+        </Box>
       ) : null}
-      <div className="mt-10 pb-12 bg-white sm:pb-16">
-        <div className="relative">
-          <div className="absolute inset-0 h-1/2 bg-gray-50"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <dl className="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
+      <Box mt={10} pb={[12, 16]} bg="white">
+        <Box pos="relative">
+          <Box pos="absolute" inset="0" h="50%" bg="gray.50"></Box>
+          <Box pos="relative" maxW="7xl" mx="auto" px={[4, 6, null, 8]}>
+            <Box maxW="4xl" mx="auto">
+              <Box
+                as="dl"
+                borderRadius="lg"
+                bg="white"
+                boxShadow="lg"
+                display={{ sm: 'grid' }}
+                gridTemplateColumns={{ sm: 'repeat(3, 1fr)' }}
+              >
                 {columns.map((column, index) => {
                   const firstColumn = index === 0
                   const lastColumn = index === columns.length - 1
 
+                  const hasColumn = firstColumn || lastColumn
+
                   return (
-                    <div
+                    <Flex
                       key={column.id}
-                      className={cx(
-                        'flex flex-col border-b border-gray-100 p-6 text-center sm:border-0',
-                        {
-                          'border-b sm:border-r': firstColumn,
-                          'border-t sm:border-l': lastColumn,
-                          'border-t border-b sm:border-l sm:border-r': !(
-                            firstColumn || lastColumn
-                          )
-                        }
-                      )}
+                      flexDirection="column"
+                      borderColor="gray.100"
+                      p={6}
+                      textAlign="center"
+                      borderBottomWidth={['1px', !hasColumn ? '1px' : '0px']}
+                      borderRightWidth={{
+                        sm: firstColumn || !hasColumn ? '1px' : 0
+                      }}
+                      borderTopWidth={lastColumn || (!hasColumn && '1px')}
+                      borderLeftWidth={{
+                        sm: lastColumn || !hasColumn ? '1px' : 0
+                      }}
                     >
-                      <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                      <Box
+                        as="dt"
+                        order="2"
+                        mt={2}
+                        fontSize="lg"
+                        lineHeight="6"
+                        fontWeight="medium"
+                        color="gray.500"
+                      >
                         {column.label}
-                      </dt>
-                      <dd className="order-1 text-5xl font-extrabold text-indigo-600">
+                      </Box>
+                      <Box
+                        as="dd"
+                        order="1"
+                        fontSize="5xl"
+                        fontWeight="extrabold"
+                        color="indigo.600"
+                      >
                         {column.value}
-                      </dd>
-                    </div>
+                      </Box>
+                    </Flex>
                   )
                 })}
-              </dl>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

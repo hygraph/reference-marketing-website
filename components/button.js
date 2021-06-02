@@ -1,45 +1,44 @@
+import { Box, Link as ChakraLink } from '@chakra-ui/react'
 import Link from 'next/link'
-import cx from 'classnames'
 
-function Button({ href, label, theme = 'BLUE' }) {
-  const themeVal = (theme) => {
-    switch (theme) {
-      case 'WHITE':
-        return 'border-transparent bg-white text-indigo-600 hover:bg-gray-50'
-      case 'BLUE':
-      default:
-        return 'border-transparent bg-indigo-600 text-white hover:bg-indigo-700'
-    }
-  }
+const linkDefaultStyles = {
+  width: 'full',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  px: [8, null, 10],
+  py: [3, null, 4],
+  fontSize: ['base', null, 'lg'],
+  fontWeight: 'medium',
+  borderRadius: 'md'
+}
 
-  const linkClass = cx(
-    'w-full flex items-center justify-center px-8 py-3 border text-base font-medium rounded-md md:py-4 md:text-lg md:px-10',
-    themeVal(theme)
-  )
-
+function Button({ href, label, theme }) {
   if (!href || !label) return null
 
   if (href.includes('http')) {
     return (
-      <div className="rounded-md shadow">
-        <a
-          className={linkClass}
+      <Box borderRadius="md" boxShadow="md">
+        <ChakraLink
+          isExternal
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
+          {...linkDefaultStyles}
+          variant={theme}
         >
           {label}
-        </a>
-      </div>
+        </ChakraLink>
+      </Box>
     )
   }
 
   return (
-    <div className="rounded-md shadow">
+    <Box borderRadius="md" boxShadow="md">
       <Link href={href}>
-        <a className={linkClass}>{label}</a>
+        <ChakraLink {...linkDefaultStyles} variant={theme}>
+          {label}
+        </ChakraLink>
       </Link>
-    </div>
+    </Box>
   )
 }
 

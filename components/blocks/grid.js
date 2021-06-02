@@ -1,5 +1,5 @@
+import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 import hydrate from 'next-mdx-remote/hydrate'
-import cx from 'classnames'
 
 import * as Columns from '@/columns'
 import { DotsSVG } from '@/svgs'
@@ -18,81 +18,83 @@ function Grid({
 }) {
   if (!columns || !columns.length) return null
 
-  const themeClass = (theme) => {
-    switch (theme) {
-      case 'LIGHT':
-        return 'bg-gray-50'
-      case 'WHITE':
-      default:
-        return 'bg-white'
-    }
-  }
-
-  const gridClass = (width) => {
-    switch (width) {
-      case 4:
-        return 'grid-cols-1 lg:grid-cols-4'
-      case 3:
-        return 'grid-cols-1 lg:grid-cols-3'
-      case 2:
-        return 'grid-cols-1 lg:grid-cols-2'
-      case 1:
-      default:
-        return 'grid-cols-1'
-    }
-  }
-
-  const layoutClass = (layout) => {
-    switch (layout) {
-      case 'SPLIT':
-        return 'lg:grid lg:grid-cols-3 lg:gap-x-8'
-      case 'STACK':
-      default:
-        return null
-    }
-  }
-
   const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
-  const TagAttribute = gridTag || 'dl'
 
   const stackLayout = layout === 'STACK'
   const splitLayout = layout === 'SPLIT'
 
   return (
-    <div className={cx('overflow-hidden', themeClass(theme))}>
-      <div className="relative max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <Box overflow="hidden" bg={theme === 'LIGHT' ? 'gray.50' : 'white'}>
+      <Box pos="relative" maxW="7xl" mx="auto" py={12} px={[4, 6, null, 8]}>
         {splitLayout && (
-          <DotsSVG className="absolute hidden top-full left-auto transform translate-x-2/3 -translate-y-3/4 right-full text-gray-200 lg:block" />
+          <Box
+            as={DotsSVG}
+            color="gray.200"
+            position="absolute"
+            display={{ base: 'none', lg: 'block' }}
+            top="100%"
+            right="100%"
+            left="auto"
+            transform="translate(66.66%, -75%)"
+          />
         )}
-        <div className={cx('relative', layoutClass(layout))}>
-          <div
-            className={cx({
-              'lg:col-span-1': splitLayout,
-              'lg:text-center': stackLayout
-            })}
+
+        <Box
+          position="relative"
+          display={{ lg: splitLayout && 'grid' }}
+          gridColumnGap={{ lg: splitLayout && 8 }}
+          gridTemplateColumns={{ lg: splitLayout && 'repeat(3, 1fr)' }}
+        >
+          <Box
+            textAlign={{ lg: stackLayout && 'center' }}
+            gridColumn={{ lg: splitLayout && 'span 1 / span 1' }}
           >
             {gridHeadline ? (
-              <h2 className="text-base font-semibold text-indigo-600 uppercase tracking-wide">
+              <Heading
+                as="h2"
+                fontSize="md"
+                fontWeight="semibold"
+                color="indigo.600"
+                textTransform="uppercase"
+                letterSpacing="wide"
+              >
                 {gridHeadline}
-              </h2>
+              </Heading>
             ) : null}
-            <p className="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <Text
+              mt={2}
+              fontSize={['3xl', '4xl']}
+              fontWeight="extrabold"
+              letterSpacing="tight"
+              color="gray.900"
+            >
               {gridTitle}
-            </p>
+            </Text>
+
             {gridSubtitle && (
-              <div className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              <Box
+                mt={4}
+                maxW="2xl"
+                fontSize="xl"
+                color="gray.500"
+                mx={{ lg: 'auto' }}
+              >
                 {mdxSubtitle}
-              </div>
+              </Box>
             )}
-          </div>
-          <TagAttribute
-            className={cx(
-              'mt-10 space-y-10 sm:space-y-0 sm:grid sm:gap-x-8 sm:gap-y-10 lg:col-span-2',
-              gridClass(width),
-              {
-                'lg:mt-0': splitLayout
-              }
-            )}
+          </Box>
+          <Stack
+            as={gridTag || 'dl'}
+            mt={{ base: 10, lg: splitLayout && 0 }}
+            spacing={[10, 0]}
+            display={{ sm: 'grid' }}
+            gridColumnGap={{ sm: 8 }}
+            gridRowGap={{ sm: 10 }}
+            gridColumn={{ lg: 'span 2 / span 2' }}
+            gridTemplateColumns={{
+              base: 'repeat(1, 1fr)',
+              lg: `repeat(${width}, 1fr)`
+            }}
           >
             {children
               ? children()
@@ -104,10 +106,10 @@ function Grid({
 
                   return <Component key={column.id} {...column} />
                 })}
-          </TagAttribute>
-        </div>
-      </div>
-    </div>
+          </Stack>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

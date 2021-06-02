@@ -1,37 +1,84 @@
+import {
+  Box,
+  Heading,
+  Text,
+  FormLabel,
+  VisuallyHidden,
+  Button,
+  Input
+} from '@chakra-ui/react'
+
 function NewsletterSignup({ ctaLabel, subtitle, title }) {
   return (
-    <div className="bg-white">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <h2 className="inline text-3xl font-extrabold tracking-tight text-gray-900 sm:block sm:text-4xl">
+    <Box bg="white">
+      <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
+        <Heading
+          as="h2"
+          fontSize={['3xl', '4xl']}
+          lineHeight="shorter"
+          fontWeight="extrabold"
+          display={['inline', 'block']}
+          letterSpacing="tight"
+          color="gray.900"
+        >
           {title}
-        </h2>
-        <p className="inline text-3xl font-extrabold tracking-tight text-indigo-600 sm:block sm:text-4xl">
+        </Heading>
+        <Text
+          fontSize={['3xl', '4xl']}
+          lineHeight="shorter"
+          fontWeight="extrabold"
+          display={['inline', 'block']}
+          letterSpacing="tight"
+          color="indigo.600"
+        >
           {subtitle}
-        </p>
-        <form className="mt-8 sm:flex">
-          <label htmlFor="emailAddress" className="sr-only">
+        </Text>
+        <Box as="form" mt={8} display={{ sm: 'flex' }}>
+          <VisuallyHidden as={FormLabel} htmlFor="emailAddress">
             Email address
-          </label>
-          <input
+          </VisuallyHidden>
+          <Input
             id="emailAddress"
             name="email"
             type="email"
             autoComplete="email"
             required
-            className="w-full px-5 py-3 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs border-gray-300 rounded-md"
             placeholder="Enter your email"
+            width="full"
+            height="full"
+            maxW={{ sm: 'xs' }}
+            px={5}
+            py={3}
+            borderColor="gray.300"
+            _placeholder={{
+              color: 'gray.500'
+            }}
           />
-          <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-            <button
+          <Box
+            mt={[3, 0]}
+            ml={{ sm: 3 }}
+            flexShrink={{ sm: 0 }}
+            borderRadius="md"
+            boxShadow="md"
+          >
+            <Button
               type="submit"
-              className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              width="full"
+              height="full"
+              px={5}
+              py={3}
+              bg="indigo.600"
+              color="white"
+              _hover={{
+                bg: 'indigo.700'
+              }}
             >
               {ctaLabel || 'Submit'}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

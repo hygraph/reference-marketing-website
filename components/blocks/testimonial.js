@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react'
 import * as React from 'react'
 import Image from 'next/image'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -11,51 +12,88 @@ function Testimonial({ content, person }) {
   const mdxContent = hydrate(content.mdx)
 
   return (
-    <section className="py-12 bg-gray-50 overflow-hidden md:py-20 lg:py-24">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <DotsSVG className="absolute top-full right-full transform translate-x-1/3 -translate-y-1/4 lg:translate-x-1/2 xl:-translate-y-1/2 text-gray-200" />
-        <div className="relative">
-          <div className="h-8 relative">
+    <Box as="section" py={[12, null, 20, 24]} bg="gray.50" overflow="hidden">
+      <Box pos="relative" maxW="7xl" mx="auto" px={[4, 6, null, 8]}>
+        <Box
+          as={DotsSVG}
+          pos="absolute"
+          top="100%"
+          right="100%"
+          color="gray.200"
+          transform={{
+            base: 'translate(33.33%, -25%)',
+            lg: 'translate(50%, -25%)',
+            xl: 'translate(50%, -50%)'
+          }}
+        />
+        <Box pos="relative">
+          <Box h={8} pos="relative">
             <Image
               src={person.company.logo.url}
               alt={person.company.logo.title}
               layout="fill"
             />
-          </div>
-          <blockquote className="mt-10">
-            <div className="max-w-3xl mx-auto text-center text-2xl leading-9 font-medium text-gray-900">
+          </Box>
+          <Box as="blockquote" mt={10}>
+            <Box
+              maxW="3xl"
+              mx="auto"
+              textAlign="center"
+              fontSize="2xl"
+              lineHeight="9"
+              fontWeight="medium"
+              color="gray.900"
+            >
               {mdxContent}
-            </div>
-            <footer className="mt-8">
-              <div className="md:flex md:items-center md:justify-center">
-                <div className="md:flex-shrink-0">
-                  <div className="mx-auto h-10 relative w-10">
+            </Box>
+            <Box as="footer" mt={8}>
+              <Box
+                display={{ md: 'flex' }}
+                alignItems={{ md: 'center' }}
+                justifyContent={{ md: 'center' }}
+              >
+                <Box flexShrink={{ md: 0 }}>
+                  <Box mx="auto" h={10} w={10} position="relative">
                     <Image
-                      className="rounded-full"
+                      className="avatar"
                       src={person.photo.url}
                       layout="fill"
                     />
-                  </div>
-                </div>
-                <div className="mt-3 text-center md:mt-0 md:ml-4 md:flex md:items-center">
-                  <div className="text-base font-medium text-gray-900">
+                  </Box>
+                </Box>
+                <Box
+                  mt={[3, null, 0]}
+                  ml={{ md: 4 }}
+                  textAlign="center"
+                  display={{ md: 'flex' }}
+                  alignItems={{ md: 'center' }}
+                >
+                  <Box fontWeight="medium" color="gray.900">
                     {person.name}
-                  </div>
+                  </Box>
+
                   {person.role ? (
-                    <React.Fragment>
-                      <SlashIcon className="hidden md:block mx-1 h-5 w-5 text-indigo-600" />
-                      <div className="text-base font-medium text-gray-500">
+                    <>
+                      <Box
+                        as={SlashIcon}
+                        display={['none', null, 'block']}
+                        mx={1}
+                        h={5}
+                        w={5}
+                        color="indigo.600"
+                      />
+                      <Box fontWeight="medium" color="gray.500">
                         {person.role}, {person.company.name}
-                      </div>
-                    </React.Fragment>
+                      </Box>
+                    </>
                   ) : null}
-                </div>
-              </div>
-            </footer>
-          </blockquote>
-        </div>
-      </div>
-    </section>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

@@ -1,11 +1,13 @@
+import { Flex, Box } from '@chakra-ui/layout'
+
 import Footer from '@/components/footer'
 
 function SiteLayout({ children, page }) {
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="flex-grow">{children}</div>
+    <Flex flexDir="column" minH="100vh">
+      <Box flexGrow="1">{children}</Box>
       {page?.footer && <Footer {...page.footer} />}
-    </div>
+    </Flex>
   )
 }
 
