@@ -34,7 +34,7 @@ function FeatureIcon({ content, icon, title }) {
         >
           {title}
         </Box>
-        <Box as="dd" mt={2}>
+        <Box as="dd" mt={2} className="prose">
           {mdxContent}
         </Box>
       </Box>

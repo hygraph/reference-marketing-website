@@ -130,14 +130,7 @@ function BlogPost({ nextPost, post, previousPost }) {
                 />
               </Box>
             )}
-            <Box
-              maxW="none"
-              pt={10}
-              pb={8}
-              color="gray.500"
-              fontSize="md"
-              lineHeight="1.75"
-            >
+            <Box maxW="none" pt={10} pb={8} color="gray.500" className="prose">
               {mdxContent}
             </Box>
           </Box>

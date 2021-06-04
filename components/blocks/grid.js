@@ -66,6 +66,7 @@ function Grid({
               fontSize={['3xl', '4xl']}
               fontWeight="extrabold"
               letterSpacing="tight"
+              lineHeight="9"
               color="gray.900"
             >
               {gridTitle}

@@ -21,7 +21,11 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
                 {gridTitle}
               </Heading>
             ) : null}
-            {mdxSubtitle ? <Box mt={[3, 4]}>{mdxSubtitle}</Box> : null}
+            {mdxSubtitle ? (
+              <Box mt={[3, 4]} className="prose prose-xl">
+                {mdxSubtitle}
+              </Box>
+            ) : null}
           </Box>
         </Box>
       ) : null}

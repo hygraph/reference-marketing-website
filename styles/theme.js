@@ -71,5 +71,15 @@ export const theme = extendTheme({
         }
       }
     }
+  },
+  styles: {
+    global: {
+      'html, body': {
+        color: 'gray.500'
+      },
+      'ul, ol': {
+        listStyle: 'none'
+      }
+    }
   }
 })

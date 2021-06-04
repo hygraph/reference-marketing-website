@@ -129,11 +129,18 @@ function Footer({ primaryLinks, secondaryLinks }) {
                     fontSize={{ sm: 'sm' }}
                     value={activeLocale.value}
                     onChange={setLocale}
+                    b
                   >
                     {locales.map((locale) => (
-                      <option key={locale.value} value={locale.value}>
+                      <Box
+                        as="option"
+                        bg="#374151!important"
+                        color="white"
+                        key={locale.value}
+                        value={locale.value}
+                      >
                         {locale.label}
-                      </option>
+                      </Box>
                     ))}
                   </Select>
                 </Box>

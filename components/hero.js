@@ -34,11 +34,11 @@ function Hero({ buttons, image, navigation, page }) {
             </Heading>
             {mdxSubtitle && (
               <Box
+                className="prose prose-lg sm:prose-xl"
                 mt={[3, null, 5]}
                 w="full"
                 maxW={['md', null, '3xl']}
                 mx="auto"
-                fontSize={{ base: 'md' }}
               >
                 {mdxSubtitle}
               </Box>
