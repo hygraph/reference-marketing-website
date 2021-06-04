@@ -1,29 +1,41 @@
 import Image from 'next/image'
+import { Box, HStack, Text } from '@chakra-ui/react'
 
 import { AvatarIcon } from '@/components/icons'
 
 function PersonCard({ name, photo, role }) {
   return (
     <li>
-      <div className="flex items-center space-x-4 lg:space-x-6">
-        <div className="bg-gray-100 w-16 h-16 overflow-hidden relative rounded-full lg:w-20 lg:h-20">
+      <HStack display="flex" alignItems="center" spacing={{ base: 4, lg: 6 }}>
+        <Box
+          bg="gray.100"
+          w={{ base: 16, lg: 20 }}
+          h={{ base: 16, lg: 20 }}
+          overflow="hidden"
+          position="relative"
+          borderRadius="full"
+        >
           {photo ? (
             <Image
-              className="rounded-full"
+              className="avatar"
               src={photo.url}
               alt={name}
               title={name}
               layout="fill"
             />
           ) : (
-            <AvatarIcon className="h-full w-full text-gray-300" />
+            <Box as={AvatarIcon} h="full" w="full" color="gray.300" />
           )}
-        </div>
-        <div className="font-medium text-lg leading-6 space-y-1">
+        </Box>
+        <Box fontWeight="medium" fontSize="lg" lineHeight="6">
           <h3>{name}</h3>
-          {role ? <p className="text-indigo-600">{role}</p> : null}
-        </div>
-      </div>
+          {role ? (
+            <Text color="indigo.600" mt={1}>
+              {role}
+            </Text>
+          ) : null}
+        </Box>
+      </HStack>
     </li>
   )
 }

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Box, Container, Heading } from '@chakra-ui/react'
 import hydrate from 'next-mdx-remote/hydrate'
 
 import { getSiteLayout } from '@/layout'
@@ -26,18 +27,36 @@ const PageLayout = ({ children, page }) => {
       ) : (
         <React.Fragment>
           <Navigation {...page?.navigation} />
-          <div className="mx-auto pt-24 px-4 sm:px-6 lg:px-8">
-            <div className="sm:flex sm:flex-col sm:align-center">
-              <h1 className="text-5xl font-extrabold text-gray-900 sm:text-center">
+          <Box mx="auto" pt={24} px={[4, 6, null, 8]}>
+            <Box
+              display={[null, 'flex']}
+              flexDir={[null, 'column']}
+              alignItems={[null, 'center']}
+              textAlign={[null, 'center']}
+            >
+              <Heading
+                as="h1"
+                fontSize="5xl"
+                lineHeight="none"
+                fontWeight="extrabold"
+                color="gray.900"
+              >
                 {page?.title}
-              </h1>
+              </Heading>
               {mdxSubtitle && (
-                <div className="mt-5 mx-auto prose prose-xl sm:text-center">
+                <Container
+                  mt={5}
+                  p={0}
+                  centerContent
+                  color="gray.500"
+                  lineHeight="tall"
+                  fontSize="xl"
+                >
                   {mdxSubtitle}
-                </div>
+                </Container>
               )}
-            </div>
-          </div>
+            </Box>
+          </Box>
         </React.Fragment>
       )}
       <div>

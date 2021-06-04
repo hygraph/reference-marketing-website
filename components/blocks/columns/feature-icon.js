@@ -1,3 +1,4 @@
+import { Flex, Box } from '@chakra-ui/react'
 import hydrate from 'next-mdx-remote/hydrate'
 import camelCase from 'lodash.camelcase'
 import startCase from 'lodash.startcase'
@@ -12,13 +13,31 @@ function FeatureIcon({ content, icon, title }) {
 
   return (
     <div>
-      <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-        <IconComponent className="h-6 w-6" aria-hidden="true" />
-      </div>
-      <div className="mt-5">
-        <dt className="text-lg leading-6 font-medium text-gray-900">{title}</dt>
-        <dd className="mt-2 prose">{mdxContent}</dd>
-      </div>
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        h={12}
+        w={12}
+        borderRadius="md"
+        bg="indigo.500"
+        color="white"
+      >
+        <Box as={IconComponent} w={6} h={6} aria-hidden="true" />
+      </Flex>
+      <Box mt={5}>
+        <Box
+          as="dt"
+          fontSize="lg"
+          lineHeight="6"
+          fontWeight="medium"
+          color="gray.900"
+        >
+          {title}
+        </Box>
+        <Box as="dd" mt={2} className="prose">
+          {mdxContent}
+        </Box>
+      </Box>
     </div>
   )
 }

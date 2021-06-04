@@ -14,11 +14,13 @@ export async function getStaticProps({ locale }) {
     slug: 'home'
   })
 
+  const parsedPageData = await parsePageData(page)
+
   return {
     props: {
-      page: await parsePageData(page)
+      page: parsedPageData
     },
-    revalidate: 3
+    revalidate: 60
   }
 }
 

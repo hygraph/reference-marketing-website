@@ -1,3 +1,5 @@
+import { Box, Heading, Text, Link, Stack } from '@chakra-ui/react'
+
 import { CheckIcon } from '@/icons'
 
 function PricingPlanCard({
@@ -9,46 +11,99 @@ function PricingPlanCard({
   name
 }) {
   return (
-    <div className="border border-gray-200 rounded-lg shadow-sm divide-y divide-gray-200">
-      <div className="p-6">
-        <h2 className="text-lg leading-6 font-medium text-gray-900">{name}</h2>
-        <p className="mt-4 text-sm text-gray-500">{description}</p>
-        <p className="mt-8">
-          <span className="text-4xl font-extrabold text-gray-900">
+    <Box
+      border="1px solid"
+      borderColor="gray.200"
+      borderRadius="lg"
+      boxShadow="sm"
+    >
+      <Box p={6} borderBottom="1px solid" borderColor="gray.200">
+        <Heading
+          as="h2"
+          fontSize="lg"
+          lineHeight="6"
+          fontWeight="medium"
+          color="gray.900"
+        >
+          {name}
+        </Heading>
+        <Text mt={4} fontSize="sm" lineHeight="5" color="gray.500">
+          {description}
+        </Text>
+        <Text mt={8}>
+          <Text
+            as="span"
+            fontWeight="extrabold"
+            fontSize="4xl"
+            lineHeight="shorter"
+            color="gray.900"
+          >
             {new Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',
               minimumFractionDigits: 0
             }).format(billingPeriod === 'monthly' ? monthlyPrice : annualPrice)}
-          </span>
-          <span className="text-base font-medium text-gray-500">
+          </Text>
+          <Text as="span" fontSize="md" fontWeight="medium" color="gray.500">
             {billingPeriod === 'monthly' ? '/mo' : '/yr'}
-          </span>
-        </p>
-        <a
+          </Text>
+        </Text>
+        <Link
           href="#"
-          className="mt-8 block w-full bg-indigo-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-indigo-700"
+          mt={8}
+          display="block"
+          w="full"
+          bg="indigo.600"
+          border="1px solid transparent"
+          borderRadius="md"
+          py={2}
+          fontSize="sm"
+          fontWeight="semibold"
+          color="white"
+          textAlign="center"
+          _hover={{
+            bg: 'indigo.700'
+          }}
         >
           Buy {name}
-        </a>
-      </div>
-      <div className="pt-6 pb-8 px-6">
-        <h3 className="text-xs font-medium text-gray-900 tracking-wide uppercase">
+        </Link>
+      </Box>
+      <Box pt={6} pb={8} px={6}>
+        <Heading
+          as="h3"
+          fontSize="xs"
+          fontWeight="medium"
+          color="gray.900"
+          letterSpacing="wide"
+          textTransform="uppercase"
+        >
           What's included
-        </h3>
-        <ul className="mt-6 space-y-4">
+        </Heading>
+        <Stack as="ul" mt={6} spacing={4}>
           {included.map((feature, index) => (
-            <li key={index} className="flex space-x-3">
-              <CheckIcon
-                className="flex-shrink-0 h-5 w-5 text-green-500"
+            <Stack
+              as="li"
+              key={index}
+              display="flex"
+              spacing={3}
+              direction="row"
+            >
+              <Box
+                as={CheckIcon}
+                flexShrink="0"
+                w={5}
+                h={5}
+                color="green.500"
                 aria-hidden="true"
               />
-              <span className="text-sm text-gray-500">{feature}</span>
-            </li>
+              <Text as="span" fontSize="sm" color="gray.500">
+                {feature}
+              </Text>
+            </Stack>
           ))}
-        </ul>
-      </div>
-    </div>
+        </Stack>
+      </Box>
+    </Box>
   )
 }
 

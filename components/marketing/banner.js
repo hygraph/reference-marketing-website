@@ -1,40 +1,43 @@
-import cx from 'classnames'
+import { Box, Flex, Text } from '@chakra-ui/react'
 
 import Button from '@/components/button'
 
-function Banner({ content, href, theme = 'INFO' }) {
-  const themeClass = (theme) => {
-    switch (theme) {
-      case 'WARNING':
-        return 'bg-orange-600 text-orange-600'
-      case 'INFO':
-      default:
-        return 'bg-indigo-600 text-indigo-600'
-    }
+function Banner({ content, href, theme = 'WARNING' }) {
+  const themeColor = {
+    WARNING: 'orange.600'
   }
 
   if (!content || !href) return null
 
   return (
-    <div className={cx(themeClass(theme))}>
-      <div className="max-w-screen-xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between flex-wrap">
-          <div className="flex-1 flex items-center">
-            <p className="font-medium text-white">{content}</p>
-          </div>
-          <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-            <div className="rounded-md shadow-sm">
+    <Box
+      bg={themeColor[theme] || 'indigo.600'}
+      color={themeColor[theme] || 'indigo.600'}
+    >
+      <Box maxW={1280} mx="auto" py={3} px={[3, 6, null, 8]}>
+        <Flex
+          alignItems="center"
+          justifyContent="space-between"
+          flexWrap="wrap"
+        >
+          <Flex flex="1 1 0" alignItems="center">
+            <Text fontWeight="medium" color="white">
+              {content}
+            </Text>
+          </Flex>
+          <Box w={['full', 'auto']} order={[3, 2]} mt={[2, 0]} flexShrink="0">
+            <Box borderRadius="md" boxShadow="sm">
               <Button
                 href={href}
                 label="Learn more"
                 size="SMALL"
                 theme="WHITE"
               />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Box>
+          </Box>
+        </Flex>
+      </Box>
+    </Box>
   )
 }
 

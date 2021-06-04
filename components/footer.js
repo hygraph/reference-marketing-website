@@ -1,143 +1,197 @@
+import {
+  VisuallyHidden,
+  Link as ChakraLink,
+  Text,
+  Stack,
+  Box,
+  Grid,
+  Heading,
+  FormLabel,
+  Select
+} from '@chakra-ui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import {
-  ChevronDownIcon,
-  GithubIcon,
-  LinkedInIcon,
-  SlackIcon,
-  TwitterIcon
-} from '@/icons'
+import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/icons'
 import { locales } from '@/lib/_locales'
+
+function GridColumnHeading({ children }) {
+  return (
+    <Heading
+      as="h3"
+      fontSize="sm"
+      fontWeight="semibold"
+      color="gray.400"
+      letterSpacing="wider"
+      textTransform="uppercase"
+    >
+      {children}
+    </Heading>
+  )
+}
+
+function GridColumn({ links, title }) {
+  return (
+    <div>
+      <GridColumnHeading>{title}</GridColumnHeading>
+
+      <Stack as="ul" mt={4} spacing={4}>
+        {links.map((link) => (
+          <li key={link.id}>
+            <Link href={`/${link.slug}`}>
+              <ChakraLink
+                color="gray.300"
+                _hover={{
+                  color: 'white'
+                }}
+              >
+                {link.navigationLabel ||
+                  link.slug.charAt(0).toUpperCase() + link.slug.slice(1)}
+              </ChakraLink>
+            </Link>
+          </li>
+        ))}
+      </Stack>
+    </div>
+  )
+}
+
+function SocialMediaLink({ href, title, icon }) {
+  return (
+    <ChakraLink
+      href={href}
+      isExternal
+      color="gray.400"
+      _hover={{
+        color: 'gray.300'
+      }}
+    >
+      <VisuallyHidden>{title}</VisuallyHidden>
+      <Box as={icon} w={6} h={6} />
+    </ChakraLink>
+  )
+}
 
 function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
 
   const activeLocale = locales.find((locale) => locale.value === router.locale)
 
-  const setLocale = (event) =>
+  const setLocale = (event) => {
     router.push(router.asPath, router.asPath, { locale: event.target.value })
+  }
 
   return (
-    <footer className="bg-gray-800" aria-labelledby="footerHeading">
-      <h2 id="footerHeading" className="sr-only">
+    <Box as="footer" bg="gray.800" aria-labelledby="footerHeading">
+      <VisuallyHidden as="h2" id="footerHeading">
         Footer
-      </h2>
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <div className="pb-8 xl:grid xl:grid-cols-5 xl:gap-8">
-          <div className="grid grid-cols-2 gap-8 xl:col-span-4">
-            {primaryLinks.length ? (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                  Primary
-                </h3>
-                <ul className="mt-4 space-y-4">
-                  {primaryLinks.map((link) => (
-                    <li key={link.id}>
-                      <Link href={`/${link.slug}`}>
-                        <a className="text-base text-gray-300 hover:text-white">
-                          {link.navigationLabel ||
-                            link.slug.charAt(0).toUpperCase() +
-                              link.slug.slice(1)}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            {secondaryLinks.length ? (
-              <div>
-                <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                  Secondary
-                </h3>
-                <ul className="mt-4 space-y-4">
-                  {secondaryLinks.map((link) => (
-                    <li key={link.id}>
-                      <Link href={`/${link.slug}`}>
-                        <a className="text-base text-gray-300 hover:text-white">
-                          {link.navigationLabel ||
-                            link.slug.charAt(0).toUpperCase() +
-                              link.slug.slice(1)}
-                        </a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-          <div className="mt-12 xl:mt-0">
-            <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-              Language
-            </h3>
-            <form className="mt-4 sm:max-w-xs">
-              <fieldset className="w-full">
-                <label htmlFor="language" className="sr-only">
+      </VisuallyHidden>
+
+      <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
+        <Box
+          pb={8}
+          display={{ xl: 'grid' }}
+          gridTemplateColumns={{ xl: 'repeat(5, 1fr)' }}
+          gridGap={{ xl: 8 }}
+        >
+          <Grid
+            gridTemplateColumns="repeat(2, 1fr)"
+            gridGap={8}
+            gridColumn={{ xl: 'span 4 / span 4' }}
+          >
+            <GridColumn
+              links={primaryLinks.length ? primaryLinks : null}
+              title="Primary"
+            />
+
+            <GridColumn
+              links={secondaryLinks.length ? secondaryLinks : null}
+              title="Secondary"
+            />
+          </Grid>
+
+          <Box mt={{ base: 12, xl: 0 }}>
+            <GridColumnHeading>Language</GridColumnHeading>
+
+            <Box as="form" mt={4} maxW={{ sm: 'xs' }}>
+              <Box as="fieldset" w="full">
+                <VisuallyHidden as={FormLabel} htmlFor="language">
                   Language
-                </label>
-                <div className="relative">
-                  <select
+                </VisuallyHidden>
+
+                <Box position="relative">
+                  <Select
                     id="language"
                     name="language"
-                    className="appearance-none block w-full bg-none bg-gray-700 border border-transparent rounded-md py-2 pl-3 pr-10 text-base text-white focus:outline-none focus:ring-white focus:border-white sm:text-sm"
+                    color="white"
+                    bg="gray.700"
+                    borderColor="transparent"
+                    fontSize={{ sm: 'sm' }}
                     value={activeLocale.value}
                     onChange={setLocale}
+                    b
                   >
                     {locales.map((locale) => (
-                      <option key={locale.value} value={locale.value}>
+                      <Box
+                        as="option"
+                        bg="#374151!important"
+                        color="white"
+                        key={locale.value}
+                        value={locale.value}
+                      >
                         {locale.label}
-                      </option>
+                      </Box>
                     ))}
-                  </select>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center">
-                    <ChevronDownIcon
-                      className="h-4 w-4 text-white"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <div className="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
-          <div className="flex space-x-6 md:order-2">
-            <a
+                  </Select>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box
+          mt={7}
+          pt={8}
+          borderTopWidth="1px"
+          borderColor="gray.700"
+          display={{ md: 'flex' }}
+          alignItems={{ md: 'center' }}
+          justifyContent={{ md: 'space-between' }}
+        >
+          <Stack direction="row" display="flex" spacing={6} order={{ md: 2 }}>
+            <SocialMediaLink
+              title="LinkedIn"
+              icon={LinkedInIcon}
               href="https://linkedin.com/company/graphcms"
-              className="text-gray-400 hover:text-gray-300"
-            >
-              <span className="sr-only">LinkedIn</span>
-              <LinkedInIcon className="h-6 w-6" />
-            </a>
-            <a
+            />
+            <SocialMediaLink
+              title="Slack"
+              icon={SlackIcon}
               href="https://slack.graphcms.com"
-              className="text-gray-400 hover:text-gray-300"
-            >
-              <span className="sr-only">Slack</span>
-              <SlackIcon className="h-6 w-6" />
-            </a>
-            <a
+            />
+            <SocialMediaLink
+              title="Twitter"
+              icon={TwitterIcon}
               href="https://twitter.com/GraphCMS"
-              className="text-gray-400 hover:text-gray-300"
-            >
-              <span className="sr-only">Twitter</span>
-              <TwitterIcon className="h-6 w-6" />
-            </a>
-            <a
+            />
+            <SocialMediaLink
+              title="GitHub"
+              icon={GithubIcon}
               href="https://github.com/GraphCMS/reference-nextjs-marketing"
-              className="text-gray-400 hover:text-gray-300"
-            >
-              <span className="sr-only">GitHub</span>
-              <GithubIcon className="h-6 w-6" />
-            </a>
-          </div>
-          <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+            />
+          </Stack>
+
+          <Text
+            mt={[8, null, 0]}
+            fontSize="md"
+            color="gray.400"
+            order={{ md: 1 }}
+          >
             &copy; {new Date().getFullYear()} GraphCMS GmbH All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
+          </Text>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 

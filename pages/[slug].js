@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { gql } from 'graphql-request'
 
 import { getPageLayout } from '@/layout'
@@ -8,12 +7,6 @@ import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/wrapper'
 
 function Page({ page }) {
-  const router = useRouter()
-
-  if (router.isFallback) return <div>Loading</div>
-
-  if (!page) return <div> Not found</div>
-
   return <Wrapper {...page} />
 }
 
@@ -23,11 +16,19 @@ export async function getStaticProps({ locale, params }) {
     slug: params.slug
   })
 
+  if (!page) {
+    return {
+      notFound: true
+    }
+  }
+
+  const parsedPageData = await parsePageData(page)
+
   return {
     props: {
-      page: page ? await parsePageData(page) : null
+      page: parsedPageData
     },
-    revalidate: 3
+    revalidate: 60
   }
 }
 
@@ -51,7 +52,7 @@ export async function getStaticPaths({ locales }) {
 
   return {
     paths,
-    fallback: true
+    fallback: 'blocking'
   }
 }
 
