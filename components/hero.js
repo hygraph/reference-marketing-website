@@ -1,13 +1,11 @@
 import { Box, Heading, Stack } from '@chakra-ui/react'
 import Image from 'next/image'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 import Button from '@/components/button'
 import Navigation from '@/components/navigation'
 
 function Hero({ buttons, image, navigation, page }) {
-  const mdxSubtitle = page.subtitle ? hydrate(page.subtitle.mdx) : null
-
   return (
     <Box position="relative" bg="gray.50">
       <Navigation {...navigation} />
@@ -32,7 +30,7 @@ function Hero({ buttons, image, navigation, page }) {
             >
               {page.title}
             </Heading>
-            {mdxSubtitle && (
+            {page.subtitle && (
               <Box
                 className="prose prose-lg sm:prose-xl"
                 mt={[3, null, 5]}
@@ -40,7 +38,7 @@ function Hero({ buttons, image, navigation, page }) {
                 maxW={['md', null, '3xl']}
                 mx="auto"
               >
-                {mdxSubtitle}
+                <MDXRemote {...page.subtitle.mdx} />
               </Box>
             )}
             {buttons && (

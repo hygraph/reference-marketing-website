@@ -1,4 +1,4 @@
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
 import he from 'he'
 
 const parseColumnsMdx = async (columns) =>
@@ -7,7 +7,7 @@ const parseColumnsMdx = async (columns) =>
       ...(content && {
         content: {
           markdown: content,
-          mdx: await renderToString(he.decode(content))
+          mdx: await serialize(he.decode(content))
         }
       }),
       ...column

@@ -11,7 +11,7 @@ import {
 import NextLink from 'next/link'
 import Image from 'next/image'
 import { gql } from 'graphql-request'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 import { blogPostQuery } from '@/lib/_queries'
 import { getContentLayout } from '@/layout'
@@ -20,8 +20,6 @@ import { parsePostData } from '@/utils/_parsePostData'
 import SEO from '@/components/seo'
 
 function BlogPost({ nextPost, post, previousPost }) {
-  const mdxContent = hydrate(post.content.mdx)
-
   return (
     <React.Fragment>
       <SEO {...post.seo} />
@@ -131,7 +129,7 @@ function BlogPost({ nextPost, post, previousPost }) {
               </Box>
             )}
             <Box maxW="none" pt={10} pb={8} color="gray.500" className="prose">
-              {mdxContent}
+              <MDXRemote {...post.content.mdx} />
             </Box>
           </Box>
           <Box

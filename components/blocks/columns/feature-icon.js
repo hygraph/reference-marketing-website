@@ -1,13 +1,11 @@
 import { Flex, Box } from '@chakra-ui/react'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 import camelCase from 'lodash.camelcase'
 import startCase from 'lodash.startcase'
 
 import * as Icons from '@/icons'
 
 function FeatureIcon({ content, icon, title }) {
-  const mdxContent = hydrate(content.mdx)
-
   const IconComponent =
     Icons[`${startCase(camelCase(icon))}Icon`] || Icons.DefaultIcon
 
@@ -35,7 +33,7 @@ function FeatureIcon({ content, icon, title }) {
           {title}
         </Box>
         <Box as="dd" mt={2} className="prose">
-          {mdxContent}
+          <MDXRemote {...content.mdx} />
         </Box>
       </Box>
     </div>
