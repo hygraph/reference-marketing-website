@@ -1,10 +1,8 @@
 import * as React from 'react'
 import { Box } from '@chakra-ui/react'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 function FAQCard({ content, title }) {
-  const mdxContent = hydrate(content.mdx)
-
   return (
     <div>
       <Box
@@ -17,7 +15,7 @@ function FAQCard({ content, title }) {
         {title}
       </Box>
       <Box as="dd" mt={2} className="prose">
-        {mdxContent}
+        <MDXRemote {...content.mdx} />
       </Box>
     </div>
   )

@@ -1,15 +1,13 @@
 import { Box } from '@chakra-ui/react'
 import * as React from 'react'
 import Image from 'next/image'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 import { DotsSVG } from '@/svgs'
 import { SlashIcon } from '@/icons'
 
 function Testimonial({ content, person }) {
   if (!person) return null
-
-  const mdxContent = hydrate(content.mdx)
 
   return (
     <Box as="section" py={[12, null, 20, 24]} bg="gray.50" overflow="hidden">
@@ -44,7 +42,7 @@ function Testimonial({ content, person }) {
               fontWeight="medium"
               color="gray.900"
             >
-              {mdxContent}
+              <MDXRemote {...content.mdx} />
             </Box>
             <Box as="footer" mt={8}>
               <Box

@@ -1,11 +1,9 @@
 import { Flex, Box } from '@chakra-ui/react'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 import { CheckIcon } from '@/icons'
 
 function FeatureCheck({ content, title }) {
-  const mdxContent = hydrate(content.mdx)
-
   return (
     <Flex>
       <Box
@@ -27,7 +25,7 @@ function FeatureCheck({ content, title }) {
           {title}
         </Box>
         <Box as="dd" mt={2} className="prose">
-          {mdxContent}
+          <MDXRemote {...content.mdx} />
         </Box>
       </Box>
     </Flex>

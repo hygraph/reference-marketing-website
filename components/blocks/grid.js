@@ -1,5 +1,5 @@
 import { Box, Heading, Stack, Text } from '@chakra-ui/react'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 import * as Columns from '@/columns'
 import { DotsSVG } from '@/svgs'
@@ -17,8 +17,6 @@ function Grid({
   width = 1
 }) {
   if (!columns || !columns.length) return null
-
-  const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
 
   const stackLayout = layout === 'STACK'
   const splitLayout = layout === 'SPLIT'
@@ -80,7 +78,7 @@ function Grid({
                 color="gray.500"
                 mx={{ lg: 'auto' }}
               >
-                {mdxSubtitle}
+                <MDXRemote {...gridSubtitle.mdx} />
               </Box>
             )}
           </Box>

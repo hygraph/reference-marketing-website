@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box, Container, Heading } from '@chakra-ui/react'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 import { getSiteLayout } from '@/layout'
 import Hero from '@/components/hero'
@@ -17,7 +17,6 @@ const PageLayout = ({ children, page }) => {
     (block) => block.__typename === 'Newsletter'
   )
 
-  const mdxSubtitle = page?.subtitle ? hydrate(page.subtitle.mdx) : null
   return (
     <React.Fragment>
       {page?.seo ? <SEO {...page.seo} /> : null}
@@ -43,7 +42,7 @@ const PageLayout = ({ children, page }) => {
               >
                 {page?.title}
               </Heading>
-              {mdxSubtitle && (
+              {page?.subtitle && (
                 <Container
                   mt={5}
                   p={0}
@@ -52,7 +51,7 @@ const PageLayout = ({ children, page }) => {
                   lineHeight="tall"
                   fontSize="xl"
                 >
-                  {mdxSubtitle}
+                  <MDXRemote {...page.subtitle.mdx} />
                 </Container>
               )}
             </Box>

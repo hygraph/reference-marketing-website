@@ -1,10 +1,8 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
-import hydrate from 'next-mdx-remote/hydrate'
+import { MDXRemote } from 'next-mdx-remote'
 
 function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
   if (!(columns || columns.length)) return null
-
-  const mdxSubtitle = gridSubtitle ? hydrate(gridSubtitle.mdx) : null
 
   return (
     <Box bg="gray.50" pt={[12, 16]}>
@@ -21,9 +19,9 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
                 {gridTitle}
               </Heading>
             ) : null}
-            {mdxSubtitle ? (
+            {gridSubtitle ? (
               <Box mt={[3, 4]} className="prose prose-xl">
-                {mdxSubtitle}
+                <MDXRemote {...gridSubtitle.mdx} />
               </Box>
             ) : null}
           </Box>

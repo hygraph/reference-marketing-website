@@ -1,4 +1,4 @@
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
 import he from 'he'
 
 import { parseColumnsMdx } from '@/utils/_parseColumnsMdx'
@@ -9,13 +9,13 @@ const parseBlocksMdx = async (blocks) =>
       ...(gridSubtitle && {
         gridSubtitle: {
           markdown: gridSubtitle,
-          mdx: await renderToString(he.decode(gridSubtitle))
+          mdx: await serialize(he.decode(gridSubtitle))
         }
       }),
       ...(content && {
         content: {
           markdown: content,
-          mdx: await renderToString(he.decode(content))
+          mdx: await serialize(he.decode(content))
         }
       }),
       ...block,
