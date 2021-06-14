@@ -92,7 +92,7 @@ export default function BlogPostCard({
             <Text fontSize="sm" fontWeight="medium" color="gray.900">
               {primaryAuthor.name}
 
-              {secondaryAuthors.length && (
+              {secondaryAuthors && secondaryAuthors.length > 0 && (
                 <Text as="span" ml={1}>
                   + {Number(secondaryAuthors.length)} other
                 </Text>
