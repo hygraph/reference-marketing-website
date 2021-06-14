@@ -2,11 +2,11 @@ import { Box, Flex, Text } from '@chakra-ui/react'
 
 import Button from '@/components/button'
 
-function Banner({ content, href, theme = 'WARNING' }) {
-  const themeColor = {
-    WARNING: 'orange.600'
-  }
+const themeColor = {
+  WARNING: 'orange.600'
+}
 
+export default function Banner({ content, href, theme = 'WARNING' }) {
   if (!content || !href) return null
 
   return (
@@ -40,5 +40,3 @@ function Banner({ content, href, theme = 'WARNING' }) {
     </Box>
   )
 }
-
-export default Banner

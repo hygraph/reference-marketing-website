@@ -6,7 +6,7 @@ import { pageQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/wrapper'
 
-function Page({ page }) {
+export default function Page({ page }) {
   return <Wrapper {...page} />
 }
 
@@ -57,5 +57,3 @@ export async function getStaticPaths({ locales }) {
 }
 
 Page.getLayout = getPageLayout
-
-export default Page

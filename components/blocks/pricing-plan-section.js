@@ -1,5 +1,5 @@
+import { useState } from 'react'
 import { Button, Box, Stack } from '@chakra-ui/react'
-import * as React from 'react'
 
 import { Grid } from '@/blocks'
 import { PricingPlanCard } from '@/columns'
@@ -28,11 +28,11 @@ function PricingButton({ isActive, children, ...rest }) {
   )
 }
 
-function PricingPlanSection({ page, ...grid }) {
-  const [billingPeriod, setBillingPeriod] = React.useState('annual')
+export default function PricingPlanSection({ page, ...grid }) {
+  const [billingPeriod, setBillingPeriod] = useState('annual')
 
   return (
-    <React.Fragment>
+    <>
       <Box
         px={[4, 6, null, 8]}
         display={{ sm: 'flex' }}
@@ -74,8 +74,6 @@ function PricingPlanSection({ page, ...grid }) {
           ))
         }
       </Grid>
-    </React.Fragment>
+    </>
   )
 }
-
-export default PricingPlanSection

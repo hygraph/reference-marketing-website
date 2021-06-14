@@ -1,4 +1,4 @@
-function Slash({ ...props }) {
+export default function Slash({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,5 +10,3 @@ function Slash({ ...props }) {
     </svg>
   )
 }
-
-export default Slash

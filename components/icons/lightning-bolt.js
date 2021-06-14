@@ -1,4 +1,4 @@
-function LightningBolt({ ...props }) {
+export default function LightningBolt({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function LightningBolt({ ...props }) {
     </svg>
   )
 }
-
-export default LightningBolt

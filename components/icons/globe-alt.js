@@ -1,4 +1,4 @@
-function GlobeAlt({ ...props }) {
+export default function GlobeAlt({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function GlobeAlt({ ...props }) {
     </svg>
   )
 }
-
-export default GlobeAlt

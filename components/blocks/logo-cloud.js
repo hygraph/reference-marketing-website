@@ -1,7 +1,7 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import Image from 'next/image'
 
-function LogoCloud({ companies, logoCloudTitle }) {
+export default function LogoCloud({ companies, logoCloudTitle }) {
   if (!(logoCloudTitle || companies || companies.length)) return null
 
   return (
@@ -43,5 +43,3 @@ function LogoCloud({ companies, logoCloudTitle }) {
     </Box>
   )
 }
-
-export default LogoCloud

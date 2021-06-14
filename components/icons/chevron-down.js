@@ -1,4 +1,4 @@
-function ChevronDown({ ...props }) {
+export default function ChevronDown({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,5 +14,3 @@ function ChevronDown({ ...props }) {
     </svg>
   )
 }
-
-export default ChevronDown

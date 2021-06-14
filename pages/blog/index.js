@@ -7,7 +7,7 @@ import { graphcmsClient } from '@/lib/_client'
 import { parsePageData } from '@/utils/_parsePageData'
 import { parsePostData } from '@/utils/_parsePostData'
 
-function BlogPage({ posts }) {
+export default function BlogPage({ posts }) {
   return (
     <main>
       <Box
@@ -49,5 +49,3 @@ export async function getStaticProps({ locale }) {
 }
 
 BlogPage.getLayout = getPageLayout
-
-export default BlogPage

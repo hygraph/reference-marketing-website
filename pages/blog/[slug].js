@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Box,
   Heading,
@@ -19,9 +18,9 @@ import { graphcmsClient } from '@/lib/_client'
 import { parsePostData } from '@/utils/_parsePostData'
 import SEO from '@/components/seo'
 
-function BlogPost({ nextPost, post, previousPost }) {
+export default function BlogPost({ nextPost, post, previousPost }) {
   return (
-    <React.Fragment>
+    <>
       <SEO {...post.seo} />
       <Box
         as="article"
@@ -215,7 +214,7 @@ function BlogPost({ nextPost, post, previousPost }) {
           </Box>
         </Box>
       </Box>
-    </React.Fragment>
+    </>
   )
 }
 
@@ -274,5 +273,3 @@ export async function getStaticPaths({ locales }) {
 }
 
 BlogPost.getLayout = getContentLayout
-
-export default BlogPost

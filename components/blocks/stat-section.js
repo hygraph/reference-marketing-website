@@ -1,7 +1,12 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 
-function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
+export default function StatSection({
+  columns,
+  gridSubtitle,
+  gridTitle,
+  ...props
+}) {
   if (!(columns || columns.length)) return null
 
   return (
@@ -93,5 +98,3 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
     </Box>
   )
 }
-
-export default StatSection

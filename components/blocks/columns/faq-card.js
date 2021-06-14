@@ -1,8 +1,7 @@
-import * as React from 'react'
 import { Box } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 
-function FAQCard({ content, title }) {
+export default function FAQCard({ content, title }) {
   return (
     <div>
       <Box
@@ -20,5 +19,3 @@ function FAQCard({ content, title }) {
     </div>
   )
 }
-
-export default FAQCard

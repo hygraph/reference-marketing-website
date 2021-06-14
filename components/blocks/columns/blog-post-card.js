@@ -3,7 +3,7 @@ import NextLink from 'next/link'
 import Image from 'next/image'
 import startCase from 'lodash.startcase'
 
-function BlogPostCard({
+export default function BlogPostCard({
   authors,
   category,
   coverImage,
@@ -91,11 +91,12 @@ function BlogPostCard({
           <Box ml={3}>
             <Text fontSize="sm" fontWeight="medium" color="gray.900">
               {primaryAuthor.name}
-              {secondaryAuthors.length ? (
+
+              {secondaryAuthors.length && (
                 <Text as="span" ml={1}>
                   + {Number(secondaryAuthors.length)} other
                 </Text>
-              ) : null}
+              )}
             </Text>
             <Stack
               display="flex"
@@ -112,5 +113,3 @@ function BlogPostCard({
     </Flex>
   )
 }
-
-export default BlogPostCard

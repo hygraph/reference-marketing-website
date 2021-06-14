@@ -1,4 +1,4 @@
-function Scale({ ...props }) {
+export default function Scale({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function Scale({ ...props }) {
     </svg>
   )
 }
-
-export default Scale

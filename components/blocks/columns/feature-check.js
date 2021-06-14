@@ -3,7 +3,7 @@ import { MDXRemote } from 'next-mdx-remote'
 
 import { CheckIcon } from '@/icons'
 
-function FeatureCheck({ content, title }) {
+export default function FeatureCheck({ content, title }) {
   return (
     <Flex>
       <Box
@@ -31,4 +31,3 @@ function FeatureCheck({ content, title }) {
     </Flex>
   )
 }
-export default FeatureCheck

@@ -3,7 +3,13 @@ import { useRouter } from 'next/router'
 
 import { defaultUrl } from '../next-seo.config'
 
-function SEO({ id, image, keywords, noIndex: noindex = false, ...props }) {
+export default function SEO({
+  id,
+  image,
+  keywords,
+  noIndex: noindex = false,
+  ...props
+}) {
   const router = useRouter()
 
   const SEO = {
@@ -26,5 +32,3 @@ function SEO({ id, image, keywords, noIndex: noindex = false, ...props }) {
 
   return <NextSeo {...SEO} />
 }
-
-export default SEO

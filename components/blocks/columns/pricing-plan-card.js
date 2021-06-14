@@ -2,7 +2,7 @@ import { Box, Heading, Text, Link, Stack } from '@chakra-ui/react'
 
 import { CheckIcon } from '@/icons'
 
-function PricingPlanCard({
+export default function PricingPlanCard({
   annualPrice,
   billingPeriod,
   description,
@@ -106,5 +106,3 @@ function PricingPlanCard({
     </Box>
   )
 }
-
-export default PricingPlanCard

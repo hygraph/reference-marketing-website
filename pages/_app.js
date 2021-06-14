@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { DefaultSeo } from 'next-seo'
 
@@ -8,7 +7,7 @@ import { defaultSEO } from '../next-seo.config'
 import { theme } from '../styles/theme'
 import '../styles/css/global.css'
 
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
   const getLayout =
     Component.getLayout || ((page) => <SiteLayout>{page}</SiteLayout>)
 
@@ -19,5 +18,3 @@ function App({ Component, pageProps }) {
     </ChakraProvider>
   )
 }
-
-export default App
