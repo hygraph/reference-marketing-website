@@ -129,7 +129,6 @@ function Footer({ primaryLinks, secondaryLinks }) {
                     fontSize={{ sm: 'sm' }}
                     value={activeLocale.value}
                     onChange={setLocale}
-                    b
                   >
                     {locales.map((locale) => (
                       <Box
