@@ -1,4 +1,4 @@
-function Dots({ ...props }) {
+export default function Dots({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -31,5 +31,3 @@ function Dots({ ...props }) {
     </svg>
   )
 }
-
-export default Dots

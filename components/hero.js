@@ -5,7 +5,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import Button from '@/components/button'
 import Navigation from '@/components/navigation'
 
-function Hero({ buttons, image, navigation, page }) {
+export default function Hero({ buttons, image, navigation, page }) {
   return (
     <Box position="relative" bg="gray.50">
       <Navigation {...navigation} />
@@ -87,5 +87,3 @@ function Hero({ buttons, image, navigation, page }) {
     </Box>
   )
 }
-
-export default Hero

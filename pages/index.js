@@ -4,7 +4,7 @@ import { pageQuery } from '@/lib/_queries'
 import { parsePageData } from '@/utils/_parsePageData'
 import Wrapper from '@/components/wrapper'
 
-function IndexPage({ page }) {
+export default function IndexPage({ page }) {
   return <Wrapper {...page} />
 }
 
@@ -25,5 +25,3 @@ export async function getStaticProps({ locale }) {
 }
 
 IndexPage.getLayout = getPageLayout
-
-export default IndexPage

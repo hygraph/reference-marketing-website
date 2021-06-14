@@ -2,7 +2,7 @@ import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 
 import Button from '@/components/button'
 
-function Breakpoint({ buttons, subtitle, title }) {
+export default function Breakpoint({ buttons, subtitle, title }) {
   if (!(buttons || buttons.length)) return null
 
   return (
@@ -38,4 +38,3 @@ function Breakpoint({ buttons, subtitle, title }) {
     </Box>
   )
 }
-export default Breakpoint

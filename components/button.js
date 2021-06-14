@@ -13,7 +13,7 @@ const linkDefaultStyles = {
   borderRadius: 'md'
 }
 
-function Button({ href, label, theme }) {
+export default function Button({ href, label, theme }) {
   if (!href || !label) return null
 
   if (href.includes('http')) {
@@ -41,5 +41,3 @@ function Button({ href, label, theme }) {
     </Box>
   )
 }
-
-export default Button

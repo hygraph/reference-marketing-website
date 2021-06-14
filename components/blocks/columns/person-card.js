@@ -3,7 +3,7 @@ import { Box, HStack, Text } from '@chakra-ui/react'
 
 import { AvatarIcon } from '@/components/icons'
 
-function PersonCard({ name, photo, role }) {
+export default function PersonCard({ name, photo, role }) {
   return (
     <li>
       <HStack display="flex" alignItems="center" spacing={{ base: 4, lg: 6 }}>
@@ -29,15 +29,14 @@ function PersonCard({ name, photo, role }) {
         </Box>
         <Box fontWeight="medium" fontSize="lg" lineHeight="6">
           <h3>{name}</h3>
-          {role ? (
+
+          {role && (
             <Text color="indigo.600" mt={1}>
               {role}
             </Text>
-          ) : null}
+          )}
         </Box>
       </HStack>
     </li>
   )
 }
-
-export default PersonCard

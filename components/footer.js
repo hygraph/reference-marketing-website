@@ -72,7 +72,7 @@ function SocialMediaLink({ href, title, icon }) {
   )
 }
 
-function Footer({ primaryLinks, secondaryLinks }) {
+export default function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
 
   const activeLocale = locales.find((locale) => locale.value === router.locale)
@@ -100,12 +100,12 @@ function Footer({ primaryLinks, secondaryLinks }) {
             gridColumn={{ xl: 'span 4 / span 4' }}
           >
             <GridColumn
-              links={primaryLinks.length ? primaryLinks : null}
+              links={primaryLinks.length && primaryLinks}
               title="Primary"
             />
 
             <GridColumn
-              links={secondaryLinks.length ? secondaryLinks : null}
+              links={secondaryLinks.length && secondaryLinks}
               title="Secondary"
             />
           </Grid>
@@ -129,7 +129,6 @@ function Footer({ primaryLinks, secondaryLinks }) {
                     fontSize={{ sm: 'sm' }}
                     value={activeLocale.value}
                     onChange={setLocale}
-                    b
                   >
                     {locales.map((locale) => (
                       <Box
@@ -194,5 +193,3 @@ function Footer({ primaryLinks, secondaryLinks }) {
     </Box>
   )
 }
-
-export default Footer

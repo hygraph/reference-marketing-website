@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { Box, Container, Heading } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 
@@ -8,7 +7,7 @@ import * as Marketing from '@/marketing'
 import Navigation from '@/components/navigation'
 import SEO from '@/components/seo'
 
-const PageLayout = ({ children, page }) => {
+export default function PageLayout({ children, page }) {
   const pageBanner = page?.marketing?.find(
     (block) => block.__typename === 'Banner'
   )
@@ -18,13 +17,15 @@ const PageLayout = ({ children, page }) => {
   )
 
   return (
-    <React.Fragment>
-      {page?.seo ? <SEO {...page.seo} /> : null}
-      {pageBanner ? <Marketing.Banner {...pageBanner} /> : null}
+    <>
+      {page?.seo && <SEO {...page.seo} />}
+
+      {pageBanner && <Marketing.Banner {...pageBanner} />}
+
       {page?.hero ? (
         <Hero {...page.hero} navigation={page.navigation} page={page} />
       ) : (
-        <React.Fragment>
+        <>
           <Navigation {...page?.navigation} />
           <Box mx="auto" pt={24} px={[4, 6, null, 8]}>
             <Box
@@ -56,19 +57,17 @@ const PageLayout = ({ children, page }) => {
               )}
             </Box>
           </Box>
-        </React.Fragment>
+        </>
       )}
+
       <div>
         {children}
-        {pageNewsletter ? (
-          <Marketing.NewsletterSignup {...pageNewsletter} />
-        ) : null}
+        {pageNewsletter && <Marketing.NewsletterSignup {...pageNewsletter} />}
       </div>
-    </React.Fragment>
+    </>
   )
 }
 
-export const getLayout = (page) =>
-  getSiteLayout(<PageLayout {...page.props}>{page}</PageLayout>)
-
-export default PageLayout
+export const getLayout = (page) => {
+  return getSiteLayout(<PageLayout {...page.props}>{page}</PageLayout>)
+}

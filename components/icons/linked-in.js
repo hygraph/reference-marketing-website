@@ -1,4 +1,4 @@
-function LinkedIn({ ...props }) {
+export default function LinkedIn({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,5 +10,3 @@ function LinkedIn({ ...props }) {
     </svg>
   )
 }
-
-export default LinkedIn

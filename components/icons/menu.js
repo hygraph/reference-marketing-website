@@ -1,4 +1,4 @@
-function Menu({ ...props }) {
+export default function Menu({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function Menu({ ...props }) {
     </svg>
   )
 }
-
-export default Menu

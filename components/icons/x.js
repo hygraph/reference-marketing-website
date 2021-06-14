@@ -1,4 +1,4 @@
-function X({ ...props }) {
+export default function X({ ...props }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,5 +16,3 @@ function X({ ...props }) {
     </svg>
   )
 }
-
-export default X

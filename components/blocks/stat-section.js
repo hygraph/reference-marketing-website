@@ -1,15 +1,20 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { MDXRemote } from 'next-mdx-remote'
 
-function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
+export default function StatSection({
+  columns,
+  gridSubtitle,
+  gridTitle,
+  ...props
+}) {
   if (!(columns || columns.length)) return null
 
   return (
     <Box bg="gray.50" pt={[12, 16]}>
-      {gridTitle || gridSubtitle ? (
+      {(gridTitle || gridSubtitle) && (
         <Box maxW="7xl" mx="auto" px={[4, 6, null, 8]}>
           <Box maxW="4xl" mx="auto" textAlign="center">
-            {gridTitle ? (
+            {gridTitle && (
               <Heading
                 as="h2"
                 fontSize={['3xl', '4xl']}
@@ -18,15 +23,15 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
               >
                 {gridTitle}
               </Heading>
-            ) : null}
-            {gridSubtitle ? (
-              <Box mt={[3, 4]} className="prose prose-xl">
+            )}
+            {gridSubtitle && (
+              <Box mt={[3, 4]} mx="auto" className="prose prose-xl">
                 <MDXRemote {...gridSubtitle.mdx} />
               </Box>
-            ) : null}
+            )}
           </Box>
         </Box>
-      ) : null}
+      )}
       <Box mt={10} pb={[12, 16]} bg="white">
         <Box pos="relative">
           <Box pos="absolute" inset="0" h="50%" bg="gray.50"></Box>
@@ -93,5 +98,3 @@ function StatSection({ columns, gridSubtitle, gridTitle, ...props }) {
     </Box>
   )
 }
-
-export default StatSection

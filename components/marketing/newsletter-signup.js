@@ -8,7 +8,7 @@ import {
   Input
 } from '@chakra-ui/react'
 
-function NewsletterSignup({ ctaLabel, subtitle, title }) {
+export default function NewsletterSignup({ ctaLabel, subtitle, title }) {
   return (
     <Box bg="white">
       <Box maxW="7xl" mx="auto" py={{ base: 12, lg: 16 }} px={[4, 6, null, 8]}>
@@ -81,5 +81,3 @@ function NewsletterSignup({ ctaLabel, subtitle, title }) {
     </Box>
   )
 }
-
-export default NewsletterSignup

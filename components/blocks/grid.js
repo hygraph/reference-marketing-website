@@ -4,7 +4,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import * as Columns from '@/columns'
 import { DotsSVG } from '@/svgs'
 
-function Grid({
+export default function Grid({
   children,
   columnComponent,
   columns,
@@ -47,7 +47,7 @@ function Grid({
             textAlign={{ lg: stackLayout && 'center' }}
             gridColumn={{ lg: splitLayout && 'span 1 / span 1' }}
           >
-            {gridHeadline ? (
+            {gridHeadline && (
               <Heading
                 as="h2"
                 fontSize="md"
@@ -58,7 +58,7 @@ function Grid({
               >
                 {gridHeadline}
               </Heading>
-            ) : null}
+            )}
             <Text
               mt={2}
               fontSize={['3xl', '4xl']}
@@ -111,5 +111,3 @@ function Grid({
     </Box>
   )
 }
-
-export default Grid

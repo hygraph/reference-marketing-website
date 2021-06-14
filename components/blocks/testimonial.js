@@ -1,12 +1,11 @@
 import { Box } from '@chakra-ui/react'
-import * as React from 'react'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote'
 
 import { DotsSVG } from '@/svgs'
 import { SlashIcon } from '@/icons'
 
-function Testimonial({ content, person }) {
+export default function Testimonial({ content, person }) {
   if (!person) return null
 
   return (
@@ -70,7 +69,7 @@ function Testimonial({ content, person }) {
                     {person.name}
                   </Box>
 
-                  {person.role ? (
+                  {person.role && (
                     <>
                       <Box
                         as={SlashIcon}
@@ -84,7 +83,7 @@ function Testimonial({ content, person }) {
                         {person.role}, {person.company.name}
                       </Box>
                     </>
-                  ) : null}
+                  )}
                 </Box>
               </Box>
             </Box>
@@ -94,5 +93,3 @@ function Testimonial({ content, person }) {
     </Box>
   )
 }
-
-export default Testimonial

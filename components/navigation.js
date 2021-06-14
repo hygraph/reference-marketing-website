@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react'
 import {
   Box,
   Flex,
@@ -8,14 +9,12 @@ import {
   Link as ChakraLink,
   Stack
 } from '@chakra-ui/react'
-import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from 'react-transition-group'
 
 import { LogoSVG, MarkSVG } from '@/svgs'
 import { MenuIcon, XIcon } from '@/icons'
-;<div className="transform opacity-0 scale-100"></div>
 
 const defaultStyle = {
   transition: `all 150ms cubic-bezier(0.4, 0, 1, 1)`
@@ -28,12 +27,12 @@ const transitionStyles = {
   exited: { transform: 'scale(0.95)', opacity: 0, visibility: 'hidden' }
 }
 
-function Navigation({ pages }) {
-  const container = React.useRef(null)
+export default function Navigation({ pages }) {
+  const container = useRef(null)
   const router = useRouter()
-  const [mobileNavOpen, setMobileNavOpen] = React.useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleOutsideClick = (event) => {
       if (!container?.current?.contains(event.target)) {
         if (!mobileNavOpen) return
@@ -47,7 +46,7 @@ function Navigation({ pages }) {
     return () => window.removeEventListener('click', handleOutsideClick)
   }, [mobileNavOpen, container])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleEscape = (event) => {
       if (!mobileNavOpen) return
 
@@ -61,7 +60,7 @@ function Navigation({ pages }) {
     return () => document.removeEventListener('keyup', handleEscape)
   }, [mobileNavOpen])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleRouteChange = () => setMobileNavOpen(false)
 
     router.events.on('routeChangeStart', handleRouteChange)
@@ -197,7 +196,7 @@ function Navigation({ pages }) {
               <Box as={MenuIcon} w={6} h={6} aria-hidden="true" />
             </Button>
           </Box>
-          {pages && pages.length ? (
+          {pages && pages.length && (
             <Stack
               as="nav"
               display={['none', null, 'flex']}
@@ -224,11 +223,9 @@ function Navigation({ pages }) {
                 )
               })}
             </Stack>
-          ) : null}
+          )}
         </Stack>
       </Box>
     </Box>
   )
 }
-
-export default Navigation
