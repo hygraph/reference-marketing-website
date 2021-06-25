@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@chakra-ui/react": "1.6.4",
@@ -25,6 +26,8 @@
     "react-transition-group": "4.4.2"
   },
   "devDependencies": {
+    "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1",
     "prettier": "2.3.1"
   }
 }
