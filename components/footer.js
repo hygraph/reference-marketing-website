@@ -38,7 +38,7 @@ function GridColumn({ links, title }) {
       <Stack as="ul" mt={4} spacing={4}>
         {links.map((link) => (
           <li key={link.id}>
-            <Link href={`/${link.slug}`}>
+            <Link href={`/${link.slug}`} passHref>
               <ChakraLink
                 color="gray.300"
                 _hover={{

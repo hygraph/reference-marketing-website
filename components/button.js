@@ -33,7 +33,7 @@ export default function Button({ href, label, theme }) {
 
   return (
     <Box borderRadius="md" boxShadow="md">
-      <Link href={href}>
+      <Link href={href} passHref>
         <ChakraLink {...linkDefaultStyles} variant={theme}>
           {label}
         </ChakraLink>
