@@ -53,6 +53,7 @@ export default function Testimonial({ content, person }) {
                   <Box mx="auto" h={10} w={10} position="relative">
                     <Image
                       className="avatar"
+                      alt={`${person.name} photo`}
                       src={person.photo.url}
                       layout="fill"
                     />

@@ -66,7 +66,7 @@ export default function Navigation({ pages }) {
     router.events.on('routeChangeStart', handleRouteChange)
 
     return () => router.events.off('routeChangeStart', handleRouteChange)
-  }, [])
+  }, [router.events])
 
   return (
     <Box ref={container} pos="relative" bg="white" boxShadow="base">
@@ -126,7 +126,7 @@ export default function Navigation({ pages }) {
                       const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                       return (
-                        <Link key={page.id} href={`/${page.slug}`}>
+                        <Link key={page.id} href={`/${page.slug}`} passHref>
                           <ChakraLink
                             m={-3}
                             p={3}
@@ -207,7 +207,7 @@ export default function Navigation({ pages }) {
                 const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                 return (
-                  <Link key={page.id} href={`/${page.slug}`}>
+                  <Link key={page.id} href={`/${page.slug}`} passHref>
                     <ChakraLink
                       fontSize="md"
                       fontWeight="medium"

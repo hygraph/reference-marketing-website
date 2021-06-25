@@ -77,7 +77,7 @@ export default function PricingPlanCard({
           letterSpacing="wide"
           textTransform="uppercase"
         >
-          What's included
+          What&apos;s included
         </Heading>
         <Stack as="ul" mt={6} spacing={4}>
           {included.map((feature, index) => (
