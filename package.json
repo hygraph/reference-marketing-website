@@ -26,8 +26,8 @@
     "react-transition-group": "4.4.2"
   },
   "devDependencies": {
-    "eslint": "^7.29.0",
-    "eslint-config-next": "^11.0.1",
+    "eslint": "7.29.0",
+    "eslint-config-next": "11.0.1",
     "prettier": "2.3.1"
   }
 }
