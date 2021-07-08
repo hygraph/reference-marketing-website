@@ -18,15 +18,17 @@ export default function BlogPostCard({
   return (
     <Flex flexDir="column" borderRadius="lg" boxShadow="lg" overflow="hidden">
       <Box flexShrink="0">
-        <Image
-          className="blog-post-card-image"
-          src={coverImage.url}
-          alt={coverImage.title}
-          title={coverImage.title}
-          width={coverImage.width}
-          height={coverImage.height}
-          objectFit="cover"
-        />
+        {coverImage && (
+          <Image
+            className="blog-post-card-image"
+            src={coverImage.url}
+            alt={coverImage.title}
+            title={coverImage.title}
+            width={coverImage.width}
+            height={coverImage.height}
+            objectFit="cover"
+          />
+        )}
       </Box>
       <Flex
         display="flex"
@@ -66,7 +68,7 @@ export default function BlogPostCard({
             zIndex="0"
             overflow="hidden"
           >
-            {authors.map((author, index) => {
+            {authors.map((author) => {
               return (
                 <Box
                   key={author.id}
@@ -90,7 +92,7 @@ export default function BlogPostCard({
           </Stack>
           <Box ml={3}>
             <Text fontSize="sm" fontWeight="medium" color="gray.900">
-              {primaryAuthor.name}
+              {primaryAuthor?.name ?? 'No author'}
 
               {secondaryAuthors && secondaryAuthors.length > 0 && (
                 <Text as="span" ml={1}>

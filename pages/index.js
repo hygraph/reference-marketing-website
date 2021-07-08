@@ -8,8 +8,10 @@ export default function IndexPage({ page }) {
   return <Wrapper {...page} />
 }
 
-export async function getStaticProps({ locale }) {
-  const { page } = await graphcmsClient.request(pageQuery, {
+export async function getStaticProps({ locale, preview = false }) {
+  const client = graphcmsClient(preview)
+
+  const { page } = await client.request(pageQuery, {
     locale,
     slug: 'home'
   })
@@ -18,7 +20,8 @@ export async function getStaticProps({ locale }) {
 
   return {
     props: {
-      page: parsedPageData
+      page: parsedPageData,
+      preview
     },
     revalidate: 60
   }

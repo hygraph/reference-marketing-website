@@ -218,8 +218,10 @@ export default function BlogPost({ nextPost, post, previousPost }) {
   )
 }
 
-export async function getStaticProps({ locale, params }) {
-  const { allPosts, page, post } = await graphcmsClient.request(blogPostQuery, {
+export async function getStaticProps({ locale, params, preview = false }) {
+  const client = graphcmsClient(preview)
+
+  const { allPosts, page, post } = await client.request(blogPostQuery, {
     locale,
     slug: params.slug
   })
@@ -242,7 +244,8 @@ export async function getStaticProps({ locale, params }) {
       nextPost,
       page,
       post: parsedPostData,
-      previousPost
+      previousPost,
+      preview
     },
     revalidate: 60
   }
@@ -251,7 +254,9 @@ export async function getStaticProps({ locale, params }) {
 export async function getStaticPaths({ locales }) {
   let paths = []
 
-  const { posts } = await graphcmsClient.request(gql`
+  const client = graphcmsClient()
+
+  const { posts } = await client.request(gql`
     {
       posts: blogPosts {
         slug

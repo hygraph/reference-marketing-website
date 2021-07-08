@@ -10,8 +10,10 @@ export default function Page({ page }) {
   return <Wrapper {...page} />
 }
 
-export async function getStaticProps({ locale, params }) {
-  const { page } = await graphcmsClient.request(pageQuery, {
+export async function getStaticProps({ locale, params, preview = false }) {
+  const client = graphcmsClient(preview)
+
+  const { page } = await client.request(pageQuery, {
     locale,
     slug: params.slug
   })
@@ -26,7 +28,8 @@ export async function getStaticProps({ locale, params }) {
 
   return {
     props: {
-      page: parsedPageData
+      page: parsedPageData,
+      preview
     },
     revalidate: 60
   }
@@ -35,7 +38,9 @@ export async function getStaticProps({ locale, params }) {
 export async function getStaticPaths({ locales }) {
   let paths = []
 
-  const { pages } = await graphcmsClient.request(gql`
+  const client = graphcmsClient()
+
+  const { pages } = await client.request(gql`
     {
       pages(where: { slug_not_in: ["home", "blog"] }) {
         slug

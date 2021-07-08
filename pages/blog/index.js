@@ -29,8 +29,10 @@ export default function BlogPage({ posts }) {
   )
 }
 
-export async function getStaticProps({ locale }) {
-  const { page, posts } = await graphcmsClient.request(blogPageQuery, {
+export async function getStaticProps({ locale, preview = false }) {
+  const client = graphcmsClient(preview)
+
+  const { page, posts } = await client.request(blogPageQuery, {
     locale
   })
 
@@ -42,7 +44,8 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       page: parsedPageData,
-      posts: parsedPostData
+      posts: parsedPostData,
+      preview
     },
     revalidate: 60
   }
