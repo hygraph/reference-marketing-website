@@ -38,7 +38,7 @@ yarn dev
 
 ## Next.js Preview Mode
 
-If you want to enable Next.js Preview Mode you'll need to add the following to your `.env`:
+If you want to enable [Next.js Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) you'll need to add the following to your `.env`:
 
 ```env
 GRAPHCMS_TOKEN=
@@ -65,6 +65,7 @@ You'll need to update both the Page & Blog Post model to add a Preview URL. The 
 
 ## Features
 
+- [Next.js Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode)
 - [next/image](https://nextjs.org/docs/api-reference/next/image)
 - [Internationalized Routing](https://nextjs.org/docs/advanced-features/i18n-routing)
 - [GraphQL Union Types (Polymorphic Relations)](https://graphcms.com/docs/schema/field-types)
