@@ -28,7 +28,7 @@ export default async function handler(req, res) {
 
   res.writeHead(307, {
     Location: nestedSlug
-      ? req.query.slug
+      ? `/${req.query.slug}`
       : rootSlug === 'home'
       ? '/'
       : `/${rootSlug}`

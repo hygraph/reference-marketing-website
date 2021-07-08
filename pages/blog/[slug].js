@@ -244,7 +244,8 @@ export async function getStaticProps({ locale, params, preview = false }) {
       nextPost,
       page,
       post: parsedPostData,
-      previousPost
+      previousPost,
+      preview
     },
     revalidate: 60
   }

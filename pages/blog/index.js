@@ -44,7 +44,8 @@ export async function getStaticProps({ locale, preview = false }) {
   return {
     props: {
       page: parsedPageData,
-      posts: parsedPostData
+      posts: parsedPostData,
+      preview
     },
     revalidate: 60
   }
