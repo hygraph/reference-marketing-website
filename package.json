@@ -18,7 +18,7 @@
     "he": "1.2.0",
     "lodash.camelcase": "4.3.0",
     "lodash.startcase": "4.4.0",
-    "next": "11.0.1",
+    "next": "11.1.0",
     "next-mdx-remote": "3.0.4",
     "next-seo": "4.26.0",
     "react": "17.0.2",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "eslint": "7.32.0",
-    "eslint-config-next": "11.0.1",
+    "eslint-config-next": "11.1.0",
     "prettier": "2.3.2"
   }
 }
