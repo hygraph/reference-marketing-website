@@ -13,7 +13,7 @@
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
     "framer-motion": "4.1.17",
-    "graphql": "15.5.3",
+    "graphql": "15.6.0",
     "graphql-request": "3.5.0",
     "he": "1.2.0",
     "lodash.camelcase": "4.3.0",
