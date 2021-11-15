@@ -16,7 +16,7 @@ yarn
 
 2. **Provide your GraphCMS project keys**
 
-> In order to use this starter, you'll need to have created a new GraphCMS project using our `Marketing Website Template`.
+> In order to use this starter, you'll need to have created a new GraphCMS project using our `Marketing Website Template`. **Remember to add required permissions to acces tokens**
 
 Navigate into your new site’s directory and copy the `.env.local.example` file.
 
