@@ -12,7 +12,7 @@
     "@chakra-ui/react": "1.7.4",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
-    "framer-motion": "4.1.17",
+    "framer-motion": "5.6.0",
     "graphql": "15.8.0",
     "graphql-request": "3.7.0",
     "he": "1.2.0",
