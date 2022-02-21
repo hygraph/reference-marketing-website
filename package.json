@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chakra-ui/react": "1.8.3",
+    "@chakra-ui/react": "1.8.5",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
     "framer-motion": "4.1.17",
