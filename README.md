@@ -4,6 +4,7 @@
 
 • [Demo](https://marketing-websites.withheadlesscms.com/)
 
+[![Clone project](https://graphcms.com/button)](https://app.graphcms.com/clone/5f2c35155b33496999b9467afe88b34f?name=Marketing%20Website)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FGraphCMS%2Freference-marketing-website&env=NEXT_PUBLIC_GRAPHCMS_URL&envDescription=Your%20GraphCMS%20API%20endpoint&envLink=https%3A%2F%2Fgraphcms.com%2Fdocs%2Fapi-reference%2Fbasics%2Fenvironments%23environment-endpoints&demo-title=GraphCMS%20Marketing%20Site%20Reference&demo-description=A%20Next.js%20starter%20for%20creating%20a%20SaaS%20Marketing%20Website%20with%20GraphCMS&demo-url=https%3A%2F%2Fmarketing-websites.withheadlesscms.com%2F&demo-image=https%3A%2F%2Fmedia.graphcms.com%2F0GnTWzWbRBSQzoDQs8R3)
 
 ## Quick start
@@ -17,8 +18,6 @@ yarn
 ```
 
 2. **Provide your GraphCMS project keys**
-
-> In order to use this starter, you'll need to have created a new GraphCMS project using our `Marketing Website Template`. **Remember to add required permissions to access tokens**
 
 Navigate into your new site’s directory and copy the `.env.local.example` file.
 
@@ -62,8 +61,8 @@ You'll need to make sure when configuring the Preview URL inside GraphCMS that i
 
 You'll need to update both the Page & Blog Post model to add a Preview URL. The URLs should look like this:
 
-- **Page**: `https://]your-domain.com]/api/preview?secret=[GRAPHCMS_PREVIEW_SECRET_VALUE_HERE]&slug={slug}`
-- **Blog Post**: `https://]your-domain.com]/api/preview?secret=[GRAPHCMS_PREVIEW_SECRET_VALUE_HERE]&slug=blog/{slug}`
+- **Page**: `https://[your-domain.com]/api/preview?secret=[GRAPHCMS_PREVIEW_SECRET_VALUE_HERE]&slug={slug}`
+- **Blog Post**: `https://[your-domain.com]/api/preview?secret=[GRAPHCMS_PREVIEW_SECRET_VALUE_HERE]&slug=blog/{slug}`
 
 ## Features
 
