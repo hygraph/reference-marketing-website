@@ -25,7 +25,7 @@ Navigate into your new site’s directory and copy the `.env.local.example` file
 cp .env.local.example .env.local
 ```
 
-Inside of your newly created `.env.local` file, provide values for the variable. These variables can be found in the [project settings UI](https://graphcms.com/docs/guides/concepts/apis#working-with-apis).
+Inside of your newly created `.env.local` file, provide values for the variable. These variables can be found in the [project settings UI](https://graphcms.com/docs/guides/concepts/apis#working-with-apis). Here you need the ContentAPI URL. 
 
 ```env
 NEXT_PUBLIC_GRAPHCMS_URL=
