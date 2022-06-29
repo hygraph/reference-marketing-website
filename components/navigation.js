@@ -95,7 +95,7 @@ export default function Navigation({ pages }) {
                 <div>
                   <Link href="/">
                     <a>
-                      <VisuallyHidden>GraphCMS</VisuallyHidden>
+                      <VisuallyHidden>Hygraph</VisuallyHidden>
                       <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
                     </a>
                   </Link>
@@ -173,7 +173,7 @@ export default function Navigation({ pages }) {
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
               <a>
-                <VisuallyHidden>GraphCMS</VisuallyHidden>
+                <VisuallyHidden>Hygraph</VisuallyHidden>
                 <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
               </a>
             </Link>
