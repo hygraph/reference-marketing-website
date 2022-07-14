@@ -161,22 +161,22 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
             <SocialMediaLink
               title="LinkedIn"
               icon={LinkedInIcon}
-              href="https://linkedin.com/company/graphcms"
+              href="https://linkedin.com/company/hygraph"
             />
             <SocialMediaLink
               title="Slack"
               icon={SlackIcon}
-              href="https://slack.graphcms.com"
+              href="https://slack.hygraph.com"
             />
             <SocialMediaLink
               title="Twitter"
               icon={TwitterIcon}
-              href="https://twitter.com/GraphCMS"
+              href="https://twitter.com/Hygraphcom"
             />
             <SocialMediaLink
               title="GitHub"
               icon={GithubIcon}
-              href="https://github.com/GraphCMS/reference-nextjs-marketing"
+              href="https://github.com/Hygraph/reference-nextjs-marketing"
             />
           </Stack>
 

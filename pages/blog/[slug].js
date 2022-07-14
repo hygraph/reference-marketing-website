@@ -14,7 +14,7 @@ import { MDXRemote } from 'next-mdx-remote'
 
 import { blogPostQuery } from '@/lib/_queries'
 import { getContentLayout } from '@/layout'
-import { graphcmsClient } from '@/lib/_client'
+import { hygraphClient } from '@/lib/_client'
 import { parsePostData } from '@/utils/_parsePostData'
 import SEO from '@/components/seo'
 
@@ -219,7 +219,7 @@ export default function BlogPost({ nextPost, post, previousPost }) {
 }
 
 export async function getStaticProps({ locale, params, preview = false }) {
-  const client = graphcmsClient(preview)
+  const client = hygraphClient(preview)
 
   const { allPosts, page, post } = await client.request(blogPostQuery, {
     locale,
@@ -254,7 +254,7 @@ export async function getStaticProps({ locale, params, preview = false }) {
 export async function getStaticPaths({ locales }) {
   let paths = []
 
-  const client = graphcmsClient()
+  const client = hygraphClient()
 
   const { posts } = await client.request(gql`
     {
