@@ -5,7 +5,7 @@
 • [Demo](https://marketing-websites.withheadlesscms.com/)
 
 [![Clone project](https://hygraph.com/button)](https://app.graphcms.com/clone/5f2c35155b33496999b9467afe88b34f?name=Marketing%20Website)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FGraphCMS%2Freference-marketing-website&env=NEXT_PUBLIC_GRAPHCMS_URL&envDescription=Your%20GraphCMS%20API%20endpoint&envLink=https%3A%2F%2Fgraphcms.com%2Fdocs%2Fapi-reference%2Fbasics%2Fenvironments%23environment-endpoints&demo-title=GraphCMS%20Marketing%20Site%20Reference&demo-description=A%20Next.js%20starter%20for%20creating%20a%20SaaS%20Marketing%20Website%20with%20GraphCMS&demo-url=https%3A%2F%2Fmarketing-websites.withheadlesscms.com%2F&demo-image=https%3A%2F%2Fmedia.graphcms.com%2F0GnTWzWbRBSQzoDQs8R3)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FGraphCMS%2Freference-marketing-website&env=HYGRAPH_ENDPOINT&envDescription=Your%20GraphCMS%20API%20endpoint&envLink=https%3A%2F%2Fgraphcms.com%2Fdocs%2Fapi-reference%2Fbasics%2Fenvironments%23environment-endpoints&demo-title=GraphCMS%20Marketing%20Site%20Reference&demo-description=A%20Next.js%20starter%20for%20creating%20a%20SaaS%20Marketing%20Website%20with%20GraphCMS&demo-url=https%3A%2F%2Fmarketing-websites.withheadlesscms.com%2F&demo-image=https%3A%2F%2Fmedia.graphcms.com%2F0GnTWzWbRBSQzoDQs8R3)
 
 ## Quick start
 
@@ -28,7 +28,7 @@ cp .env.local.example .env.local
 Inside of your newly created `.env.local` file, provide values for the variable. These variables can be found in the [project settings UI](https://hygraph.com/docs/guides/concepts/apis#working-with-apis).
 
 ```env
-NEXT_PUBLIC_GRAPHCMS_URL=
+HYGRAPH_ENDPOINT=
 ```
 
 3. **Start building!**
