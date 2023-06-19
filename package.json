@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.8.8",
-    "@emotion/react": "11.8.2",
-    "@emotion/styled": "11.8.1",
+    "@emotion/react": "11.11.1",
+    "@emotion/styled": "11.11.0",
     "framer-motion": "6.2.9",
     "graphql": "16.3.0",
     "graphql-request": "4.2.0",
