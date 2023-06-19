@@ -14,7 +14,7 @@
     "@emotion/styled": "11.8.1",
     "framer-motion": "6.2.9",
     "graphql": "16.3.0",
-    "graphql-request": "4.2.0",
+    "graphql-request": "4.3.0",
     "he": "1.2.0",
     "lodash.camelcase": "4.3.0",
     "lodash.startcase": "4.4.0",
