@@ -6,6 +6,14 @@ module.exports = {
     locales: locales.map((locale) => locale.value)
   },
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.graphassets.com',
+      },
+    ],
+    // Deprecate domain after asset migration
     domains: ['media.graphassets.com']
-  }
+  },
+
 }
