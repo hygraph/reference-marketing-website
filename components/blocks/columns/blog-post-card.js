@@ -42,8 +42,8 @@ export default function BlogPostCard({
           <Text fontSize="sm" fontWeight="medium" color="indigo.600">
             {startCase(category.toLowerCase())}
           </Text>
-          <NextLink href={`/blog/${slug}`}>
             <Link
+            href={`/blog/${slug}`}
               display="block"
               mt={2}
               _hover={{
@@ -57,7 +57,6 @@ export default function BlogPostCard({
                 {excerpt}
               </Text>
             </Link>
-          </NextLink>
         </Box>
         <Flex alignItems="center" mt={6}>
           <Stack

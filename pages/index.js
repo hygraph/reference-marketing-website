@@ -15,7 +15,7 @@ export async function getStaticProps({ locale, preview = false }) {
     locale,
     slug: 'home'
   })
-
+  console.log({page})
   const parsedPageData = await parsePageData(page)
 
   return {
