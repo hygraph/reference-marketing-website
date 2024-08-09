@@ -130,7 +130,10 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                     onChange={setLocale}
                   >
                     {locales.map((locale) => (
-                      <option>
+                      <option
+                        key={locale.value}
+                        value={locale.value}
+                      >
                         {locale.label}
                       </option>
                     ))}
