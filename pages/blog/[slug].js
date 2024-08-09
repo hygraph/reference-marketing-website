@@ -167,7 +167,7 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                       }}
                     >
                       <NextLink href={`/blog/${nextPost.slug}`}>
-                        <a>{nextPost.title}</a>
+                        {nextPost.title}
                       </NextLink>
                     </Box>
                   </div>
@@ -192,7 +192,7 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                       }}
                     >
                       <NextLink href={`/blog/${previousPost.slug}`}>
-                        <a>{previousPost.title}</a>
+                        {previousPost.title}
                       </NextLink>
                     </Box>
                   </div>
@@ -200,8 +200,8 @@ export default function BlogPost({ nextPost, post, previousPost }) {
               </Stack>
             )}
             <Box pt={8}>
-              <NextLink href="/blog">
                 <Link
+                href="/blog"
                   color="indigo.500"
                   _hover={{
                     color: 'indigo.600'
@@ -209,7 +209,6 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                 >
                   &larr; Back to the blog
                 </Link>
-              </NextLink>
             </Box>
           </Box>
         </Box>

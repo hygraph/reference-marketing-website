@@ -6,6 +6,7 @@ module.exports = {
     locales: locales.map((locale) => locale.value)
   },
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: 'https',

@@ -94,10 +94,8 @@ export default function Navigation({ pages }) {
               <Flex alignItems="center" justifyContent="space-between">
                 <div>
                   <Link href="/">
-                    <a>
                       <VisuallyHidden>Hygraph</VisuallyHidden>
                       <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
-                    </a>
                   </Link>
                 </div>
                 <Box mr={-2}>
@@ -126,8 +124,8 @@ export default function Navigation({ pages }) {
                       const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                       return (
-                        <Link key={page.id} href={`/${page.slug}`} passHref>
                           <ChakraLink
+                          key={page.id} href={`/${page.slug}`}
                             m={-3}
                             p={3}
                             display="flex"
@@ -150,7 +148,6 @@ export default function Navigation({ pages }) {
                                   page.slug.slice(1)}
                             </Text>
                           </ChakraLink>
-                        </Link>
                       )
                     })}
                   </Grid>
@@ -172,10 +169,8 @@ export default function Navigation({ pages }) {
         >
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
             <Link href="/">
-              <a>
                 <VisuallyHidden>Hygraph</VisuallyHidden>
                 <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
-              </a>
             </Link>
           </Flex>
           <Box mr={-2} my={-2} display={{ md: 'none' }}>
@@ -207,8 +202,8 @@ export default function Navigation({ pages }) {
                 const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                 return (
-                  <Link key={page.id} href={`/${page.slug}`} passHref>
                     <ChakraLink
+                    key={page.id} href={`/${page.slug}`}
                       fontSize="md"
                       fontWeight="medium"
                       color={isActive ? 'indigo.600' : 'gray.500'}
@@ -219,7 +214,6 @@ export default function Navigation({ pages }) {
                       {page.navigationLabel ||
                         page.slug.charAt(0).toUpperCase() + page.slug.slice(1)}
                     </ChakraLink>
-                  </Link>
                 )
               })}
             </Stack>

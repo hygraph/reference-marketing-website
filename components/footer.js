@@ -38,8 +38,8 @@ function GridColumn({ links, title }) {
       <Stack as="ul" mt={4} spacing={4}>
         {links.map((link) => (
           <li key={link.id}>
-            <Link href={`/${link.slug}`} passHref>
               <ChakraLink
+              href={`/${link.slug}`}
                 color="gray.300"
                 _hover={{
                   color: 'white'
@@ -48,7 +48,6 @@ function GridColumn({ links, title }) {
                 {link.navigationLabel ||
                   link.slug.charAt(0).toUpperCase() + link.slug.slice(1)}
               </ChakraLink>
-            </Link>
           </li>
         ))}
       </Stack>
@@ -131,15 +130,9 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                     onChange={setLocale}
                   >
                     {locales.map((locale) => (
-                      <Box
-                        as="option"
-                        bg="#374151!important"
-                        color="white"
-                        key={locale.value}
-                        value={locale.value}
-                      >
+                      <option>
                         {locale.label}
-                      </Box>
+                      </option>
                     ))}
                   </Select>
                 </Box>
