@@ -10,24 +10,24 @@
   },
   "dependencies": {
     "@chakra-ui/react": "1.8.8",
-    "@emotion/react": "11.8.2",
-    "@emotion/styled": "11.8.1",
-    "framer-motion": "6.2.9",
-    "graphql": "16.3.0",
-    "graphql-request": "4.2.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "framer-motion": "^6.5.1",
+    "graphql": "^16.11.0",
+    "graphql-request": "^7.2.0",
     "he": "1.2.0",
     "lodash.camelcase": "4.3.0",
     "lodash.startcase": "4.4.0",
-    "next": "^12.2.0",
-    "next-mdx-remote": "4.0.2",
-    "next-seo": "5.4.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "^15.4.7",
+    "next-mdx-remote": "^5.0.0",
+    "next-seo": "^6.8.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-transition-group": "4.4.2"
   },
   "devDependencies": {
     "eslint": "8.13.0",
-    "eslint-config-next": "12.1.4",
+    "eslint-config-next": "^15.4.7",
     "prettier": "2.6.2"
   }
 }

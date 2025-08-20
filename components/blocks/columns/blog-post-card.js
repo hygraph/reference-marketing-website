@@ -1,6 +1,6 @@
-import { Box, Flex, Link, Stack, Text } from '@chakra-ui/react'
+import { Box, Flex, Link as ChakraLink, Stack, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import Image from 'next/image'
+import Image from "next/image"
 import startCase from 'lodash.startcase'
 
 export default function BlogPostCard({
@@ -26,7 +26,11 @@ export default function BlogPostCard({
             title={coverImage.title}
             width={coverImage.width}
             height={coverImage.height}
-            objectFit="cover"
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: 'auto',
+            }}
           />
         )}
       </Box>
@@ -42,22 +46,22 @@ export default function BlogPostCard({
           <Text fontSize="sm" fontWeight="medium" color="indigo.600">
             {startCase(category.toLowerCase())}
           </Text>
-          <NextLink href={`/blog/${slug}`}>
-            <Link
-              display="block"
-              mt={2}
-              _hover={{
-                textDecor: 'none'
-              }}
-            >
-              <Text fontSize="xl" fontWeight="semibold" color="gray.900">
-                {title}
-              </Text>
-              <Text mt={3} fontSize="md" color="gray.500">
-                {excerpt}
-              </Text>
-            </Link>
-          </NextLink>
+          <ChakraLink
+            as={NextLink}
+            href={`/blog/${slug}`}
+            display="block"
+            mt={2}
+            _hover={{
+              textDecor: 'none'
+            }}
+          >
+            <Text fontSize="xl" fontWeight="semibold" color="gray.900">
+              {title}
+            </Text>
+            <Text mt={3} fontSize="md" color="gray.500">
+              {excerpt}
+            </Text>
+          </ChakraLink>
         </Box>
         <Flex alignItems="center" mt={6}>
           <Stack
@@ -84,7 +88,10 @@ export default function BlogPostCard({
                     src={author.photo.url}
                     alt={author.name}
                     title={author.name}
-                    layout="fill"
+                    fill
+                    style={{
+                      objectFit: 'cover',
+                    }}
                   />
                 </Box>
               )

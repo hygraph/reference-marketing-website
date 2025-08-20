@@ -3,7 +3,7 @@ import { pageQuery, blogPostQuery } from '@/lib/_queries'
 
 export default async function handler(req, res) {
   if (
-    req.query.secret !== process.env.GRAPHCMS_PREVIEW_SECRET ||
+    req.query.secret !== process.env.HYGRAPH_PREVIEW_SECRET ||
     !req.query.slug
   ) {
     return res.status(401).json({ message: 'Invalid token' })

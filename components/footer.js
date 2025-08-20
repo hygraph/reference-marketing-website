@@ -9,8 +9,9 @@ import {
   FormLabel,
   Select
 } from '@chakra-ui/react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
 
 import { GithubIcon, LinkedInIcon, SlackIcon, TwitterIcon } from '@/icons'
 import { locales } from '@/lib/_locales'
@@ -38,17 +39,17 @@ function GridColumn({ links, title }) {
       <Stack as="ul" mt={4} spacing={4}>
         {links.map((link) => (
           <li key={link.id}>
-            <Link href={`/${link.slug}`} passHref>
-              <ChakraLink
-                color="gray.300"
-                _hover={{
-                  color: 'white'
-                }}
-              >
-                {link.navigationLabel ||
-                  link.slug.charAt(0).toUpperCase() + link.slug.slice(1)}
-              </ChakraLink>
-            </Link>
+            <ChakraLink
+              as={NextLink}
+              href={`/${link.slug}`}
+              color="gray.300"
+              _hover={{
+                color: 'white'
+              }}
+            >
+              {link.navigationLabel ||
+                link.slug.charAt(0).toUpperCase() + link.slug.slice(1)}
+            </ChakraLink>
           </li>
         ))}
       </Stack>
@@ -74,8 +75,13 @@ function SocialMediaLink({ href, title, icon }) {
 
 export default function Footer({ primaryLinks, secondaryLinks }) {
   const router = useRouter()
+  const [mounted, setMounted] = useState(false)
 
-  const activeLocale = locales.find((locale) => locale.value === router.locale)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const activeLocale = locales.find((locale) => locale.value === router.locale) || locales[0]
 
   const setLocale = (event) => {
     router.push(router.asPath, router.asPath, { locale: event.target.value })
@@ -120,28 +126,53 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
                 </VisuallyHidden>
 
                 <Box position="relative">
-                  <Select
-                    id="language"
-                    name="language"
-                    color="white"
-                    bg="gray.700"
-                    borderColor="transparent"
-                    fontSize={{ sm: 'sm' }}
-                    value={activeLocale.value}
-                    onChange={setLocale}
-                  >
-                    {locales.map((locale) => (
-                      <Box
-                        as="option"
-                        bg="#374151!important"
-                        color="white"
-                        key={locale.value}
-                        value={locale.value}
-                      >
-                        {locale.label}
-                      </Box>
-                    ))}
-                  </Select>
+                  {mounted ? (
+                    <Select
+                      id="language"
+                      name="language"
+                      color="white"
+                      bg="gray.700"
+                      borderColor="transparent"
+                      fontSize={{ sm: 'sm' }}
+                      value={activeLocale.value}
+                      onChange={setLocale}
+                    >
+                      {locales.map((locale) => (
+                        <Box
+                          as="option"
+                          bg="#374151!important"
+                          color="white"
+                          key={locale.value}
+                          value={locale.value}
+                        >
+                          {locale.label}
+                        </Box>
+                      ))}
+                    </Select>
+                  ) : (
+                    <Select
+                      id="language"
+                      name="language"
+                      color="white"
+                      bg="gray.700"
+                      borderColor="transparent"
+                      fontSize={{ sm: 'sm' }}
+                      value={locales[0].value}
+                      disabled
+                    >
+                      {locales.map((locale) => (
+                        <Box
+                          as="option"
+                          bg="#374151!important"
+                          color="white"
+                          key={locale.value}
+                          value={locale.value}
+                        >
+                          {locale.label}
+                        </Box>
+                      ))}
+                    </Select>
+                  )}
                 </Box>
               </Box>
             </Box>
@@ -186,7 +217,7 @@ export default function Footer({ primaryLinks, secondaryLinks }) {
             color="gray.400"
             order={{ md: 1 }}
           >
-            &copy; {new Date().getFullYear()} GraphCMS GmbH All rights reserved.
+            &copy; {new Date().getFullYear()} Hygraph GmbH All rights reserved.
           </Text>
         </Box>
       </Box>
