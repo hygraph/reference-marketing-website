@@ -9,7 +9,7 @@ import {
   Link as ChakraLink,
   Stack
 } from '@chakra-ui/react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Transition } from 'react-transition-group'
 
@@ -93,12 +93,10 @@ export default function Navigation({ pages }) {
             <Box pt={5} pb={6} px={5}>
               <Flex alignItems="center" justifyContent="space-between">
                 <div>
-                  <Link href="/">
-                    <a>
-                      <VisuallyHidden>Hygraph</VisuallyHidden>
-                      <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
-                    </a>
-                  </Link>
+                  <ChakraLink as={NextLink} href="/">
+                    <VisuallyHidden>Hygraph</VisuallyHidden>
+                    <Box as={MarkSVG} h={8} w="auto" color="indigo.600" />
+                  </ChakraLink>
                 </div>
                 <Box mr={-2}>
                   <Button
@@ -126,31 +124,31 @@ export default function Navigation({ pages }) {
                       const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                       return (
-                        <Link key={page.id} href={`/${page.slug}`} passHref>
-                          <ChakraLink
-                            m={-3}
-                            p={3}
-                            display="flex"
-                            alignItems="center"
-                            borderRadius="md"
-                            color={isActive ? 'indigo.600' : 'inherit'}
-                            _hover={{
-                              bg: 'gray.50'
-                            }}
+                        <ChakraLink
+                          as={NextLink}
+                          href={`/${page.slug}`}
+                          m={-3}
+                          p={3}
+                          display="flex"
+                          alignItems="center"
+                          borderRadius="md"
+                          color={isActive ? 'indigo.600' : 'inherit'}
+                          _hover={{
+                            bg: 'gray.50'
+                          }}
+                        >
+                          <Text
+                            as="span"
+                            ml={3}
+                            fontSize="md"
+                            fontWeight="medium"
+                            color="gray.900"
                           >
-                            <Text
-                              as="span"
-                              ml={3}
-                              fontSize="md"
-                              fontWeight="medium"
-                              color="gray.900"
-                            >
-                              {page.navigationLabel ||
-                                page.slug.charAt(0).toUpperCase() +
-                                  page.slug.slice(1)}
-                            </Text>
-                          </ChakraLink>
-                        </Link>
+                            {page.navigationLabel ||
+                              page.slug.charAt(0).toUpperCase() +
+                                page.slug.slice(1)}
+                          </Text>
+                        </ChakraLink>
                       )
                     })}
                   </Grid>
@@ -171,12 +169,10 @@ export default function Navigation({ pages }) {
           spacing={{ md: 10 }}
         >
           <Flex w={{ lg: 0 }} flex={{ lg: '1 1 0' }}>
-            <Link href="/">
-              <a>
-                <VisuallyHidden>Hygraph</VisuallyHidden>
-                <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
-              </a>
-            </Link>
+            <ChakraLink as={NextLink} href="/">
+              <VisuallyHidden>Hygraph</VisuallyHidden>
+              <Box as={LogoSVG} h={10} color="indigo.600" w="auto" />
+            </ChakraLink>
           </Flex>
           <Box mr={-2} my={-2} display={{ md: 'none' }}>
             <Button
@@ -207,19 +203,19 @@ export default function Navigation({ pages }) {
                 const isActive = router.asPath.startsWith(`/${page.slug}`)
 
                 return (
-                  <Link key={page.id} href={`/${page.slug}`} passHref>
-                    <ChakraLink
-                      fontSize="md"
-                      fontWeight="medium"
-                      color={isActive ? 'indigo.600' : 'gray.500'}
-                      _hover={{
-                        color: 'gray.900'
-                      }}
-                    >
-                      {page.navigationLabel ||
-                        page.slug.charAt(0).toUpperCase() + page.slug.slice(1)}
-                    </ChakraLink>
-                  </Link>
+                  <ChakraLink
+                    as={NextLink}
+                    href={`/${page.slug}`}
+                    fontSize="md"
+                    fontWeight="medium"
+                    color={isActive ? 'indigo.600' : 'gray.500'}
+                    _hover={{
+                      color: 'gray.900'
+                    }}
+                  >
+                    {page.navigationLabel ||
+                      page.slug.charAt(0).toUpperCase() + page.slug.slice(1)}
+                  </ChakraLink>
                 )
               })}
             </Stack>

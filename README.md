@@ -42,27 +42,27 @@ yarn dev
 If you want to enable [Next.js Preview Mode](https://nextjs.org/docs/advanced-features/preview-mode) you'll need to add the following to your `.env`:
 
 ```env
-GRAPHCMS_TOKEN=
-GRAPHCMS_PREVIEW_TOKEN=
-GRAPHCMS_PREVIEW_SECRET=
+HYGRAPH_TOKEN=
+HYGRAPH_PREVIEW_TOKEN=
+HYGRAPH_PREVIEW_SECRET=
 ```
 
-### `GRAPHCMS_TOKEN`
+### `HYGRAPH_TOKEN`
 
 This should be a Permanent Auth Token that is set to fetch content from _PUBLISHED_ content stage by default.
 
-### `GRAPHCMS_PREVIEW_TOKEN`
+### `HYGRAPH_PREVIEW_TOKEN`
 
 This should be a Permanent Auth Token that is set to fetch content from _DRAFT_ content stage by default.
 
-## `GRAPHCMS_PREVIEW_SECRET`
+## `HYGRAPH_PREVIEW_SECRET`
 
-You'll need to make sure when configuring the Preview URL inside Hygraph that it passes the same secret value you assigned to `GRAPHCMS_PREVIEW_SECRET`.
+You'll need to make sure when configuring the Preview URL inside Hygraph that it passes the same secret value you assigned to `HYGRAPH_PREVIEW_SECRET`.
 
 You'll need to update both the Page & Blog Post model to add a Preview URL. The URLs should look like this:
 
-- **Page**: `https://[your-domain.com]/api/preview?secret=[GRAPHCMS_PREVIEW_SECRET_VALUE_HERE]&slug={slug}`
-- **Blog Post**: `https://[your-domain.com]/api/preview?secret=[GRAPHCMS_PREVIEW_SECRET_VALUE_HERE]&slug=blog/{slug}`
+- **Page**: `https://[your-domain.com]/api/preview?secret=[HYGRAPH_PREVIEW_SECRET_VALUE_HERE]&slug={slug}`
+- **Blog Post**: `https://[your-domain.com]/api/preview?secret=[HYGRAPH_PREVIEW_SECRET_VALUE_HERE]&slug=blog/{slug}`
 
 ## Features
 

@@ -1,5 +1,5 @@
 import { Box, Flex, Heading } from '@chakra-ui/react'
-import Image from 'next/image'
+import Image from "next/image"
 
 export default function LogoCloud({ companies, logoCloudTitle }) {
   if (!(logoCloudTitle || companies || companies.length)) return null
@@ -31,8 +31,12 @@ export default function LogoCloud({ companies, logoCloudTitle }) {
                     src={company.logo.url}
                     height={company.logo.height}
                     width={company.logo.width}
-                    layout="responsive"
                     alt={company.logo.title}
+                    unoptimized
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }}
                   />
                 </Box>
               </Flex>

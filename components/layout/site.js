@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { Flex, Box } from '@chakra-ui/layout'
 
 import Footer from '@/components/footer'
@@ -9,9 +9,7 @@ function PreviewBanner({ enabled = false }) {
   return (
     <Box textAlign="center" p="2" backgroundColor="black" textColor="white">
       Preview Mode Enabled (Content served from DRAFT) &mdash;&nbsp;
-      <Link href="/api/exit-preview">
-        <a>Exit Preview Mode</a>
-      </Link>
+      <NextLink href="/api/exit-preview">Exit Preview Mode</NextLink>
     </Box>
   )
 }

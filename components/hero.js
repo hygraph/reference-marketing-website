@@ -1,5 +1,5 @@
 import { Box, Heading, Stack } from '@chakra-ui/react'
-import Image from 'next/image'
+import Image from "next/image"
 import { MDXRemote } from 'next-mdx-remote'
 
 import Button from '@/components/button'
@@ -78,9 +78,11 @@ export default function Hero({ buttons, image, navigation, page }) {
             src={image.url}
             alt={image.title}
             title={image.title}
-            layout="fill"
+            fill
             priority={true}
-            objectFit="cover"
+            style={{
+              objectFit: 'cover',
+            }}
           />
         </Box>
       </Box>

@@ -8,7 +8,7 @@ import {
   HStack
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import Image from 'next/image'
+import Image from "next/image"
 import { gql } from 'graphql-request'
 import { MDXRemote } from 'next-mdx-remote'
 
@@ -89,7 +89,10 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                         src={author.photo.url}
                         alt={author.name}
                         title={author.name}
-                        layout="fill"
+                        fill
+                        style={{
+                          objectFit: 'cover',
+                        }}
                       />
                     </Box>
                     <Box
@@ -123,7 +126,11 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                   title={post.coverImage.title}
                   height={post.coverImage.height}
                   width={post.coverImage.width}
-                  objectFit="cover"
+                  style={{
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
             )}
@@ -167,7 +174,7 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                       }}
                     >
                       <NextLink href={`/blog/${nextPost.slug}`}>
-                        <a>{nextPost.title}</a>
+                        {nextPost.title}
                       </NextLink>
                     </Box>
                   </div>
@@ -192,7 +199,7 @@ export default function BlogPost({ nextPost, post, previousPost }) {
                       }}
                     >
                       <NextLink href={`/blog/${previousPost.slug}`}>
-                        <a>{previousPost.title}</a>
+                        {previousPost.title}
                       </NextLink>
                     </Box>
                   </div>
@@ -215,7 +222,7 @@ export default function BlogPost({ nextPost, post, previousPost }) {
         </Box>
       </Box>
     </>
-  )
+  );
 }
 
 export async function getStaticProps({ locale, params, preview = false }) {

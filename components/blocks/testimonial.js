@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import Image from 'next/image'
+import Image from "next/image"
 import { MDXRemote } from 'next-mdx-remote'
 
 import { DotsSVG } from '@/svgs'
@@ -28,7 +28,11 @@ export default function Testimonial({ content, person }) {
             <Image
               src={person.company.logo.url}
               alt={person.company.logo.title}
-              layout="fill"
+              fill
+              unoptimized
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box as="blockquote" mt={10}>
@@ -55,7 +59,10 @@ export default function Testimonial({ content, person }) {
                       className="avatar"
                       alt={`${person.name} photo`}
                       src={person.photo.url}
-                      layout="fill"
+                      fill
+                      style={{
+                        objectFit: 'cover',
+                      }}
                     />
                   </Box>
                 </Box>

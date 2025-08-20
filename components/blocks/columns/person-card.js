@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/image"
 import { Box, HStack, Text } from '@chakra-ui/react'
 
 import { AvatarIcon } from '@/components/icons'
@@ -21,7 +21,10 @@ export default function PersonCard({ name, photo, role }) {
               src={photo.url}
               alt={name}
               title={name}
-              layout="fill"
+              fill
+              style={{
+                objectFit: 'cover',
+              }}
             />
           ) : (
             <Box as={AvatarIcon} h="full" w="full" color="gray.300" />

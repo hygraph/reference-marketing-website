@@ -6,14 +6,23 @@ module.exports = {
     locales: locales.map((locale) => locale.value)
   },
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**.graphassets.com',
       },
     ],
-    // Deprecate domain after asset migration
-    domains: ['media.graphassets.com']
   },
-
+  // Build optimizations to handle rate limiting
+  experimental: {
+    // Reduce concurrent requests during build
+    workerThreads: false,
+    cpus: 1
+  },
+  // Increase build timeout to handle rate limiting delays
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  }
 }
